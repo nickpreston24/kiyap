@@ -1,1 +1,0 @@
-{/* <Chip color="f54646" style={chipStyle} label="Professional" avatar={<Avatar>PRO</Avatar>}></Chip> */}

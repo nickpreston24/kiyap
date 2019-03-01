@@ -1,0 +1,35 @@
+{/* <Chip color="f54646" style={chipStyle} label="Professional" avatar={<Avatar>PRO</Avatar>}></Chip> */}
+
+
+
+
+//From: https://codepen.io/alligatorio/pen/gxvdxo?editors=1010
+class PrimaryButton extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        isActive: false
+      }
+    }
+    render() {
+      return (
+        <button style={this.style()} onMouseDown={() => this.setState({isActive: true})} onMouseUp={() => this.setState({isActive: false})}>
+          {this.props.children}
+        </button>
+      )
+    }
+    style() {
+      return {
+        display: 'inline-flex',
+        margin: '0 auto',
+        padding: '1.5vw 2.5vw',
+        border: 'none',
+        color: 'white',
+        fontSize: '2vw',
+        backgroundColor: this.state.isActive ? '#006600' : 'green',
+        cursor: 'pointer',
+        borderRadius: '0.5vw',
+        outline: 0,
+      }
+    }
+  }

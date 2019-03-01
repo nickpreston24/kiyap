@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  /*TODO: Fix this being overidden*/
+  /* font-family: 'Monda', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif */  
 }
 
 .App-logo {
