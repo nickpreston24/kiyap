@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import SubmitButton from '../Register/SubmitButton'
 
 export default class SearchBar extends Component {
 
@@ -33,7 +34,9 @@ export default class SearchBar extends Component {
                             defaultValue={initialQuery}
                             style={inputStyle} 
                             placeholder='Find your Pro!' type="text" name="query" />
-                        <button style={buttonStyle} type="submit">Search</button>
+                            {' '}
+                            <SubmitButton value={"Search"}></SubmitButton>
+                        {/* <button style={buttonStyle} type="submit">Search</button> */}
                     </div>
                 </form>
             </section>
@@ -42,4 +45,4 @@ export default class SearchBar extends Component {
 }
 
 const inputStyle = { border :'3px solid #f54646'};
-const buttonStyle = { margin: '10px' }
+// const buttonStyle = { margin: '10px' }

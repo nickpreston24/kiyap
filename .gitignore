@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 deliverables
+/firebase/tpot
+/firebase/tpot-fb-repo
