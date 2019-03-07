@@ -1,15 +1,8 @@
 import React, { Component } from 'react'
 import ProCard from './ProCard'
 import SearchBar from './SearchBar'
-
-// import Button from './Button'
-// import FilterTable from './FilterTable';
-// import { light } from '@material-ui/core/styles/createPalette';
-
-/**
- * TODO: 
- * 2) Create a Search Bar and filter results by name entered.
- */
+import ProList from './ProList';
+import API from '../../utils/API';
 
 var proData = [
     {
@@ -38,10 +31,22 @@ var proData = [
 ]
 
 export default class ProSearch extends Component {
-
+   
     state = {
         professionals: proData,
-        search: ""
+        search: "",
+        keyName: "owner"
+    }
+
+    componentDidMount(){
+        this.loadPros();
+    }
+
+    loadPros= ()=>{
+        API.getPros()
+        // .then(res=> this.setState({professionals:res.data}))
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err));
     }
 
     removePro = id => {
@@ -51,11 +56,20 @@ export default class ProSearch extends Component {
     }
 
     onSearch = text => {
+        let pros = this.state.professionals;
         console.log('searched for: ', text);        
+
         this.setState({search: text});
-        const remaining = this.state.professionals.filter(p=>p.owner.includes(text))
-        console.log('rem: ', remaining);
-        this.setState({professionals: remaining});
+        // console.log('pros:', pros)  
+
+        const remaining = pros.filter(p=>{
+            console.log('key:', p[this.state.keyName])
+            return p[this.state.keyName].includes(text)
+        })
+
+        // console.log('rem: ', remaining);
+        this.setState({professionals: remaining, keyName:"teaches"});
+        
     }   
 
     render() {
@@ -63,37 +77,17 @@ export default class ProSearch extends Component {
             <div className='container'>
                 <h1>Professionals Search</h1>
                 <h2>Filter Professionals</h2>
-                <SearchBar onSearch={this.onSearch}></SearchBar>
                 <ProList>
-                    <h3>Professionals found:</h3>
-                    {this.state.professionals
-                        .map(pro => (
-                            <ProCard 
-                                {...pro} 
-                                removePro={this.removePro} 
-                                key={pro.id}/>))}
+                    <SearchBar onSearch={this.onSearch}></SearchBar>
+                        <h3>Professionals found:</h3>
+                        {this.state.professionals
+                            .map(pro => (
+                                <ProCard 
+                                    {...pro} 
+                                    removePro={this.removePro} 
+                                    key={pro.id}/>))}
                 </ProList>
             </div>
         )
     }
 }
-
-function ProList(props){
-    return <div className='wrapper'>{props.children}</div>
-}
-
-
-// class SearchBar extends React.Component {
-// render() {
-//     return (
-//         <form>
-//             <input
-//             type="text"
-//             placeholder="Search..."
-//             value={this.props.filterText}
-//             onChange={this.handleFilterTextChange}
-//             />
-//         </form>
-//         );
-//     }
-// }
