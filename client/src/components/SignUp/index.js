@@ -8,7 +8,7 @@ import * as ROUTES from '../../constants/routes';
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
-    <SignUpForm/>    
+    <SignUpForm/>
   </div>
 );
 
@@ -20,7 +20,6 @@ const INITIAL_STATE = {
     error: null,
 };
 
-
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
@@ -30,10 +29,19 @@ class SignUpFormBase extends Component {
 
   onSubmit = event => {
     const { username, email, passwordOne } = this.state;
-    
+
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
+      .then(authUser=>{
+        //Creates a user in the Firebase Realtime database:
+        return this.props.firebase
+            .user(authUser.user.id)
+            .set({
+                username,
+                email,
+            });
+      })
+      .then(_ => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME) //To User's Home page/dash
       })
@@ -63,7 +71,7 @@ class SignUpFormBase extends Component {
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
-      username === '';  
+      username === '';
 
     return (
       <form onSubmit={this.onSubmit}>
