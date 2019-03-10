@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-// const {API_KEY} = require('./client/src/constants/keys');
-const API_KEY = 'AIzaSyDErcavr_Zf0a0A-5tK5OZ38YO5JblIxWM';
-console.log('api key: ', API_KEY);
+
 // Define middleware here
 app.use(express.urlencoded({
     extended: true
@@ -18,7 +16,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
-
 
 
 // TODO: Require API routes here:
