@@ -4,7 +4,7 @@ import React from 'react';
 
 // const FaAnchor = require("react-icons/lib/fa/anchor");
 
-import { API_KEY } from '../../constants/keys';
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const { compose, withProps, withState, withHandlers } = require("recompose");
 

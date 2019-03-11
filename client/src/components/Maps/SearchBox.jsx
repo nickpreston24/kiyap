@@ -2,7 +2,8 @@
 
 // *** Search Box ***
 import React from 'react';
-import { API_KEY } from '../../constants/keys';
+
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const _ = require("lodash");
 const { compose, withProps, lifecycle } = require("recompose");
