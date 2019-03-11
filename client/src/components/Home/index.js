@@ -5,14 +5,14 @@ import { LocationSearch, MyMapComponent, MyFancyComponent, MapWithASearchBox, Ma
 
 const HomePage = () => (
     <div>
-        <h1>Home Page</h1>
+        <h1>Home Page (powered by Maps)</h1>
         <p>Accessible by signed in users</p>
 
         {/* <LocationSearch/> */}
         {/* <MyFancyComponent/> */}
         {/* <PlacesSearchBox/> */}
         {/* <MyMapComponent isMarkerShown/> */}
-        {/* <MapWithASearchBox/> */}
+        <MapWithASearchBox/>
         {/* <MapWithControlledZoom/> */}
     </div>
 );
