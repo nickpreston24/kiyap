@@ -13,6 +13,9 @@
         "express": "^4.16.4",
         "firebase": "^5.8.6",
         "if-env": "^1.0.4",
+        "mobx": "^5.9.0",
+        "mobx-react": "^5.4.3",
+        "mobx-react-devtools": "^6.1.1",
         "mongoose": "^5.4.18",
         "recompose": "^0.30.0"
     },
