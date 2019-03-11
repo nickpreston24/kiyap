@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import SubmitButton from '../Register/SubmitButton'
+import SubmitButton from './SubmitButton'
 
 export default class SearchBar extends Component {
 
@@ -17,22 +17,22 @@ export default class SearchBar extends Component {
 
     componentDidMount(){
         const {onSearch, initialQuery} = this.props;
-        
+
         if (initialQuery)
             onSearch(initialQuery)
     }
-    
+
     render() {
         const {initialQuery} = this.props;
         return (
             <section>
                 <form onSubmit={this.onSubmit}>
                     <div>
-                        <h3>Enter a word or phrase:</h3>                
-                        <input 
+                        <h3>Enter a word or phrase:</h3>
+                        <input
                             value={this.props.filterText}
                             defaultValue={initialQuery}
-                            style={inputStyle} 
+                            style={inputStyle}
                             placeholder='Find your Pro!' type="text" name="query" />
                             {' '}
                             <SubmitButton value={"Search"}></SubmitButton>
