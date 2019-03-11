@@ -3,35 +3,34 @@ import ProCard from './ProCard'
 import SearchBar from './SearchBar'
 import ProList from './ProList';
 import API from '../../utils/API';
+import { proData } from './sampleData.js'
 
-var proData = [
-    {
-        id: 1,
-        owner: "Jorge Silveus",        
-        teaches: ["Tae Kwon Do", "Brazilian Jiu Jitsu", "Boxing"],
-        location: "Silveus Taekwondo",
-        address: "2630 Northaven Rd # 114, Dallas, TX 75229",
-    },
-    {
-        id: 2,
-        owner: "Daniel Hines",        
-        location: "Krav Maga DFW",
-        address: "2650 Midway Rd #204 Carrollton, TX 75006",
-        teaches: ["Krav Maga", "Boxing", "Muay Thai", "Strike Fit"]
-        //"1201 Turtle Creek Blvd Dallas, TX 75207"
-    },
-    {
-        id: 3,
-        owner: "Lacy Family",
-        location: "Lacy's Elite Taekwondo",
-        address: "9454 N MacArthur Blvd, Irving, TX 75063",
-        teaches: ["Tae Kwon Do"],
-        // image: image_path
+class Store {
+
+    professionals = proData
+
+    clearList() {
+        this.professionals = []
     }
-]
+
+    addProfessional (pro) {
+        this.professionals.push(pro);
+    }
+
+    loadPros () {
+        API.getPros()
+        // .then(res=> this.setState({professionals:res.data}))
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err));
+    }
+
+}
+
+const store = new Store();
+
 
 export default class ProSearch extends Component {
-   
+
     state = {
         professionals: proData,
         search: "",
@@ -45,7 +44,7 @@ export default class ProSearch extends Component {
     loadPros= ()=>{
         API.getPros()
         // .then(res=> this.setState({professionals:res.data}))
-        .then(res=>console.log(res))
+        .then(res=>console.log(res.data))
         .catch(err=>console.log(err));
     }
 
@@ -57,10 +56,10 @@ export default class ProSearch extends Component {
 
     onSearch = text => {
         let pros = this.state.professionals;
-        console.log('searched for: ', text);        
+        console.log('searched for: ', text);
 
         this.setState({search: text});
-        // console.log('pros:', pros)  
+        // console.log('pros:', pros)
 
         const remaining = pros.filter(p=>{
             console.log('key:', p[this.state.keyName])
@@ -69,8 +68,8 @@ export default class ProSearch extends Component {
 
         // console.log('rem: ', remaining);
         this.setState({professionals: remaining, keyName:"teaches"});
-        
-    }   
+
+    }
 
     render() {
         return (
@@ -82,12 +81,14 @@ export default class ProSearch extends Component {
                         <h3>Professionals found:</h3>
                         {this.state.professionals
                             .map(pro => (
-                                <ProCard 
-                                    {...pro} 
-                                    removePro={this.removePro} 
+                                <ProCard
+                                    {...pro}
+                                    removePro={this.removePro}
                                     key={pro.id}/>))}
                 </ProList>
             </div>
         )
     }
 }
+
+

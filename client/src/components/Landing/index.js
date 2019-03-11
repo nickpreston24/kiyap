@@ -24,7 +24,7 @@ const LandingNonAuth = () => (
 
 const LandingAuth = () => (
     <div>
-        <h1>Landing (Signed in)</h1>
+        <h1>Welcome back!</h1>
     </div>
 )
 

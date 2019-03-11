@@ -5,6 +5,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/kiyapp");
 
 //TODO: make this seeding dynamic by calling google's Places API.
 //These will be known & recorded locations that Students have found using our app, just like TX 3006.
+
+return 1;  //TODO: make model first
 var locations = [{
 
     //From Google:
