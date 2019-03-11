@@ -12,7 +12,7 @@ const HomePage = () => (
         {/* <MyFancyComponent/> */}
         {/* <PlacesSearchBox/> */}
         {/* <MyMapComponent isMarkerShown/> */}
-        <MapWithASearchBox/>
+        {/* <MapWithASearchBox/> */}
         {/* <MapWithControlledZoom/> */}
     </div>
 );
