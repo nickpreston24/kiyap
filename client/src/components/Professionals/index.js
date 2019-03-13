@@ -1,7 +1,7 @@
 import ProSearch from './ProSearch';
-import ProCard from './ProCard';
+import SchoolCard from './Cards';
 
 export {
-    ProCard,
+    SchoolCard,
     ProSearch
 }
