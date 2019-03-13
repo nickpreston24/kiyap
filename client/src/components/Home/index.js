@@ -4,8 +4,9 @@ import { withAuthorization } from '../Session'
 // import { LocationSearch, MyMapComponent, MyFancyComponent, MapWithASearchBox, MapWithControlledZoom, PlacesSearchBox } from '../Maps';
 // import Counter from './Counter'
 // import MobxTable from './MobxTable';
+import {ProSearch} from '../Professionals';
 
-import ProSearch from '../ProSearch';
+
 
 const HomePage = () => (
     <div>

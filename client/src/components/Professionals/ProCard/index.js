@@ -3,12 +3,11 @@ import './style.css';
 
 //{id, name, practice, location, removePro}, ...props
 export default function ProCard(props) {
-    
-    let {id, owner, address, 
+    let {_id, owner, address,
         teaches, website, phone,
         location: locationName, removePro,
         image} = props;
-    
+
     return (
         <div className="card">
         <div className="img-container">
@@ -27,9 +26,10 @@ export default function ProCard(props) {
         </div>
 
         {/* TODO: find a better button than this... */}
-        <span onClick={_ => removePro(id)} className="remove">
+        {/* {console.log('id: ', _id)} */}
+        {/* <span onClick={_ => removePro(_id)} className="remove">
             𝘅
-        </span>
+        </span> */}
         </div>
     )
 }
