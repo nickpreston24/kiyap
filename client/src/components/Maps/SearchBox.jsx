@@ -21,11 +21,12 @@ const MapWithASearchBox = compose(
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
+    // store: props.store
   }),
   lifecycle({
     componentWillMount() {
       const refs = {}
-
+      this.store = this.props.store;
       this.setState({
         bounds: null,
         center: {
@@ -59,20 +60,28 @@ const MapWithASearchBox = compose(
             position: place.geometry.location,
           }));
           const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
-
-          this.setState({
+          const nextState = {
             center: nextCenter,
             markers: nextMarkers,
-          });
+          };
+
+          this.store.addLocation(nextState)
+          // console.log('placechanged has store?', this.store)
+
+          console.log('next state: ', nextState)
+          this.setState(nextState);
           // refs.map.fitBounds(bounds);
         },
       })
     },
+    componentDidMount(){
+        console.log('wrapper has store?', !!this.props.store)
+    }
   }),
   withScriptjs,
   withGoogleMap
 )(props =>
-  <GoogleMap
+    <GoogleMap
     ref={props.onMapMounted}
     defaultZoom={15}
     center={props.center}
@@ -104,8 +113,13 @@ const MapWithASearchBox = compose(
       />
     </SearchBox>
     {props.markers.map((marker, index) =>
-      <Marker key={index} position={marker.position} />
-    )}
+      {
+            {/* console.log('googlemap has store?', !!props.store) */}
+
+          console.log('marker: ', marker, 'index: ', index)
+          return <Marker key={index} position={marker.position} />}
+    )
+    }
 
   </GoogleMap>
 );

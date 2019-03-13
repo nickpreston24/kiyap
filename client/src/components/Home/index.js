@@ -1,21 +1,15 @@
-
-import React, {Component} from 'react'
+import React from 'react'
 import { withAuthorization } from '../Session'
-// import { LocationSearch, MyMapComponent, MyFancyComponent, MapWithASearchBox, MapWithControlledZoom, PlacesSearchBox } from '../Maps';
-// import Counter from './Counter'
-// import MobxTable from './MobxTable';
+import { MapWithASearchBox } from '../Maps';
 import {ProSearch} from '../Professionals';
+import LocationStore from '../Stores/ProStore';
 
-
+const store = new LocationStore();
 
 const HomePage = () => (
     <div>
-        {/* <h1>Home Page (powered by Maps)</h1> */}
-        {/* <p>Accessible by signed in users</p> */}
-        {/* <MyMapComponent/> */}
-        {/* <Counter/> */}
-        {/* <MobxTable/> */}
-        <ProSearch/>
+        <MapWithASearchBox store={store}/>
+        <ProSearch testprop={"hi, i am a prop!"} store={store}/>
     </div>
 );
 

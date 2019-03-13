@@ -2,21 +2,21 @@ import React from 'react';
 import './style.css';
 
 //{id, name, practice, location, removePro}, ...props
-export default function ProCard(props) {
+export default function SchoolCard(props) {
     let {_id, owner, address,
         teaches, website, phone,
-        location: locationName, removePro,
+        location: schoolName, removePro,
         image} = props;
 
     return (
         <div className="card">
         <div className="img-container">
             {console.log('image: ', image)}
-            <img alt={locationName} src={'image'}/>
+            <img alt={schoolName} src={'image'}/>
         </div>
         <div className="content">
             <ul>
-                {locationName && <li><strong>{locationName}</strong></li>}
+                {schoolName && <li><strong>{schoolName}</strong></li>}
                 {teaches && <li><strong>Teaches:</strong> {teaches.join(" ")}</li>}
                 {address && <li><strong>Address:</strong> {address}</li>}
                 {owner && <li><strong>Owner:</strong> {owner}</li>}
