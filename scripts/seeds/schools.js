@@ -3,19 +3,37 @@ const db = require("../../models");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/kiyapp");
 
-//TODO: make this seeding dynamic by calling google's Places API.
+//IDEA: I could make this seeding dynamic by calling google's Places API.
+
 //These will be known & recorded locations that Students have found using our app, just like TX 3006.
 
+// //From Google:
+// "location" : {
+//     "lat" : -33.866891,
+//     "lng" : 151.200814
+// },
+
 var schools = [{
-
-    // //From Google:
-    // "location" : {
-    //     "lat" : -33.866891,
-    //     "lng" : 151.200814
-    // },
-
-},
-
+        name: "Silveus Taekwondo",
+        address: "2630 Northaven Rd # 114, Dallas, TX 75229",
+        teaches: ["Tae Kwon Do", "Brazilian Jiu Jitsu", "Boxing"],
+    },
+    {
+        name: "Krav Maga DFW",
+        address: "2650 Midway Rd #204 Carrollton, TX 75006",
+        teaches: ["Krav Maga", "Boxing", "Muay Thai", "Strike Fit"],
+    },
+    {
+        name: "Lacy's Elite Taekwondo",
+        address: "9454 N MacArthur Blvd, Irving, TX 75063",
+        teaches: ["Tae Kwon Do"],
+    },
+    {
+        name: "Texas Blackbelt Academy",
+        address: "425 N Cooper St, Arlington, TX 76011",
+        phone: "(817) 274-9812",
+        teaches: ["Tae Kwon Do", "Karate"]
+    },
 ]
 
 db.School

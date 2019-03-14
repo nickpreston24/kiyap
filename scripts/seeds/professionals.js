@@ -6,9 +6,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/kiyapp");
 var professionals = [{
         firstName: "Jorge",
         lastName: "Silveus",
-        teaches: ["Tae Kwon Do", "Brazilian Jiu Jitsu", "Boxing"],
         school: "Silveus Taekwondo",
         address: "2630 Northaven Rd # 114, Dallas, TX 75229",
+        teaches: ["Tae Kwon Do", "Brazilian Jiu Jitsu", "Boxing"],
     },
     {
         firstName: "Daniel",
