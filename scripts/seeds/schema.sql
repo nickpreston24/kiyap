@@ -6,6 +6,8 @@ drop table if exists `School`;
 drop table if exists `Student_Progress`;
 drop table if exists `Training`;
 drop table if exists `Professional`;
+drop table if exists `Discipline`;
+drop table if exists `Certification`;
 
 CREATE TABLE `Student` (
   `Id` int auto_increment not null,
@@ -16,33 +18,54 @@ CREATE TABLE `Student` (
 
 CREATE TABLE `School` (
   `Id` int auto_increment not null,
-  `Name` varchar(75),
-  `Address` varchar(50),
-  `Website` varchar(150),
-  `Phone` int(12),
+  `Name` varchar(75) not null,
+  `Address` varchar(50) not null,
+  `Website` varchar(150) null,
+  `Phone` varchar(12) null,
   PRIMARY KEY (`Id`)
 );
 
 CREATE TABLE `Student_Progress` (
   `StudentId` int,
   `Belt` varchar(20),
-  `Degree` int,
+  `Degree` int null,
   `SchoolId` int,
-  KEY `FK` (`StudentId`, `SchoolId`)
+  `DisciplineId` int,
+  KEY `FK` (`StudentId`, `SchoolId`, `DisciplineId`)
 );
 
 CREATE TABLE `Training` (
-  `StudentId` int,
-  `ProfessionalId` int,
+  `StudentId` int not null,
+  `ProfessionalId` int not null,
   `SchoolId` int,
-  KEY `FK` (`StudentId`, `ProfessionalId`, `SchoolId`)
+  `DisciplineId` int not null,
+  KEY `FK` (`StudentId`, `ProfessionalId`, `SchoolId`, `DisciplineId`)
 );
 
 CREATE TABLE `Professional` (
-  `id` int auto_increment not null,
+  `Id` int auto_increment not null,
   `FirstName` varchar(75),
   `LastName` varchar(75),
   `SchoolId` int,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`Id`),
   KEY `FK` (`SchoolId`)
 );
+
+CREATE TABLE `Certification` (
+  `ProfessionalId` int not null,
+ `DisciplineId` int not null, 
+ `Belt` varchar(20) not null,
+ `Degree` int null,
+  KEY `FK` (`ProfessionalId`, `DisciplineId`)
+);
+
+CREATE TABLE `Discipline` (
+  `Id` int auto_increment not null,
+  `Name` varchar(100) not null,
+  `Description` varchar(1500) null,
+  PRIMARY KEY (`Id`, `Name`),
+  KEY `PK,FK` (`Id`, `Name`)
+);
+
+ALTER TABLE Discipline ADD UNIQUE INDEX(Id, Name);
+ALTER TABLE Certification ADD UNIQUE INDEX(ProfessionalId, DisciplineId);
