@@ -4,7 +4,7 @@ const professionalSchema = new Schema({
     firstName:{ type: String, required: true },
     lastName:{ type: String, required: true },
     joinDate: {type: Date, default: Date.now},
-    location: String,
+    school: String,
     address: String,
     teaches: Array,
 });

@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 class SchoolList extends Component {
     render() {
       const { store } = this.props
-      console.log('received store: ', store);
+    //   console.log('received store: ', store);
       return (
             <div className='wrapper'>
                 {store.locations

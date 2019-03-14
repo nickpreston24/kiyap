@@ -7,13 +7,13 @@ var professionals = [{
         firstName: "Jorge",
         lastName: "Silveus",
         teaches: ["Tae Kwon Do", "Brazilian Jiu Jitsu", "Boxing"],
-        location: "Silveus Taekwondo",
+        school: "Silveus Taekwondo",
         address: "2630 Northaven Rd # 114, Dallas, TX 75229",
     },
     {
         firstName: "Daniel",
         lastName: "Hines",
-        location: "Krav Maga DFW",
+        school: "Krav Maga DFW",
         address: "2650 Midway Rd #204 Carrollton, TX 75006",
         teaches: ["Krav Maga", "Boxing", "Muay Thai", "Strike Fit"],
         // "1201 Turtle Creek Blvd Dallas, TX 75207"
@@ -21,7 +21,7 @@ var professionals = [{
     {
         firstName: "Jenny",
         lastName: "Lacy",
-        location: "Lacy's Elite Taekwondo",
+        school: "Lacy's Elite Taekwondo",
         address: "9454 N MacArthur Blvd, Irving, TX 75063",
         teaches: ["Tae Kwon Do"],
         // image: image_path
@@ -29,7 +29,7 @@ var professionals = [{
     {
         firstName: "Dave",
         lastName: "Johnson",
-        location: "Texas Blackbelt Academy",
+        school: "Texas Blackbelt Academy",
         address: "425 N Cooper St, Arlington, TX 76011",
         phone: "(817) 274-9812",
         teaches: ["Tae Kwon Do", "Karate"]
