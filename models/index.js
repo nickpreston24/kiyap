@@ -1,4 +1,5 @@
 module.exports = {
     Professional: require('./professional'),
-    Student: require('./student')
+    Student: require('./student'),
+    School: require('./school')
 }
