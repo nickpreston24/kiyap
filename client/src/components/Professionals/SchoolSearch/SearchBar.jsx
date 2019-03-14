@@ -33,7 +33,7 @@ export default class SearchBar extends Component {
                             value={this.props.filterText}
                             defaultValue={initialQuery}
                             style={inputStyle}
-                            placeholder='Find your Pro!' type="text" name="query" />
+                            placeholder='Find your Dojo!' type="text" name="query" />
                             {' '}
                             <SubmitButton value={"Search"}></SubmitButton>
                         {/* <button style={buttonStyle} type="submit">Search</button> */}
