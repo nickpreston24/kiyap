@@ -28,3 +28,4 @@ deliverables
 **/tpot-fb-repo
 **/scraps
 .env
+scripts/seeds/lucidchart-import.csv
