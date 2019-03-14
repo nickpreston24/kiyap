@@ -1,15 +1,15 @@
 import React from 'react'
 import { withAuthorization } from '../Session'
 import { MapWithASearchBox } from '../Maps';
-import {ProSearch} from '../Professionals';
-import LocationStore from '../Stores/ProStore';
+import {SchoolSearch} from '../Professionals';
+import { LocationStore }  from '../Stores';
 
 const store = new LocationStore();
 
 const HomePage = () => (
     <div>
         <MapWithASearchBox store={store}/>
-        <ProSearch testprop={"hi, i am a prop!"} store={store}/>
+        <SchoolSearch store={store}/>
     </div>
 );
 

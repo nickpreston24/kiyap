@@ -2,6 +2,25 @@ import axios from "axios";
 
 export default {
 
+
+    /*Schools*/
+    getSchools: function () {
+        return axios.get("/api/schools");
+    },
+
+    getSchool: function (id) {
+        return axios.get("/api/schools/" + id);
+    },
+
+    deleteSchool: function (id) {
+        return axios.delete("/api/schools/" + id);
+    },
+
+    saveSchool: function (data) {
+        return axios.post("/api/schools", data);
+    },
+
+
     /*Professionals*/
     getPros: function () {
         return axios.get("/api/pros");
