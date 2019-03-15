@@ -1,6 +1,7 @@
 import React from 'react'
 import './style.css'
 import { AuthUserContext } from '../Session';
+import { withFlexColumn, withFlexRow } from '../Flex';
 
 const title = 'sifu';
 
@@ -28,4 +29,4 @@ const LandingAuth = () => (
     </div>
 )
 
-export default Landing;
+export default withFlexColumn(withFlexRow(Landing))

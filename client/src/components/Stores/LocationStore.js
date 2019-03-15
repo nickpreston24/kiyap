@@ -16,10 +16,19 @@ export default class LocationStore {
         this.locations = [];
     }
 
-    addSchool (location){
-        // TODO: 'Select' indicates user's interest in a school.
-        // Professionals will be able to indicate their schools and 'put them on the map' for students to find.
-        this.schools.push(location)
+
+    addSchools (locations) {
+        this.locations = [...locations];
+    }
+
+    // getLocations () {
+    //     return this.locations;
+    // }
+
+    // indicates user's interest in a school.
+    // Professionals will be able to indicate their schools and 'put them on the map' for students to find.
+    saveSchool(school) {
+        this.schools.push(school)
     }
 
     //Loads the User saved school data, if any
@@ -48,5 +57,5 @@ decorate(LocationStore, {
     locations: observable,
     schools: observable,
     clear: action,
-    addSchool: action,
+    addSchools: action,
 })

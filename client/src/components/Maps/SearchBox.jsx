@@ -14,7 +14,7 @@ const {
   Marker,
 } = require("react-google-maps");
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
-
+// const startCoordinates = {lat: 32.7767, lng: 96.7970 };
 const MapWithASearchBox = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
@@ -49,10 +49,15 @@ const MapWithASearchBox = compose(
           const places = refs.searchBox.getPlaces();
           const bounds = new google.maps.LatLngBounds();
 
+          //PLACES:
+          console.log('maps found places: ', places);
+          this.store.addSchools(places);
           places.forEach(place => {
             if (place.geometry.viewport) {
+                // console.log('viewport place: ', place)
               bounds.union(place.geometry.viewport)
             } else {
+                // console.log('bounds place: ', place)
               bounds.extend(place.geometry.location)
             }
           });
@@ -64,11 +69,6 @@ const MapWithASearchBox = compose(
             center: nextCenter,
             markers: nextMarkers,
           };
-
-          this.store.addLocation(nextState)
-          // console.log('placechanged has store?', this.store)
-
-          console.log('next state: ', nextState)
           this.setState(nextState);
           // refs.map.fitBounds(bounds);
         },
@@ -113,13 +113,7 @@ const MapWithASearchBox = compose(
       />
     </SearchBox>
     {props.markers.map((marker, index) =>
-      {
-            {/* console.log('googlemap has store?', !!props.store) */}
-
-          console.log('marker: ', marker, 'index: ', index)
-          return <Marker key={index} position={marker.position} />}
-    )
-    }
+        <Marker key={index} position={marker.position} />)}
 
   </GoogleMap>
 );

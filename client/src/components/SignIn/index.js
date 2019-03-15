@@ -6,6 +6,7 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import { withFlexColumn, withFlexRow } from '../Flex';
 
 const SignInPage = () => (
   <div>
@@ -85,6 +86,6 @@ const SignInForm = compose(
   withFirebase,
 )(SignInFormBase);
 
-export default SignInPage;
+export default withFlexColumn(withFlexRow(SignInPage));
 
 export { SignInForm };

@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 
 //{id, name, practice, location, removePro}, ...props
-export default function SchoolCard(props) {
+export default function ProCard(props) {
     let {_id, owner, address,
         teaches, website, phone,
         location: schoolName, removePro,
@@ -17,7 +17,7 @@ export default function SchoolCard(props) {
         <div className="content">
             <ul>
                 {schoolName && <li><strong>{schoolName}</strong></li>}
-                {teaches && <li><strong>Teaches:</strong> {teaches.join(" ")}</li>}
+                {teaches && <li><strong>Teaches:</strong> {teaches.join(", ")}</li>}
                 {address && <li><strong>Address:</strong> {address}</li>}
                 {owner && <li><strong>Owner:</strong> {owner}</li>}
                 {website && <li><strong>Website</strong>{website}</li>}

@@ -29,91 +29,77 @@ class SchoolList extends Component {
 
         clearList = () => {
             this.props.store.clear();
-          }
+        }
 
 
-        render(){
+        render() {
             const { store } = this.props
-            console.log('lolcations: ', store.locations)
+            // console.log('lolcations: ', store.locations)
             return (
 
-                <Column flexGrow={1}>
-
+                // <Column flexGrow={1}>
+                <div>
                     {store.locations ? (
-                        <div>
-
-                            <Row horizontal='center'>
-                                <h1>Search Results</h1>
-                            </Row>
-
-                            <Row horizontal='center'>
-
-                                <div>
-                                    <TextField style={{padding:24}}
-                                    id="filterInput"
-                                    placeholder="Filter Schools"
-                                    margin="normal"
-                                    onChange={this.onFilterChange}>
-
-                                    </TextField>
-                                    {/* TODO: Line up with textfield */}
-                                    <button onClick={this.clearList}>clear</button>
-
-                                </div>
-                            </Row>
-
-                            <Row vertical='center'>
-
-                                <Grid container spacing={24} style={{padding:24}}>
-                                    {store.locations.map(location =>(
-                                        <School {...location}
-                                        key={location._id}/>
-                                    ))}
-                                </Grid>
-
-                            </Row>
-                        </div>
+                        <YourFinds locations={store.locations}/>
                     ): "Search for locations on the map"}
 
                     {store.schools ? (
-
-                        <div>
-                            <Column flexGrow={1} horizontal='center'>
-                                <h1>Your Picks</h1>
-                                <div>
-                                    <Grid container spacing={24} style={{padding:24}}>
-                                    {store.schools
-                                        .map(school => (
-                                            <School {...school}
-                                            key={school._id}/>
-                                        ))}
-                                    </Grid>
-                                </div>
-                            </Column>
-                        </div>
-
+                        <YourPicks schools={store.schools}/>
                     ): "No Schools found"}
-
-                </Column>
-        )
-    }
+                </div>
+                // </Column>
+            )
+        }
 }
 
 SchoolList = observer(SchoolList)
 
-// class Controls extends Component {
+const YourFinds = ({locations}) =>
+    <Column flexGrow={1} horizontal='center'>
 
-//     clearList = () => {
-//         this.props.store.clear();
-//       }
+        <Row horizontal='center'>
+            <h1>Search Results</h1>
+        </Row>
 
-//     render() {
-//       return (<div className="controls">
-//         <button onClick={this.clearList}>clear</button>
-//         {/* <button onClick={this.addSchool}>add professional</button> */}
-//       </div>)
-//     }
-//   }
+        <Row horizontal='center'>
+            <Grid container spacing={8} style={{padding:10}}>
+
+            <TextField style={{padding:24}}
+            id="filterInput"
+            placeholder="Filter Schools"
+            margin="normal"
+            // onChange={this.onFilterChange}
+            >
+            </TextField>
+            {/* TODO: Line up with textfield */}
+            {/* <button style={{height:'30px'}} onClick={this.clearList}>Clear Filters</button> */}
+            </Grid>
+            {/* {console.log('found locations: : ', locations)} */}
+        </Row>
+
+        <Row vertical='center'>
+            <Grid container spacing={24} style={{padding:24}}>
+                {console.log('found locations: : ', locations)}
+                {locations.map(location => (
+                    <School {...location}
+                    key={location.formatted_address}/>
+                ))}
+            </Grid>
+        </Row>
+    </Column>
+
+
+const YourPicks = ({schools}) =>
+    <Column flexGrow={1} horizontal='center'>
+        <h1>Your Picks</h1>
+        <Grid container spacing={24} style={{padding:24}}>
+        {schools
+            .map(school => (
+                <School {...school}
+                key={school._id}/>
+            ))}
+        </Grid>
+    </Column>
 
 /**
  * Searches for Schools using a Google Map
@@ -125,6 +111,7 @@ export default class SchoolSearch extends Component {
         super(props);
         this.store = props.store;
     }
+
     onSearch = text => {
 
     }
@@ -132,11 +119,8 @@ export default class SchoolSearch extends Component {
     render() {
         return (
             <div>
-                {/* {console.log(this.store)} */}
-                {/* <Controls store={this.store}/> */}
                 <SchoolList store={this.store}/>
             </div>
         )
     }
 }
-

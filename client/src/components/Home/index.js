@@ -3,6 +3,7 @@ import { withAuthorization } from '../Session'
 import { MapWithASearchBox } from '../Maps';
 import {SchoolSearch} from '../Professionals';
 import { LocationStore }  from '../Stores';
+import { withFlexColumn, withFlexRow } from '../Flex';
 
 const store = new LocationStore();
 
@@ -15,4 +16,4 @@ const HomePage = () => (
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(HomePage);
+export default withAuthorization(condition)(withFlexColumn(withFlexRow(HomePage)));
