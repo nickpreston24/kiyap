@@ -17,7 +17,8 @@
         "mobx-react": "^5.4.3",
         "mobx-react-devtools": "^6.1.1",
         "mongoose": "^5.4.18",
-        "recompose": "^0.30.0"
+        "recompose": "^0.30.0",
+        "simple-flexbox": "^1.2.0"
     },
     "main": "server.js",
     "scripts": {

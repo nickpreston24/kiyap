@@ -75,7 +75,7 @@ const MapWithASearchBox = compose(
       })
     },
     componentDidMount(){
-        console.log('wrapper has store?', !!this.props.store)
+        // console.log('wrapper has store?', !!this.props.store)
     }
   }),
   withScriptjs,
