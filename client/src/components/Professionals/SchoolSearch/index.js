@@ -96,7 +96,7 @@ function YourFinds({locations, store}) {
                     <School {...location}
                     onDislike={onDislike}
                     onLike={onLike}
-                    image={'https://dummyimage.com/640x360/fff/aaa'}
+                    // image={'https://dummyimage.com/640x360/fff/aaa'}
                     key={location.place_id}/>
                 ))}
             </Grid>
