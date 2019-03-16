@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import {Column, Row} from 'simple-flexbox';
+import { withFlexColumn, withFlexRow } from '../../Flex';
 
 class SchoolList extends Component {
 
@@ -132,7 +133,7 @@ function YourPicks ({schools, store}) {
  * Searches for Schools using a Google Map
  * Professionals are selected by location
  */
-export default class SchoolSearch extends Component {
+export default withFlexRow(class SchoolSearch extends Component {
 
     constructor(props){
         super(props);
@@ -150,4 +151,4 @@ export default class SchoolSearch extends Component {
             </div>
         )
     }
-}
+})

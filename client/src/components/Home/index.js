@@ -15,4 +15,4 @@ const HomePage = () => (
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(withFlexColumn(withFlexRow(HomePage)));
+export default withAuthorization(condition)(HomePage);
