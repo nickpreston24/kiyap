@@ -57,29 +57,15 @@ SchoolList = observer(SchoolList)
 
 function YourFinds({locations, store}) {
 
-    // this.onLike = (event) => {
-    //     console.log('like event:', event.target);
-    // }
-
     function onLike(id){
         console.log('place id: ', id);
-        // console.log('matching locations:',
-        // // store.locations.filter(loc=>loc.place_id===id)
-        // store.locations.find(loc=>loc.place_id===id)
-        // );
         store.saveSchool(id);
     }
-    // function onLike(event) {
-    //     // console.log('keys: ', Object.keys(event.button));
-    //     // console.log('like event:', event.target);
-    // }
 
-    function onDislike(event){
-        console.log('dislike event:', event.target);
+    function onDislike(id){
+        console.log('disliked place id: ', id);
+        store.removeLocation(id);
     }
-    // onDislike = (event) => {
-    //     console.log('dislike event:', event.target);
-    // }
 
   return (
     <Column flexGrow={1} horizontal='center'>
@@ -91,13 +77,14 @@ function YourFinds({locations, store}) {
         <Row horizontal='center'>
             <Grid container spacing={8} style={{padding:10}}>
 
-            <TextField style={{padding:24}}
+            {/* TODO: Uncomment after presentations */}
+            {/* <TextField style={{padding:24}}
             id="filterInput"
             placeholder="Filter Schools"
             margin="normal"
             // onChange={this.onFilterChange}
             >
-            </TextField>
+            </TextField> */}
 
             </Grid>
 
@@ -107,7 +94,7 @@ function YourFinds({locations, store}) {
             <Grid container spacing={24} style={{padding:24}}>
                 {locations.map(location => (
                     <School {...location}
-                    dislike={onDislike}
+                    onDislike={onDislike}
                     onLike={onLike}
                     key={location.place_id}/>
                 ))}
@@ -117,42 +104,6 @@ function YourFinds({locations, store}) {
 
   )
 }
-
-
-// const YourFinds = ({locations}) =>
-
-    // <Column flexGrow={1} horizontal='center'>
-
-    //     <Row horizontal='center'>
-    //         <h1>Search Results</h1>
-    //     </Row>
-
-    //     <Row horizontal='center'>
-    //         <Grid container spacing={8} style={{padding:10}}>
-
-    //         <TextField style={{padding:24}}
-    //         id="filterInput"
-    //         placeholder="Filter Schools"
-    //         margin="normal"
-    //         // onChange={this.onFilterChange}
-    //         >
-    //         </TextField>
-
-    //         </Grid>
-
-    //     </Row>
-
-    //     <Row vertical='center'>
-    //         <Grid container spacing={24} style={{padding:24}}>
-    //             {locations.map(location => (
-    //                 <School {...location}
-    //                 dislike={this.onDislike}
-    //                 key={location.place_id}/>
-    //             ))}
-    //         </Grid>
-    //     </Row>
-    // </Column>
-
 
 const YourPicks = ({schools}) =>
     <Column flexGrow={1} horizontal='center'>

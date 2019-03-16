@@ -19,6 +19,13 @@ export default class LocationStore {
         this.locations = [...locations];
     }
 
+    removeLocation(id) {
+        // let location = this.locations.find(loc=>loc.place_id===id);
+        console.log('removing location: ', id);
+        this.locations = this.locations.filter(l=>l.place_id!==id);
+        // this.locations.remove(this.locations.find(l=>l.place_id===id));
+    }
+
     // indicates user's interest in a school.
     // Professionals will be able to indicate their schools and 'put them on the map' for students to find.
     saveSchool(id) {

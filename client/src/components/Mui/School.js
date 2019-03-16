@@ -17,7 +17,7 @@ const SavedSchool = (props) => {
         teaches, website, phone,
         name,
         image} = props;
-    console.log('saved school name', name)
+    // console.log('saved school name', name)
     // console.log('geometry:: ', props.geometry)
     return(
         <Card style={{
@@ -65,8 +65,8 @@ const SchoolLocation = (props) => {
     } = props;
 
     let {onLike, onDislike} = props;
-    console.log(!!onDislike);
-    console.log('photos: ', props.photos)
+    // console.log(!!onDislike);
+    // console.log('photos: ', photos)
 
     return (
         <Card style={{
@@ -78,9 +78,8 @@ const SchoolLocation = (props) => {
                     title={name}/>}
             <CardContent>
 
-                <Typography gutterBottom variant="headline" component="h2">
-                    {name}
-                </Typography>
+                {name &&
+                <Typography gutterBottom variant="headline" component="h2">{name}</Typography>}
 
                 {address &&
                     <Typography component="p">{address}</Typography>}
@@ -89,7 +88,7 @@ const SchoolLocation = (props) => {
             <CardActions>
                 {/* <h4>Interested?</h4> */}
                 <Button size="small" color="primary" target="_blank" onClick={()=>onLike(place_id)}>Like</Button>
-                <Button size="small" color="secondary" target="_blank" onClick={onDislike}>Dislike</Button>
+                <Button size="small" color="secondary" target="_blank" onClick={()=>onDislike(place_id)}>Dislike</Button>
             </CardActions>
         </Card>
     )}
