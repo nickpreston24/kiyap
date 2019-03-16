@@ -2,7 +2,10 @@ import React from 'react'
 import './style.css'
 import { AuthUserContext } from '../Session';
 import { withFlexColumn, withFlexRow } from '../Flex';
-
+import {Link} from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
+import {Button } from '@material-ui/core';
+//TODO: Make the title rotate and flip like a reel
 const title = 'sifu';
 
 const Landing = () => (
@@ -16,10 +19,19 @@ const Landing = () => (
 const LandingNonAuth = () => (
     <div>
         <h1>Welcome to KIY'APP!</h1>
-        <h2>Are you a ...</h2>
-        <button>Pro</button>
-        <button>Student</button>
-        <p>Find your local {title}!</p>
+        <h2>Find your local {title}! Are you a ...</h2>
+
+        <Link to={ROUTES.SIGN_UP}>
+            <Button type="button" id="noobButton">
+                New Student
+            </Button>
+        </Link>
+
+        <Link to={ROUTES.SIGN_UP}>
+            <Button type="button" id="proButton">
+                Professional
+            </Button>
+        </Link>
     </div>
 )
 

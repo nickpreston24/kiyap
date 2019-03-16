@@ -67,7 +67,7 @@ function YourFinds({locations, store}) {
         store.removeLocation(id);
     }
 
-  return (
+  return locations.length > 0 ? (
     <Column flexGrow={1} horizontal='center'>
 
         <Row horizontal='center'>
@@ -96,13 +96,14 @@ function YourFinds({locations, store}) {
                     <School {...location}
                     onDislike={onDislike}
                     onLike={onLike}
+                    image={'https://dummyimage.com/640x360/fff/aaa'}
                     key={location.place_id}/>
                 ))}
             </Grid>
         </Row>
     </Column>
 
-  )
+  ):null
 }
 
 function YourPicks ({schools, store}) {

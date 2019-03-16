@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
+import {Button} from '@material-ui/core'
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import {withFlexColumn, withFlexRow} from '../Flex';
+import './style.css'
 
 const SignUpPage = () => (
   <div>
@@ -82,6 +84,7 @@ class SignUpFormBase extends Component {
           type="text"
           placeholder="Full Name"
         />
+        <br/>
         <input
           name="email"
           value={email}
@@ -89,6 +92,7 @@ class SignUpFormBase extends Component {
           type="text"
           placeholder="Email Address"
         />
+        <br/>
         <input
           name="passwordOne"
           value={passwordOne}
@@ -96,6 +100,7 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Password"
         />
+        <br/>
         <input
           name="passwordTwo"
           value={passwordTwo}
@@ -103,7 +108,9 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">Sign Up</button>
+        <br/>
+
+        <Button disabled={isInvalid} type="submit">Sign Up</Button>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -122,6 +129,6 @@ const SignUpForm = compose(
     withFirebase,
 )(SignUpFormBase);
 
-  export default SignUpPage;
+  export default withFlexRow(SignUpPage);
 
   export { SignUpForm, SignUpLink };

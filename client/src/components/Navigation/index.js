@@ -14,9 +14,6 @@ const Navigation = () => (
 
 const NavigationAuth = () => (
     <ul className="navigation">
-      {/* <li>
-        <Link to={ROUTES.LANDING}>Landing</Link>
-      </li> */}
       <li>
         <Link to={ROUTES.HOME}>Home</Link>
       </li>
