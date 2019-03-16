@@ -27,6 +27,7 @@ const MapWithASearchBox = compose(
     componentWillMount() {
       const refs = {}
       this.store = this.props.store;
+      //   this.getGeoLocation();
       this.setState({
         bounds: null,
         center: {
@@ -37,6 +38,10 @@ const MapWithASearchBox = compose(
           refs.map = ref;
         },
         onBoundsChanged: () => {
+            // console.log('bounds changed()')
+            // let bnds  = refs.map.getBounds();
+            // let cntr = refs.map.getCenter();
+            // console.log('new bounds: ', bnds, 'new center', cntr);
           this.setState({
             bounds: refs.map.getBounds(),
             center: refs.map.getCenter(),
@@ -49,15 +54,13 @@ const MapWithASearchBox = compose(
           const places = refs.searchBox.getPlaces();
           const bounds = new google.maps.LatLngBounds();
 
-          //PLACES:
-          console.log('maps found places: ', places);
+          //   *** PLACES ***
+          //   console.log('maps found places: ', places);
           this.store.addSchools(places);
           places.forEach(place => {
             if (place.geometry.viewport) {
-                // console.log('viewport place: ', place)
               bounds.union(place.geometry.viewport)
             } else {
-                // console.log('bounds place: ', place)
               bounds.extend(place.geometry.location)
             }
           });
@@ -70,13 +73,33 @@ const MapWithASearchBox = compose(
             markers: nextMarkers,
           };
           this.setState(nextState);
-          // refs.map.fitBounds(bounds);
+        //   refs.map.fitBounds(bounds);
         },
       })
     },
-    componentDidMount(){
+    componentDidMount() {
         // console.log('wrapper has store?', !!this.props.store)
-    }
+        // this.delayedShowMarker()
+    },
+    componentWillUpdate() {
+        // this.getGeoLocation()
+    },
+    getGeoLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            position => {
+              this.setState({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              })
+              console.log('geo position: ', position)
+            }
+          )
+        } else {
+        //   error => console.log(error)
+        }
+      }
+
   }),
   withScriptjs,
   withGoogleMap
@@ -85,6 +108,7 @@ const MapWithASearchBox = compose(
     ref={props.onMapMounted}
     defaultZoom={15}
     center={props.center}
+    // center={{ lat: props.lat, lng: props.lng }}
     onBoundsChanged={props.onBoundsChanged}
     clickableIcons={true}
   >
