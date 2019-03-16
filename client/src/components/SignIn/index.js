@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import { compose } from 'recompose';
 
 import { SignUpLink } from '../SignUp';
@@ -71,9 +72,9 @@ class SignInFormBase extends Component {
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <Button size='medium' color='secondary' disabled={isInvalid} type="submit">
           Sign In
-        </button>
+        </Button>
 
         {error && <p>{error.message}</p>}
       </form>
