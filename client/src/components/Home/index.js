@@ -6,7 +6,6 @@ import { LocationStore }  from '../Stores';
 import { withFlexColumn, withFlexRow } from '../Flex';
 
 const store = new LocationStore();
-
 const HomePage = () => (
     <div>
         <MapWithASearchBox store={store}/>
