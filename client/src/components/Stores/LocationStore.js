@@ -21,9 +21,17 @@ export default class LocationStore {
 
     removeLocation(id) {
         // let location = this.locations.find(loc=>loc.place_id===id);
-        console.log('removing location: ', id);
+        // console.log('removing location: ', id);
         this.locations = this.locations.filter(l=>l.place_id!==id);
         // this.locations.remove(this.locations.find(l=>l.place_id===id));
+    }
+
+    removeSchool(id) {
+        // console.log('removing school from db: ', id);
+        // console.log(this.schools)
+        this.schools = this.schools.filter(s=>s._id!==id);
+        API.deleteSchool(id)
+            .catch(console.error);
     }
 
     // indicates user's interest in a school.
@@ -39,8 +47,7 @@ export default class LocationStore {
         this.schools.push(school);
 
         API.saveSchool(school)
-            .then(res => console.log(res))
-            .catch(err=>console.log(err.message));
+            .catch(console.error);
     }
 
     //Loads the User saved school data, if any
@@ -51,7 +58,7 @@ export default class LocationStore {
                 // console.log('saved schools: ', data);
                 this.schools = data;
             })
-            .catch(err => console.log(err));
+            .catch(console.error);
     }
 }
 

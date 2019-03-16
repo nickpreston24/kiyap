@@ -22,7 +22,7 @@ const API_KEY  = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
       defaultCenter={startPosition}
     >
       {/* {console.log('url:', this.props.url)} */}
-      {console.log('props: ', props)}
+      {/* {console.log('props: ', props)} */}
       {props.isMarkerShown && <Marker position={startPosition} onClick={props.onMarkerClick} />}
     </GoogleMap>
   )

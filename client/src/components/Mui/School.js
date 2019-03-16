@@ -19,6 +19,9 @@ const SavedSchool = (props) => {
         image} = props;
     // console.log('saved school name', name)
     // console.log('geometry:: ', props.geometry)
+    let {onRemove} = props;
+    // console.log('store.remove', onRemove);
+
     return(
         <Card style={{
             boxShadow: '0 3px 6px black, 0 3px 6px #e45656',
@@ -46,6 +49,7 @@ const SavedSchool = (props) => {
                 <Button size="small" color="primary" href={website} target="_blank">
                     Go To School Website
                 </Button>
+                <Button size="small" color="secondary" target="_blank" onClick={()=>onRemove(_id)}>Delete</Button>
             </CardActions>
         </Card>
     )
@@ -65,7 +69,7 @@ const SchoolLocation = (props) => {
     } = props;
 
     let {onLike, onDislike} = props;
-    // console.log(!!onDislike);
+
     // console.log('photos: ', photos)
 
     return (

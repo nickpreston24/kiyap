@@ -44,7 +44,7 @@ class SchoolList extends Component {
                     ): "Search for locations on the map"}
 
                     {store.schools ? (
-                        <YourPicks schools={store.schools}/>
+                        <YourPicks schools={store.schools} store={store}/>
                     ): "No Schools found"}
                 </div>
                 // </Column>
@@ -58,12 +58,12 @@ SchoolList = observer(SchoolList)
 function YourFinds({locations, store}) {
 
     function onLike(id){
-        console.log('place id: ', id);
+        // console.log('place id: ', id);
         store.saveSchool(id);
     }
 
     function onDislike(id){
-        console.log('disliked place id: ', id);
+        // console.log('disliked place id: ', id);
         store.removeLocation(id);
     }
 
@@ -105,18 +105,28 @@ function YourFinds({locations, store}) {
   )
 }
 
-const YourPicks = ({schools}) =>
-    <Column flexGrow={1} horizontal='center'>
-        <h1>Your Picks</h1>
-        <Grid container spacing={24} style={{padding:24}}>
-        {schools
-            .map(school => (
-                <School {...school}
-                key={school._id}/>
-            ))}
-        </Grid>
-    </Column>
+function YourPicks ({schools, store}) {
+    // console.log('store: ', store)
+    // console.log('keys: ', Object.keys(store));
+    // console.log('store.remove', store.removeSchool);
 
+    function removeSchool(id){
+        store.removeSchool(id)
+    }
+    return (
+        <Column flexGrow={1} horizontal='center'>
+            <h1>Your Picks</h1>
+            <Grid container spacing={24} style={{padding:24}}>
+            {schools
+                .map(school => (
+                    <School {...school}
+                    onRemove={removeSchool}
+                    key={school._id}/>
+                ))}
+            </Grid>
+        </Column>
+    )
+}
 /**
  * Searches for Schools using a Google Map
  * Professionals are selected by location
