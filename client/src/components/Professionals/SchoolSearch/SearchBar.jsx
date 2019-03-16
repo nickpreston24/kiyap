@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import SubmitButton from './SubmitButton'
+import SubmitButton from '../../Mui/SubmitButton'
 
 export default class SearchBar extends Component {
 

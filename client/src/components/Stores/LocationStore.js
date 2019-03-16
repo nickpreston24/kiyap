@@ -5,11 +5,9 @@ export default class LocationStore {
 
     constructor() {
         this.locations = [];
-        this.professionals = [];
         this.schools = [];
 
         this.loadSavedSchools();
-        // this.loadProfessionals();
     }
 
     clear() {
@@ -21,14 +19,21 @@ export default class LocationStore {
         this.locations = [...locations];
     }
 
-    // getLocations () {
-    //     return this.locations;
-    // }
-
     // indicates user's interest in a school.
     // Professionals will be able to indicate their schools and 'put them on the map' for students to find.
-    saveSchool(school) {
-        this.schools.push(school)
+    saveSchool(id) {
+        // console.log('saving school...', id);
+        let location = this.locations.find(loc=>loc.place_id===id);
+        // console.log('saved school keys: ', Object.keys(location));
+        // console.log('school: ', location.name);
+
+        let {name, formatted_address: address, place_id} = location;
+        let school = {name, address};
+        this.schools.push(school);
+
+        API.saveSchool(school)
+            .then(res => console.log(res))
+            .catch(err=>console.log(err.message));
     }
 
     //Loads the User saved school data, if any
@@ -41,16 +46,6 @@ export default class LocationStore {
             })
             .catch(err => console.log(err));
     }
-
-    // loadProfessionals(){
-    //     API.getPros()
-    //         .then(res => {
-    //             let data = res.data;
-    //             console.log('saved schools: ', data);
-    //             this.locations = data;
-    //         })
-    //         .catch(err => console.log(err));
-    // }
 }
 
 decorate(LocationStore, {

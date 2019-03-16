@@ -17,6 +17,7 @@ export default {
     },
 
     saveSchool: function (data) {
+        console.log('school data: ', data)
         return axios.post("/api/schools", data);
     },
 
