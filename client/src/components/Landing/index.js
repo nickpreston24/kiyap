@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import {Button } from '@material-ui/core';
 //TODO: Make the title rotate and flip like a reel
-const title = 'kitty!';
+const title = 'meow!';
 
 const Landing = () => (
     <div>
