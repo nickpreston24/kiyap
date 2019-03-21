@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "axios": "^0.18.0",
+        "dotenv": "^7.0.0",
         "express": "^4.16.4",
         "firebase": "^5.9.0",
         "if-env": "^1.0.4",
@@ -17,8 +18,11 @@
         "mobx-react": "^5.4.3",
         "mobx-react-devtools": "^6.1.1",
         "mongoose": "^5.4.18",
+        "mysql": "^2.16.0",
+        "mysql2": "^1.6.5",
         "recompose": "^0.30.0",
-        "rimraf": "^2.6.3"
+        "rimraf": "^2.6.3",
+        "sequelize": "^5.1.0"
     },
     "main": "server.js",
     "scripts": {
@@ -26,7 +30,7 @@
         "start:prod": "node server.js",
         "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
         "client": "cd client && npm run start",
-        "seed": "node scripts/mongo/professionals.js && node scripts/mongo/students.js && node scripts/mongo/schools.js",
+        "seed": "cd db/scripts/mongo/ && node professionals.js && node students.js && node schools.js && cd ../../../",
         "install": "cd client && npm install",
         "build": "cd client && npm run build",
         "heroku-postbuild": "npm run build",
