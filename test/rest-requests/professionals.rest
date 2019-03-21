@@ -26,9 +26,30 @@ http://localhost:3001/api/students/1
 ###
 
 
-http://localhost:3001/api/students/new
+
+POST http://localhost:3001/api/disciplines/new
 content-type: application/json
+
+{
+    "Name" : "Google Fu",
+    "Description" : "Your worst nightmare"
+}
+###
+
+POST http://localhost:3001/api/students/new
+content-type: application/json
+
 {
     "FirstName" : "Foo",
-    "LastName" : "Bar",
+    "LastName" : "Bar"
 }
+
+###
+POST http://localhost:3001/api/teachers/new
+content-type: application/json
+
+{
+    "FirstName" : "Michael",
+    "LastName" : "Jordan"
+}
+###

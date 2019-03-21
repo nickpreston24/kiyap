@@ -25,6 +25,7 @@ mongoose.connect(uri, {
 
 // TODO: refactor this api-routes.js to an export bundle for app.use();
 require('./routes/api/sql/api-routes.js')(app);
+// FIXME: A bit hacky - I changed an inner require path to /api/mongo
 app.use(routes);
 
 // Send every other request to the React app

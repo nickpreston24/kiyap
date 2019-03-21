@@ -1,4 +1,6 @@
-const connection = require('../config/connection.js');
+const connection = require('./config/connection.js');
+var db = require("../../../db/models/sequelize");
+
 
 /** TODO:
  * 1) Refactor as separate js files and import by index.js
@@ -121,11 +123,31 @@ module.exports = function (app) {
         8 8888             `8888888P'     `Y8888P ,88P'     8 8888
      */
 
-    app.post("/api/builds/new", function (req, res) {
-        //todo: if no customer, customerId is set to null.
-        db.build.create(req.body).then(function (build) {
-            res.json(build);
-        });
+
+    app.post('/api/disciplines/new', function (req, res) {
+        db.discipline.create(req.body)
+            .then(function (discipline) {
+                res.json(discipline)
+            })
+            .catch(console.error)
+    })
+
+    app.post("/api/students/new", function (req, res) {
+        db.student.create(req.body)
+            .then(function (student) {
+                res.json(student)
+            })
+            .catch(console.error)
+    });
+
+
+    app.post("/api/teachers/new", function (req, res) {
+        db.professional.create(req.body)
+            .then(function (professional) {
+                console.info('created new professional: ', professional);
+                res.json(professional)
+            })
+            .catch(console.error);
     });
 
     /**
@@ -141,7 +163,7 @@ module.exports = function (app) {
         8 8888            `Y88888P'         8 8888
      */
 
-     /**
+    /**
 
     8 888888888o.      8 8888888888   8 8888         8 8888888888 8888888 8888888888 8 8888888888
     8 8888    `^888.   8 8888         8 8888         8 8888             8 8888       8 8888
