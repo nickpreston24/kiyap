@@ -23,6 +23,8 @@ mongoose.connect(uri, {
     useNewUrlParser: true
 });
 
+// TODO: refactor this api-routes.js to an export bundle for app.use();
+require('./routes/api/sql/api-routes.js')(app);
 app.use(routes);
 
 // Send every other request to the React app

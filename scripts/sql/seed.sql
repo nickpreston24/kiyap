@@ -3,15 +3,15 @@ delete from Professional where 1=1;
 delete from School where 1=1;
 delete from Student_Progress where 1=1;
 delete from Training where 1=1;
-delete from Discipline where 1=1;
+delete from Disciplines where 1=1;
 delete from Certification where 1=1;
 
 ALTER TABLE Student AUTO_INCREMENT = 1;
 ALTER TABLE Professional AUTO_INCREMENT = 1;
 ALTER TABLE School AUTO_INCREMENT = 1;
-ALTER TABLE Discipline AUTO_INCREMENT = 1;
+ALTER TABLE Disciplines AUTO_INCREMENT = 1;
 
-insert into Discipline 
+insert into Disciplines
 	values 	(null, 'Taekwondo', null),
 			(null, 'Brazilian Jiu-Jitsu', null),
 			(null, 'Kickboxing', null),
@@ -49,7 +49,7 @@ insert into Student (`FirstName`,`LastName`)
             ('Laurence', 'Fishburne');
 
 insert into `Professional` (`FirstName`,`LastName`, `SchoolId`)
-    values 	('Jorge', 'Silveus', 1),		    
+    values 	('Jorge', 'Silveus', 1),
 			('Dave', 'Johnson', 2),
 			('Daniel', 'Hines', 3),
 			('Jenny', 'Lacy', 4),
@@ -58,10 +58,10 @@ insert into `Professional` (`FirstName`,`LastName`, `SchoolId`)
 insert into `School` (`name`, `address`, `website`)
     values  ('Silveus Taekwondo', '2630 Northaven Rd # 114, Dallas, TX 75229', ''),
 			('Texas Blackbelt Academy', '425 N Cooper St, Arlington, TX 76011', ''),
-            ('Krav Maga DFW', '2650 Midway Rd #204 Carrollton, TX 7`5006', ''),            
+            ('Krav Maga DFW', '2650 Midway Rd #204 Carrollton, TX 7`5006', ''),
 			('Lacy Taekwondo', '9454 N MacArthur Blvd, Irving, TX 75063', '');
-                        
-insert into Student_Progress (`StudentId`, `Belt`,`Degree`,`DisciplineId`, `SchoolId`) 
+
+insert into Student_Progress (`StudentId`, `Belt`,`Degree`,`DisciplinesId`, `SchoolId`)
 	values  (1, 'Black', 3, 1, 4),
 			(1, 'Blue', null, 1, 3),
 			(2, 'Green', null, 1, 2),
@@ -70,8 +70,8 @@ insert into Student_Progress (`StudentId`, `Belt`,`Degree`,`DisciplineId`, `Scho
 			(5, 'Blue', null, 1, 1),
 			(5, 'Purple', null, 1, 4)
 			;
-			
-insert into Training 
+
+insert into Training
 	values 	(1, 1, 3, 1),
 			(2, 3, 2, 5),
 			(2, 5, 2, 10),
@@ -79,7 +79,7 @@ insert into Training
 			(1, 2, 3, 4),
 			(1, 1, null, 1)
 	;
-insert into Certification 
+insert into Certification
 	values 	(1, 1, 'Black', 3),
 			(1, 2, 'Black', 2),
 			(1, 14, 'Black', null),
@@ -99,5 +99,5 @@ select * from Training;
 select * from Student;
 select * from Professional;
 select * from Student_Progress;
-select * from Discipline;
+select * from Disciplines;
 
