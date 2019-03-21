@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import {Button} from '@material-ui/core'
+import {Button, Typography, TextField, withStyles} from '@material-ui/core'
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import {withFlexColumn, withFlexRow} from '../Flex';
 import './style.css'
 
-const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
+const styles = theme => ({
+  root: {
+    maxWidth: 300,
+    boxSizing: 'border-box',
+    padding: '0px 20px',
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    justifyContents: 'flex-start',
+    alignItems: 'center',
+    color: `${theme.palette.text.primary}`,
+    '& a': {
+      textDecoration: 'none',
+    },
+    '& a:hover, a:visited': {
+      color: `${theme.palette.primary.main}`,
+    },
+  },
+})
+
+const SignUpPage = withStyles(styles)(({classes}) => (
+  <div className={classes.root}>
+    <Typography variant='h5' color='primary' gutterBottom style={{margin: 30}}>Sign In</Typography>
     <SignUpForm/>
-  </div>
+  </div>)
 );
 
 const INITIAL_STATE = {
@@ -77,40 +96,51 @@ class SignUpFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-         <input
+         <TextField
+         fullWidth
+         margin='dense'
+         variant='outlined'
           name="username"
           value={username}
           onChange={this.onChange}
           type="text"
           placeholder="Full Name"
+          label="Full Name"
         />
-        <br/>
-        <input
+        <TextField
+         fullWidth
+         margin='dense'
+         variant='outlined'
           name="email"
           value={email}
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
+          label="Email Address"
         />
-        <br/>
-        <input
+        <TextField
+         fullWidth
+         margin='dense'
+         variant='outlined'
           name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          label="Password"
         />
-        <br/>
-        <input
+        <TextField
+         fullWidth
+         margin='dense'
+         variant='outlined'
           name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
           type="password"
           placeholder="Confirm Password"
+          label="Confirm Password"
         />
-        <br/>
-
-        <Button disabled={isInvalid} type="submit">Sign Up</Button>
+        <Button disabled={isInvalid} color='primary' variant='contained' type="submit">Sign Up</Button>
 
         {error && <p>{error.message}</p>}
       </form>
