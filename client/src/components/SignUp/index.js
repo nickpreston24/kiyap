@@ -28,7 +28,7 @@ const styles = theme => ({
 
 const SignUpPage = withStyles(styles)(({classes}) => (
   <div className={classes.root}>
-    <Typography variant='h5' color='primary' gutterBottom style={{margin: 30}}>Sign In</Typography>
+    <Typography variant='h5' color='primary' gutterBottom style={{margin: 30}}>Sign Up</Typography>
     <SignUpForm/>
   </div>)
 );
