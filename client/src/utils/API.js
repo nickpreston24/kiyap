@@ -54,6 +54,13 @@ export default {
 
     saveStudent: function (data) {
         return axios.post("/api/students", data);
+    },
+
+    /** Misc */
+
+    getDisciplines: function () {
+        console.log('get Disciplines()')
+        return axios.get("/api/disciplines");
     }
 
 };

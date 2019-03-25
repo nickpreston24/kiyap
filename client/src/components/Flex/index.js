@@ -14,7 +14,7 @@ export const withFlexRow = Component => props => (
     </Row>
 )
 
-// Maybe refactor to its own hoc file.
+// TODO: find a better replacement that doesn't resize the last box on a row, or configure this properly to do so.
 export const withGrid = Component => props=> (
     <Grid container >
         <Component {...props}/>
