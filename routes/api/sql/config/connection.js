@@ -2,6 +2,12 @@
 // CONNECTION.JS - THIS FILE INITIATES THE CONNECTION TO MYSQL
 // *********************************************************************************
 
+// TODO:
+// 1) initialize const config from config.json file!
+//    usage: var config = require(__dirname + "/config.json")[environment];
+// 2) Use the config.json only once and reference it from one place.
+// 3) Refactor your /routes, /models and /controllers to support & utilize this change...
+
 // Require mysql https://tinyurl.com/yafmcp2b
 var mysql = require("mysql");
 var path = require('path');

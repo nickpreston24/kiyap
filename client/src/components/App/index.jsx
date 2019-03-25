@@ -9,6 +9,7 @@ import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
+import SurveyPage from '../Survey';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -55,11 +56,13 @@ const App = ({ classes }) => (
 
                 {/* <hr /> */}
 
-                <Route path={ROUTES.LANDING} component={LandingPage} />
- 
+                {/* For testing, I changed to SurveyPage instead. TODO: Change back to LandingPage when done */}
+                <Route path={ROUTES.LANDING} component={SurveyPage} />
+
                 <Route path={ROUTES.HOME} component={HomePage} />
                 <Route path={ROUTES.ACCOUNT} component={AccountPage} />
                 <Route path={ROUTES.ADMIN} component={AdminPage} />
+                <Route path={ROUTES.SURVEY} component={SurveyPage}/>
             </div>
         </MuiThemeProvider>
     </Router>

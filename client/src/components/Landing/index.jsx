@@ -1,26 +1,18 @@
-import React, { Fragment, Component } from 'react'
+import React, { Fragment } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { inject, observer } from 'mobx-react'
-import { observable, action } from 'mobx'
+import { observer } from 'mobx-react'
 import { compose } from 'recompose'
 import './style.css'
 
-import Navigation from '../Navigation';
-import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import PasswordForgetPage from '../PasswordForget';
-import HomePage from '../Home';
-import AccountPage from '../Account';
-import AdminPage from '../Admin';
 
 import { AuthUserContext } from '../Session';
-import { withFlexColumn, withFlexRow } from '../Flex';
 import * as ROUTES from '../../constants/routes';
 import { Button, Grid, Card } from '@material-ui/core';
 import classnames from 'classnames'
-import { BrowserRouter, Link, Route, Redirect, Switch, withRouter } from 'react-router-dom'
-
+import { Link, Route, Switch } from 'react-router-dom'
 
 import ArrowIcon from '@material-ui/icons/ArrowForwardIosRounded';
 //TODO: Make the title rotate and flip like a reel
@@ -109,7 +101,7 @@ export default function Landing({ match }) {
 export const LandingNonAuth = compose(
     withStyles(styles),
     observer
-)(({ classes, match }) => {
+)(({ classes }) => {
     return (
         <div className={classnames(classes.root, 'banner')}>
             {/* <p className={classes.subtitle} style={{ marginTop: 80, }}>Welcome to...</p> */}
@@ -156,12 +148,3 @@ const LandingAuth = () => (
         <h1>Welcome back!</h1>
     </div>
 )
-
-const BannerBackground = withStyles(styles)(({ classes }) => (
-    <Fragment>
-        <div id={'overlay'} />
-        <img src={'http://unsplash.it/1200x800'} />
-    </Fragment>
-))
-
-// export default withFlexColumn(withFlexRow(Landing))

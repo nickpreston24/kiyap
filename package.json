@@ -22,7 +22,8 @@
         "mysql2": "^1.6.5",
         "recompose": "^0.30.0",
         "rimraf": "^2.6.3",
-        "sequelize": "^5.1.0"
+        "sequelize": "^5.1.0",
+        "survey-react": "^1.0.75"
     },
     "main": "server.js",
     "scripts": {
