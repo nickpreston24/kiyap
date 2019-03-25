@@ -38,20 +38,20 @@ export default class SurveyPage extends Component {
                 ],
                 title: "Your Experience"
             },
-            {
-                name: "Top Picks",
-                elements: [
-                    {
-                        type: "tagbox",
-                        isRequired: true,
-                        choicesByUrl: {
-                            url: "https://restcountries.eu/rest/v1/all"
-                        },
-                        name: "countries",
-                        title: "Please select all countries you have been for the last 3 years."
-                    }
-                ],
-            }
+            // {
+            //     name: "Top Picks",
+            //     elements: [
+            //         {
+            //             type: "tagbox",
+            //             isRequired: true,
+            //             choicesByUrl: {
+            //                 url: "https://restcountries.eu/rest/v1/all"
+            //             },
+            //             name: "countries",
+            //             title: "Please select all countries you have been for the last 3 years."
+            //         }
+            //     ],
+            // }
         ],
         // cookieName: "kiyapp",
         sendResultOnPageNext: true,
