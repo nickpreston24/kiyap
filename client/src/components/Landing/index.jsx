@@ -23,7 +23,7 @@ const styles = theme => ({
         overflow: 'hidden',
         position: 'absolute',
         left: 0,
-        height: '100%',
+        height: 'calc(100vh - 50px)',
         width: '100%',
         display: 'flex',
         flexFlow: 'row nowrap',

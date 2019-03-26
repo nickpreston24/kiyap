@@ -13,9 +13,7 @@ import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 const styles = theme => ({
     root: {
         background: 'white',
-        // minHeight: 'calc(100% - 50px)',
-        // height: 'calc(100% - 50px)',
-        height: '100%',
+        height: 'calc(100vh - 50px)',
         textAlign: 'center',
         overflow: 'hidden',
         display: 'flex',
