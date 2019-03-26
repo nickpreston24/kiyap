@@ -108,7 +108,7 @@ const LandingBase = withStyles(styles)(({ classes }) => (
     <Grid >
         <h1 className={classes.badge}> {"KIY'APP"} </h1>
         <p className={classes.subtitle}>Welcome! Find your local {title}</p>
-        <Link to={ROUTES.GETTING_STARTED} style={{ textDecoration: 'none' }}>
+        <Link to={ROUTES.GET_STARTED} style={{ textDecoration: 'none' }}>
             <Button color="inherit" variant="outlined" className={classes.gettingStarted}>
                 Get Started
         <ArrowIcon className={classes.rightIcon} />
