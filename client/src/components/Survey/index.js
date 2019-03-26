@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import * as Survey from 'survey-react';
 import "survey-react/survey.css";
 
@@ -10,9 +10,12 @@ Survey
     .applyTheme("default");
 
 export default class SurveyPage extends Component {
+
     state = {
-        disciplines: []
+        disciplines: [],
+        cat: ''
     }
+
     json = {
 
         title: "Kiyapp Survey",
@@ -22,17 +25,14 @@ export default class SurveyPage extends Component {
                 elements: [
                     {
                         type: "dropdown",
-                        name: "Favorite",
-                        title: "Which is your favorite martial art?",
+                        name: "Familiar",
+                        title: "With which martial art are you most familiar?",
                         isRequired: true,
                         choices: [
-                            "Hapkido",
-                            "Taekwondo",
-                            "Karate",
-                            {
-                            value: "KravMaga",
-                            text: "Krav Maga"
-                            }
+                            // "Hapkido",
+                            // "Taekwondo",
+                            // "Karate",
+                            // "Krav Maga"
                         ]
                     }
                 ],
@@ -100,27 +100,47 @@ export default class SurveyPage extends Component {
         // ]
     };
 
-    componentDidMount(){
-        console.log('survey has mounted')
-        console.log(this.props)
-        // setState({history:this.props.history});
+    componentWillMount() {
+
         API.getDisciplines()
-        .then(result=>this.setState({disciplines:result}))
+        .then(result=>{
+            this.setState({disciplines: result.data.map(d=>d.Name)})
+            // console.log('result: ', result.data.map(d=>d.Name));
+        })
     }
 
     //Define a callback methods on survey complete
     onComplete(survey, history, options) {
-        console.log(history)
+
         history.push(ROUTES.SIGN_UP)
-        //Write survey results into database
+
+        // TODO: Write survey results into database
         console.log("Survey results: " + JSON.stringify(survey.data));
+
     }
+
     render() {
+        const { disciplines } = this.state;
+
+        const choices = find(this.json, ['pages', 0, 'elements', 0, 'choices' ]);
+        disciplines.forEach(d=>choices.push(d));
+
         var model = new Survey.Model(this.json);
+
         return (
-            <Survey.Survey model={model} onComplete={(survey) => this.onComplete(survey, this.props.history)}/>
+            <Fragment>
+                {!disciplines && <Fragment/>}
+                {(disciplines && disciplines.length > 0) &&
+                    <Survey.Survey model={model} onComplete={(survey) => this.onComplete(survey, this.props.history)}/>
+                }
+            </Fragment>
         );
     }
+}
+
+const find = (object, paths) => {
+    return paths.reduce((obj, key) =>
+        (obj && obj[key] !== 'undefined') ? obj[key] : undefined, object);
 }
 
 // More to implement!
