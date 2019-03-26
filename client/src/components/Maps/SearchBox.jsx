@@ -2,6 +2,7 @@
 
 // *** Search Box ***
 import React from 'react';
+import API from '../../utils/API';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -15,19 +16,25 @@ const {
 } = require("react-google-maps");
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 // const startCoordinates = {lat: 32.7767, lng: 96.7970 };
+
 const MapWithASearchBox = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
-    // store: props.store
   }),
   lifecycle({
     componentWillMount() {
       const refs = {}
       this.store = this.props.store;
       //   this.getGeoLocation();
+      API.getDisciplines()
+        .then(result=>{
+            this.setState({disciplines: result.data.map(d => d.Name)})
+            console.log('disciplines: ', result.data.map(d => d.Name));
+        })
+
       this.setState({
         bounds: null,
         center: {
@@ -84,6 +91,7 @@ const MapWithASearchBox = compose(
     componentWillUpdate() {
         // this.getGeoLocation()
     },
+
     getGeoLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
