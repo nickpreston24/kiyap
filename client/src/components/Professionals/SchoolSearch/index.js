@@ -10,19 +10,19 @@ class SchoolList extends Component {
 
         state = {
             search: '',
-            // schools: [],
         }
 
         onFilterChange = (event) => {
             let search = event.target.value;
-            console.log('searched for:', search)
+            // console.log('searched for:', search)
+
             if (event.target.value) {
                 this.setState({search})
             } else {
                 this.setState({search: ''})
             }
 
-            //Filter out the schools found, not those saved.
+            // TODO: Filter out the schools found, not those saved.
 
             // this.setState({schools:this.props.store.locations
             //     .map(s=>s.Name!==search)})
@@ -58,13 +58,11 @@ SchoolList = observer(SchoolList)
 
 function YourFinds({locations, store}) {
 
-    function onLike(id){
-        // console.log('place id: ', id);
+    function onLike(id) {
         store.saveSchool(id);
     }
 
-    function onDislike(id){
-        // console.log('disliked place id: ', id);
+    function onDislike(id) {
         store.removeLocation(id);
     }
 
@@ -79,13 +77,13 @@ function YourFinds({locations, store}) {
             <Grid container spacing={8} style={{padding:10}}>
 
             {/* TODO: Uncomment after presentations */}
-            {/* <TextField style={{padding:24}}
-            id="filterInput"
-            placeholder="Filter Schools"
-            margin="normal"
-            // onChange={this.onFilterChange}
+            <TextField style={{padding:24}}
+                id="filterInput"
+                placeholder="Filter Schools"
+                margin="normal"
+                onChange={this.onFilterChange}
             >
-            </TextField> */}
+            </TextField>
 
             </Grid>
 
@@ -108,9 +106,6 @@ function YourFinds({locations, store}) {
 }
 
 function YourPicks ({schools, store}) {
-    // console.log('store: ', store)
-    // console.log('keys: ', Object.keys(store));
-    // console.log('store.remove', store.removeSchool);
 
     function removeSchool(id){
         store.removeSchool(id)
@@ -129,6 +124,7 @@ function YourPicks ({schools, store}) {
         </Column>
     )
 }
+
 /**
  * Searches for Schools using a Google Map
  * Professionals are selected by location
