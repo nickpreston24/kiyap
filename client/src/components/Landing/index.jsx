@@ -30,12 +30,6 @@ const styles = theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         color: 'white'
-        // background: 'red',
-        // position: 'absolute',
-        // top: 0,
-        // left: 0,
-        // height: '100vh',
-        // width: '100vw',
     },
     '@keyframes fade': {
         from: { opacity: 0 },
@@ -60,12 +54,9 @@ const styles = theme => ({
         border: '2px solid white',
         color: 'white',
         filter: 'drop-shadow(1px 1px 1px black)',
-        // marginTop: 80,
         padding: '10px 10px',
         fontFamily: "'Carter One', cursive",
         letterSpacing: '2px',
-        // marginLeft: 20,
-        // marginRight: 'auto',
     },
     subtitle: {
         fontFamily: "'Permanent Marker', cursive",
@@ -76,7 +67,6 @@ const styles = theme => ({
     },
     card: {
         marginTop: 40,
-        // width: 500,
         minWidth: 300,
         padding: 20,
         '& button': {
@@ -97,51 +87,54 @@ export default function Landing({ match }) {
     )
 }
 
-
 export const LandingNonAuth = compose(
     withStyles(styles),
     observer
 )(({ classes }) => {
     return (
         <div className={classnames(classes.root, 'banner')}>
-            {/* <p className={classes.subtitle} style={{ marginTop: 80, }}>Welcome to...</p> */}
 
-            <Route exact path={ROUTES.LANDING} render={() => (
-                <Grid >
-                    <h1 className={classes.badge}> {"KIY'APP"} </h1>
-                    <p className={classes.subtitle}>Welcome! Find your local {title}</p>
-                    <Link to={ROUTES.SURVEY} style={{ textDecoration: 'none' }}>
-                        <Button color="inherit" variant="outlined" className={classes.gettingStarted}>
-                            Get Started
-                    <ArrowIcon className={classes.rightIcon} />
-                        </Button>
-                    </Link>
-                </Grid>
-            )} />
-            {/* // : Rendering Card content with Routes */}
-            <Route exact path={`/:mode`} render={({ location }) => (
-                <Card className={classes.card}>
-                    <Switch location={location} >
-                        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-                        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-                        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-                        <Route path={ROUTES.SURVEY} render={() => (
-                            <Fragment>
-                                <h2>Welcome! Find your local {title}! Are you a ...</h2>
-                                <Link to={ROUTES.SIGN_UP} style={{ textDecoration: 'none' }}>
-                                    <Button color="primary" variant="contained" > New Student </Button>
-                                </Link>
-                                <Link to={ROUTES.SIGN_UP} style={{ textDecoration: 'none' }}>
-                                    <Button color="secondary" variant="contained" >Professional </Button>
-                                </Link>
-                            </Fragment>
-                        )} />
-                    </Switch>
-                </Card>
-            )} />
+            {/* // : Always Render the Gradient Background */}
+            <Route exact path={`${ROUTES.LANDING}`} component={LandingBase} />
+
+            {/* // : Conditionally Render SignUp/SignIn, etc. inside of a card */}
+            <Route path={`${ROUTES.LANDING}:option`} component={CardContents} />
+
         </div>
     )
 })
+
+const LandingBase = withStyles(styles)(({ classes }) => (
+    <Grid >
+        <h1 className={classes.badge}> {"KIY'APP"} </h1>
+        <p className={classes.subtitle}>Welcome! Find your local {title}</p>
+        <Link to={ROUTES.GETTING_STARTED} style={{ textDecoration: 'none' }}>
+            <Button color="inherit" variant="outlined" className={classes.gettingStarted}>
+                Get Started
+        <ArrowIcon className={classes.rightIcon} />
+            </Button>
+        </Link>
+    </Grid>
+))
+
+const CardContents = withStyles(styles)(({ classes }) => (
+    <Card className={classes.card}>
+        <Switch location={location}>
+            <Route path={ROUTES.GET_STARTED} component={GettingStarted} />
+            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+        </Switch>
+    </Card>
+))
+
+const GettingStarted = ({history}) => (
+    <Fragment>
+        <h2>Welcome! Find your local {title}! Are you a ...</h2>
+            <Button color="primary" variant="contained" onClick={() => history.push(ROUTES.SURVEY)}>New Student</Button>
+            <Button color="secondary" variant="contained" onClick={() => history.push(ROUTES.SIGN_IN)}>Professional</Button>
+    </Fragment>
+)
 
 const LandingAuth = () => (
     <div>
