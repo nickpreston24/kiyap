@@ -44,19 +44,23 @@ const theme = createMuiTheme({
 
 const App = ({ classes }) => (
     <Router>
-        <MuiThemeProvider theme={theme}>
-            <Navigation className={classes.navigation} />
-            <div className={classes.root}>
-
-                <Switch location={location}>
-                    <Route exact path={ROUTES.HOME} component={HomePage} />
-                    <Route exact path={ROUTES.SURVEY} component={SurveyPage} />
-                    <Route path={ROUTES.LANDING} component={LandingPage} />
-                </Switch>
-
-            </div>
-        </MuiThemeProvider>
+        <RoutedApp {...{ classes }}/>
     </Router>
 );
+
+const RoutedApp = ({ classes, location }) => (
+    <MuiThemeProvider theme={theme}>
+    <Navigation className={classes.navigation} />
+    <div className={classes.root}>
+
+        <Switch location={location}>
+            <Route exact path={ROUTES.HOME} component={HomePage} />
+            <Route exact path={ROUTES.SURVEY} component={SurveyPage} />
+            <Route path={ROUTES.LANDING} component={LandingPage} />
+        </Switch>
+
+    </div>
+</MuiThemeProvider>
+)
 
 export default withAuthentication(withStyles(styles)(App));

@@ -3,7 +3,7 @@ import * as Survey from 'survey-react';
 import "survey-react/survey.css";
 
 import API from '../../utils/API';
-
+import * as ROUTES from '../../constants/routes';
 
 Survey
     .StylesManager
@@ -102,20 +102,25 @@ export default class SurveyPage extends Component {
 
     componentDidMount(){
         console.log('survey has mounted')
+        console.log(this.props)
+        // setState({history:this.props.history});
         API.getDisciplines()
         .then(result=>this.setState({disciplines:result}))
     }
 
     //Define a callback methods on survey complete
-    onComplete(survey, options) {
-
-    //Write survey results into database
-    console.log("Survey results: " + JSON.stringify(survey.data));
-   }
-  render() {
-    var model = new Survey.Model(this.json);
-    return (<Survey.Survey model={model} onComplete={this.onComplete}/>);
-  }
+    onComplete(survey, history, options) {
+        console.log(history)
+        history.push(ROUTES.SIGN_UP)
+        //Write survey results into database
+        console.log("Survey results: " + JSON.stringify(survey.data));
+    }
+    render() {
+        var model = new Survey.Model(this.json);
+        return (
+            <Survey.Survey model={model} onComplete={(survey) => this.onComplete(survey, this.props.history)}/>
+        );
+    }
 }
 
 // More to implement!

@@ -117,7 +117,7 @@ const LandingBase = withStyles(styles)(({ classes }) => (
     </Grid>
 ))
 
-const CardContents = withStyles(styles)(({ classes }) => (
+const CardContents = withStyles(styles)(({ classes, location }) => (
     <Card className={classes.card}>
         <Switch location={location}>
             <Route path={ROUTES.GET_STARTED} component={GettingStarted} />
