@@ -4,38 +4,39 @@ import { MapWithASearchBox } from '../Maps';
 import { SchoolSearch } from '../Professionals';
 import { LocationStore } from '../Stores';
 import { withFlexColumn, withFlexRow } from '../Flex';
+import * as ROLES from '../../constants/roles';
 
 const store = new LocationStore();
-class HomePage extends Component{
 
-    componentWillMount() {
-        {/* {console.log('props:', props)} */}
+const HomePage = () => (
+    <div>
+        <MapWithASearchBox store={store}/>
+        <SchoolSearch store={store}/>
+    </div>
+);
 
-        this.props.firebase.users().on('value', snapshot => {
-            console.log(!!snapshot);
-        })
-        console.log('will mount()')
-    }
+// class HomePage extends Component{
 
-    render() {
-        return (
-            <div>
-                {/* {console.log('firebase: ', this.props.firebase.users())} */}
-                <MapWithASearchBox store={store}/>
-                <SchoolSearch store={store}/>
-            </div>
-        )
-    }
-}
+//     componentWillMount() {
+//         {/* {console.log('props:', props)} */}
 
-// const HomePage = () => (
-//     <div>
-//         <MapWithASearchBox store={store}/>
-//         <SchoolSearch store={store}/>
-//     </div>
-// );
+//         this.props.firebase.users().on('value', snapshot => {
+//             console.log(!!snapshot);
+//         })
+//         console.log('will mount()')
+//     }
 
+//     render() {
+//         return (
+//             <div>
+//                 {/* {console.log('firebase: ', this.props.firebase.users())} */}
+//                 <MapWithASearchBox store={store}/>
+//                 <SchoolSearch store={store}/>
+//             </div>
+//         )
+//     }
+// }
 
-const condition = authUser => !!authUser;
+const condition = authUser => authUser && authUser.roles.includes(ROLES.ADMIN);
 
 export default withAuthorization(condition)(HomePage);

@@ -5,7 +5,7 @@ import {Button, Typography, TextField, withStyles} from '@material-ui/core'
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import {withFlexColumn, withFlexRow} from '../Flex';
-import './style.css'
+import * as ROLES from '../../constants/roles';
 
 const styles = theme => ({
   root: {
@@ -38,6 +38,7 @@ const INITIAL_STATE = {
     email: '',
     passwordOne: '',
     passwordTwo: '',
+    isAdmin: false,
     error: null,
 };
 
@@ -49,7 +50,12 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
+    const { username, email, passwordOne, isAdmin } = this.state;
+    const roles = [];
+
+    if(isAdmin){
+        roles.push(ROLES.ADMIN);
+    }
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -60,6 +66,7 @@ class SignUpFormBase extends Component {
             .set({
                 username,
                 email,
+                roles
             });
       })
       .then(_ => {
@@ -71,6 +78,10 @@ class SignUpFormBase extends Component {
       });
 
     event.preventDefault();
+  }
+
+  onCheckboxChange = event => {
+      this.setState({ [event.target.name]: event.target.checked });
   }
 
   onChange = event => {
@@ -85,6 +96,7 @@ class SignUpFormBase extends Component {
         email,
         passwordOne,
         passwordTwo,
+        isAdmin,
         error,
       } = this.state;
 
@@ -140,6 +152,15 @@ class SignUpFormBase extends Component {
           placeholder="Confirm Password"
           label="Confirm Password"
         />
+        <label>
+            Admin:
+            <input
+                name='isAdmin'
+                type='checkbox'
+                checked={isAdmin}
+                onChange={this.onCheckboxChange}
+            />
+        </label>
         <Button disabled={isInvalid} color='primary' variant='contained' type="submit">Sign Up</Button>
 
         {error && <p>{error.message}</p>}
