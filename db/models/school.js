@@ -4,7 +4,8 @@ const schoolSchema = new Schema({
     name:{ type: String, required: true, dropDups: true, unique: true},
     address: { type: String, required: true, dropDups: true, unique: true },
     website: String,
-    Phone: String
+    Phone: String,
+    studentId: String,
     // owner: String,
     // location: Object, //geolocation
 });
