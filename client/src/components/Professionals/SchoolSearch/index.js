@@ -70,7 +70,7 @@ function YourFinds({locations, store}) {
             <h1>Search Results</h1>
         </Row>
 
-        <Row horizontal='center'>
+        {/* <Row horizontal='center'>
             <Grid container spacing={8} style={{padding:10}}>
 
             <TextField style={{padding:24}}
@@ -83,7 +83,7 @@ function YourFinds({locations, store}) {
 
             </Grid>
 
-        </Row>
+        </Row> */}
 
         <Row vertical='center'>
             <Grid container spacing={24} style={{padding:24}}>
@@ -106,6 +106,7 @@ function YourPicks ({schools, store}) {
     function removeSchool(id){
         store.removeSchool(id)
     }
+
     return (
         <Column flexGrow={1} horizontal='center'>
             <h1>Your Picks</h1>
