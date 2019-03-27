@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import {Column, Row} from 'simple-flexbox';
-import { withFlexColumn, withFlexRow } from '../../Flex';
+import { withFlexRow } from '../../Flex';
 
 class SchoolList extends Component {
 
@@ -37,8 +37,6 @@ class SchoolList extends Component {
             const { store } = this.props
 
             return (
-
-                // <Column flexGrow={1}>
                 <div>
                     {store.locations ? (
                         <YourFinds locations={store.locations} store={store}/>
@@ -48,7 +46,6 @@ class SchoolList extends Component {
                         <YourPicks schools={store.schools} store={store}/>
                     ): "No Schools found"}
                 </div>
-                // </Column>
             )
         }
 }
@@ -76,12 +73,11 @@ function YourFinds({locations, store}) {
         <Row horizontal='center'>
             <Grid container spacing={8} style={{padding:10}}>
 
-            {/* TODO: Uncomment after presentations */}
             <TextField style={{padding:24}}
                 id="filterInput"
                 placeholder="Filter Schools"
                 margin="normal"
-                onChange={this.onFilterChange}
+                // onChange={this.onFilterChange}
             >
             </TextField>
 
@@ -118,7 +114,8 @@ function YourPicks ({schools, store}) {
                 .map(school => (
                     <School {...school}
                     onRemove={removeSchool}
-                    key={school._id}/>
+                    key={school.name}
+                    />
                 ))}
             </Grid>
         </Column>

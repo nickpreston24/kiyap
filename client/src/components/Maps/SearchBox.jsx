@@ -31,7 +31,7 @@ const MapWithASearchBox = compose(
       //   this.getGeoLocation();
       API.getDisciplines()
         .then(result=>{
-            this.setState({disciplines: result.data.map(d => d.Name)})
+            this.setState({disciplines: result.data.map(discipline => discipline.Name)})
             console.log('disciplines: ', result.data.map(d => d.Name));
         })
 
