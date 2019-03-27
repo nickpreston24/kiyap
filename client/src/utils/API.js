@@ -8,6 +8,12 @@ export default {
         return axios.get("/api/schools");
     },
 
+    /* Get schools a specific student is interested in */
+    getSchools: function (studentId) {
+        console.log('student Id: ', studentId)
+        return axios.get("/api/schools/student/" + studentId);
+    },
+
     getSchool: function (id) {
         return axios.get("/api/schools/" + id);
     },

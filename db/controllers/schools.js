@@ -2,6 +2,16 @@ const db = require('../models');
 const badEntity = 422;
 
 module.exports = {
+
+    findByStudent: function (req, res) {
+        console.log('findbystudent()', req.params.id)
+        db.School
+            .find({studentId: req.params.id})
+            // .findById(req.params.id)
+            .then(data => res.json(data))
+            .catch(err => res.status(badEntity).json(err));
+    },
+
     findAll: function (req, res) {
         db.School
             .find(req.query)
