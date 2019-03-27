@@ -3,7 +3,7 @@ import School from '../../Mui/School'
 import { observer } from 'mobx-react';
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
-import {Column, Row} from 'simple-flexbox';
+import { Column, Row } from 'simple-flexbox';
 import { withFlexRow } from '../../Flex';
 
 class SchoolList extends Component {

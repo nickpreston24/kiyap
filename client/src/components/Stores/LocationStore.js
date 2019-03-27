@@ -1,6 +1,9 @@
 import API from '../../utils/API';
 import { decorate, observable, action, computed } from 'mobx';
 
+/**
+ * Holds States for School Search components
+ */
 export default class LocationStore {
 
     constructor() {
@@ -22,7 +25,7 @@ export default class LocationStore {
     removeLocation(id) {
         // let location = this.locations.find(loc=>loc.place_id===id);
         // console.log('removing location: ', id);
-        this.locations = this.locations.filter(l=>l.place_id!==id);
+        this.locations = this.locations.filter(l => l.place_id !== id);
         // this.locations.remove(this.locations.find(l=>l.place_id===id));
     }
 
@@ -38,7 +41,7 @@ export default class LocationStore {
     // Professionals will be able to indicate their schools and 'put them on the map' for students to find.
     saveSchool(id) {
         // console.log('saving school...', id);
-        let location = this.locations.find(loc=>loc.place_id===id);
+        let location = this.locations.find(loc=>loc.place_id === id);
         // console.log('saved school keys: ', Object.keys(location));
         // console.log('school: ', location.name);
 
