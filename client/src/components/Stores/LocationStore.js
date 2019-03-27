@@ -6,7 +6,10 @@ import { decorate, observable, action, computed } from 'mobx';
  */
 export default class LocationStore {
 
-    constructor() {
+    constructor(props) {
+        // this.studentId = props && props.studentId;
+        this.studentId = '8175652372';
+        console.log('current student: ', this.studentId)
         this.locations = [];
         this.schools = [];
 
@@ -19,6 +22,7 @@ export default class LocationStore {
 
 
     addSchools (locations) {
+        console.log('locations found:', locations)
         this.locations = [...locations];
     }
 
@@ -26,7 +30,7 @@ export default class LocationStore {
         this.locations = this.locations.filter(l => l.place_id !== id);
     }
 
-    removeSchool(id) {
+    removeSchool(id, studentId) {
         this.schools = this.schools.filter(s=>s._id!==id);
         API.deleteSchool(id)
             .catch(console.error);
@@ -38,7 +42,7 @@ export default class LocationStore {
         let location = this.locations.find(loc=>loc.place_id === id);
 
         let {name, formatted_address: address, place_id} = location;
-        let school = {name, address};
+        let school = {name, address, studentId: this.studentId};
         this.schools.push(school);
 
         API.saveSchool(school)
@@ -47,7 +51,8 @@ export default class LocationStore {
 
     //Loads the User saved school data, if any
     loadSavedSchools() {
-        API.getSchools()
+        console.log('student id: ', this.studentId)
+        API.getSchools(this.studentId)
             .then(res => {
                 let data = res.data;
                 // console.log('saved schools: ', data);
