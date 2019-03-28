@@ -25,7 +25,21 @@ http://localhost:3001/api/students
 http://localhost:3001/api/students/1
 ###
 
+http://localhost:3001/api/schools/student/8175652372
+###
+http://localhost:3001/api/schools/student/86732341
+###
 
+
+POST http://localhost:3001/api/schools
+content-type: application/json
+
+{
+    "name" : "Kickass Krav Maga",
+    "address" : "123 Fake Street",
+    "studentId": "8175652372"
+}
+###
 
 POST http://localhost:3001/api/disciplines/new
 content-type: application/json

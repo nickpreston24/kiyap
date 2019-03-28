@@ -92,7 +92,7 @@ const styles = theme => ({
     icon: {
         boxSizing: 'border-box',
         width: 200,
-        fontSize: 48, 
+        fontSize: 48,
         textAlign: 'center'
     },
     expand: {
@@ -204,12 +204,10 @@ SchoolList = withStyles(styles)(observer(SchoolList))
 function YourFinds({ locations, store }) {
 
     function onLike(id) {
-        // console.log('place id: ', id);
         store.saveSchool(id);
     }
 
     function onDislike(id) {
-        // console.log('disliked place id: ', id);
         store.removeLocation(id);
     }
 
@@ -264,14 +262,12 @@ function YourFinds({ locations, store }) {
     )
 }
 
-function YourPicks({ schools, store }) {
-    // console.log('store: ', store)
-    // console.log('keys: ', Object.keys(store));
-    // console.log('store.remove', store.removeSchool);
+function YourPicks ({schools, store}) {
 
     function removeSchool(id) {
         store.removeSchool(id)
     }
+
     return (
         <Column flexGrow={1} horizontal='center'>
             <Typography variant="h4" color="primary" style={{ margin: 24 }}>My Favorites</Typography>
@@ -280,12 +276,13 @@ function YourPicks({ schools, store }) {
                     .map(school => (
                         <School {...school}
                             onRemove={removeSchool}
-                            key={school._id} />
+                            key={school.name} />
                     ))}
             </Grid>
         </Column>
     )
 }
+
 /**
  * Searches for Schools using a Google Map
  * Professionals are selected by location

@@ -5,6 +5,7 @@ import Navigation from '../Navigation';
 import LandingPage from '../Landing';
 import HomePage from '../Home';
 import SurveyPage from '../Survey';
+import AdminPage from '../Admin';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -56,6 +57,7 @@ const RoutedApp = ({ classes, location }) => (
         <Switch location={location}>
             <Route exact path={ROUTES.HOME} component={HomePage} />
             <Route exact path={ROUTES.SURVEY} component={SurveyPage} />
+            <Route exact path={ROUTES.ADMIN} component={AdminPage}/>
             <Route path={ROUTES.LANDING} component={LandingPage} />
         </Switch>
 

@@ -1,15 +1,15 @@
 /* global google*/
 
-import ControlledZoom from './ControlledZoom';
-import MapWithASearchBox from './SearchBox';
-import PlacesSearchBox from './Places';
+import ControlledZoom from './ControlledZoomMap';
+import MapWithASearchBox from './SearchBoxMap';
+import PlacesSearchBox from './PlacesMap';
 import {
     MyFancyComponent,
     MyMapComponent
 } from './BasicMap';
 import {
     LocationSearch
-} from './AutoComplete';
+} from './AutoCompleteMap';
 
 export {
     MyMapComponent,

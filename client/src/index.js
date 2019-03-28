@@ -10,14 +10,15 @@ import { Provider } from 'mobx-react';
 import { LocationStore } from './components/Stores';
 
 // Initialize Store
-const store = new LocationStore();
-console.log(store)
+// TODO: Try to get @inject working here if you can.  You have a duplicate LocationStore in /Home.
+// const store = new LocationStore();
+// console.log(store)
 
 ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>
-        <Provider store={store} >
+        {/* <Provider store={store} > */}
             <App />
-        </Provider>
+        {/* </Provider> */}
     </FirebaseContext.Provider>,
     document.getElementById('root')
 );
