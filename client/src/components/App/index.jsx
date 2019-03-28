@@ -1,14 +1,10 @@
-import React, { Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
-import SignUpPage from '../SignUp';
-import SignInPage from '../SignIn';
-import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
-import AccountPage from '../Account';
-import AdminPage from '../Admin';
+import SurveyPage from '../Survey';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -17,11 +13,10 @@ import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 const styles = theme => ({
     root: {
         background: 'white',
-        // minHeight: 'calc(100% - 50px)',
-        // height: 'calc(100% - 50px)',
-        height: '100%',
+        height: 'calc(100vh - 50px)',
         textAlign: 'center',
-        overflow: 'hidden',
+        overflowX: 'hidden',
+        overflowY: 'scroll',
         display: 'flex',
         flexFlow: 'row nowrap',
         justifyContent: 'center',
@@ -49,20 +44,23 @@ const theme = createMuiTheme({
 
 const App = ({ classes }) => (
     <Router>
-        <MuiThemeProvider theme={theme}>
-            <Navigation className={classes.navigation} />
-            <div className={classes.root}>
-
-                {/* <hr /> */}
-
-                <Route path={ROUTES.LANDING} component={LandingPage} />
- 
-                <Route path={ROUTES.HOME} component={HomePage} />
-                <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-                <Route path={ROUTES.ADMIN} component={AdminPage} />
-            </div>
-        </MuiThemeProvider>
+        <RoutedApp {...{ classes }}/>
     </Router>
 );
+
+const RoutedApp = ({ classes, location }) => (
+    <MuiThemeProvider theme={theme}>
+    <Navigation className={classes.navigation} />
+    <div className={classes.root}>
+
+        <Switch location={location}>
+            <Route exact path={ROUTES.HOME} component={HomePage} />
+            <Route exact path={ROUTES.SURVEY} component={SurveyPage} />
+            <Route path={ROUTES.LANDING} component={LandingPage} />
+        </Switch>
+
+    </div>
+</MuiThemeProvider>
+)
 
 export default withAuthentication(withStyles(styles)(App));
