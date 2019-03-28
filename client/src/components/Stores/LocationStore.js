@@ -1,15 +1,13 @@
 import API from '../../utils/API';
-import { decorate, observable, action, computed } from 'mobx';
+import { decorate, observable, action } from 'mobx';
 
 /**
  * Holds States for School Search components
  */
 export default class LocationStore {
 
-    constructor(props) {
-        // this.studentId = props && props.studentId;
-        this.studentId = '8175652372';
-        console.log('current student: ', this.studentId)
+    constructor({studentId}) {
+        this.studentId = studentId
         this.locations = [];
         this.schools = [];
 
@@ -20,9 +18,8 @@ export default class LocationStore {
         this.locations = [];
     }
 
-
     addSchools (locations) {
-        console.log('locations found:', locations)
+        // console.log('locations found:', locations)
         this.locations = [...locations];
     }
 
@@ -30,7 +27,7 @@ export default class LocationStore {
         this.locations = this.locations.filter(l => l.place_id !== id);
     }
 
-    removeSchool(id, studentId) {
+    removeSchool(id) {
         this.schools = this.schools.filter(s=>s._id!==id);
         API.deleteSchool(id)
             .catch(console.error);
@@ -39,11 +36,13 @@ export default class LocationStore {
     // indicates user's interest in a school.
     // Professionals will be able to indicate their schools and 'put them on the map' for students to find.
     saveSchool(id) {
-        let location = this.locations.find(loc=>loc.place_id === id);
 
+        let location = this.locations.find(loc=>loc.place_id === id);
         let {name, formatted_address: address, place_id} = location;
         let school = {name, address, studentId: this.studentId};
+
         this.schools.push(school);
+        console.log('saving school: ', school)
 
         API.saveSchool(school)
             .catch(console.error);
@@ -51,8 +50,9 @@ export default class LocationStore {
 
     //Loads the User saved school data, if any
     loadSavedSchools() {
-        console.log('student id: ', this.studentId)
-        API.getSchools(this.studentId)
+        // console.log('loaded student id: ', this.studentId)
+
+        API.getStudentSchools(this.studentId)
             .then(res => {
                 let data = res.data;
                 // console.log('saved schools: ', data);
