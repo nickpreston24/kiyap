@@ -1,9 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import * as Survey from 'survey-react';
 import "survey-react/survey.css";
 
-import API from '../../utils/API';
+// import API from '../../utils/API';
 import * as ROUTES from '../../constants/routes';
+
+
+const disciplines = [
+
+    'Taekwondo',
+    'Brazilian Jiu-Jitsu',
+    'Kickboxing',
+    'Karate',
+    'Jeet Kun Do',
+    'Kung Fu',
+    'Tai Chi',
+    'Fencing',
+    'Krav Maga',
+    'Muay Thai',
+    'Arnis',
+    'Aikido',
+    'Mixed Martial Arts',
+    'Boxing',
+    'Capoeira',
+    'Wrestling',
+    'Jojutso',
+    'Judo',
+    'Kendo',
+    'Ninjutsu',
+    'Sambo',
+    'Sumo',
+    'Wing Chun',
+
+]
 
 Survey
     .StylesManager
@@ -11,8 +40,9 @@ Survey
 
 export default class SurveyPage extends Component {
     state = {
-        disciplines: []
+        disciplines: [],
     }
+
     json = {
 
         title: "Kiyapp Survey",
@@ -25,15 +55,7 @@ export default class SurveyPage extends Component {
                         name: "Favorite",
                         title: "Which is your favorite martial art?",
                         isRequired: true,
-                        choices: [
-                            "Hapkido",
-                            "Taekwondo",
-                            "Karate",
-                            {
-                            value: "KravMaga",
-                            text: "Krav Maga"
-                            }
-                        ]
+                        choices: disciplines
                     }
                 ],
                 title: "Your Experience"
@@ -100,12 +122,21 @@ export default class SurveyPage extends Component {
         // ]
     };
 
+
+    componentWillMount() {
+        console.log('will mount')
+        // API.getDisciplines()
+        // .then(result=>{
+        //     this.setState({disciplines: result.data.map(d=>d.Name)})
+        //     // console.log('result: ', result.data.map(d=>d.Name));
+        // })
+    }
     componentDidMount(){
         console.log('survey has mounted')
         console.log(this.props)
         // setState({history:this.props.history});
-        API.getDisciplines()
-        .then(result=>this.setState({disciplines:result}))
+        // API.getDisciplines()
+        // .then(result=>this.setState({disciplines:result}))
     }
 
     //Define a callback methods on survey complete
@@ -113,15 +144,31 @@ export default class SurveyPage extends Component {
         console.log(history)
         history.push(ROUTES.SIGN_UP)
         //Write survey results into database
-        // console.log("Survey results: " + JSON.stringify(survey.data));
+        console.log("Survey results: " + JSON.stringify(survey.data));
         localStorage.setItem('surveyData', JSON.stringify(survey.data))
     }
-    render() {
+     render() {
+        const { disciplines } = this.state;
+        console.log('render', this.json)
+        const choices = find(this.json, ['pages', 0, 'elements', 0, 'choices' ]);
+        disciplines.forEach(d=>choices.push(d));
+
         var model = new Survey.Model(this.json);
+
         return (
-            <Survey.Survey model={model} onComplete={(survey) => this.onComplete(survey, this.props.history)}/>
+            <Fragment>
+                {/* {!disciplines && <Fragment/>}
+                {(disciplines && disciplines.length > 0) && */}
+                    <Survey.Survey model={model} onComplete={(survey) => this.onComplete(survey, this.props.history)}/>
+                {/* } */}
+            </Fragment>
         );
     }
+}
+
+const find = (object, paths) => {
+    return paths.reduce((obj, key) =>
+        (obj && obj[key] !== 'undefined') ? obj[key] : undefined, object);
 }
 
 // More to implement!
