@@ -7,7 +7,7 @@ import { withFlexColumn, withFlexRow } from '../Flex';
 import { withStyles } from '@material-ui/core/styles'
 import { Card } from '@material-ui/core';
 
-const store = new LocationStore();
+// const store = new LocationStore();
 
 const styles = theme => ({
     root: {
@@ -38,8 +38,21 @@ const styles = theme => ({
     }
 })
 
-const HomePage = ({ classes }) => (
-    <div className={classes.root}>
+const HomePage = ({classes}) =>
+    <AuthUserContext.Consumer>
+        {authUser =>
+            <div>
+                <HomeContents classes={classes} studentId={authUser.uid}></HomeContents>
+            </div>
+        }
+    </AuthUserContext.Consumer>;
+
+const HomeContents = ({classes, studentId}) => {
+
+    const store = new LocationStore({studentId});
+
+    return(
+        <div className={classes.root}>
         <div className={classes.content}>
             <Card className={classes.maps}>
                 <MapWithASearchBox store={store} />
@@ -47,26 +60,6 @@ const HomePage = ({ classes }) => (
             <SchoolSearch store={store} />
         </div>
     </div>
-);
-
-// const HomePage = () =>
-//     <AuthUserContext.Consumer>
-//         {authUser =>
-//             <div>
-//                 <HomeContents studentId={authUser.uid}></HomeContents>
-//             </div>
-//         }
-//     </AuthUserContext.Consumer>;
-
-const HomeContents = ({studentId}) => {
-
-    const store = new LocationStore({studentId});
-
-    return(
-        <>
-            <MapWithASearchBox store={store}/>
-            <SchoolSearch store={store}/>
-        </>
     )
 }
 
