@@ -138,10 +138,6 @@ const SchoolLocation = withStyles(styles)((props) => {
                     <Typography component="p">{address}</Typography>
                 }
 
-                 {/* //TODO: Put a star group here*/}
-                {/* {rating &&
-                    <Typography component="p">{'Rating: ' + rating}</Typography>
-                } */}
                 <CardActions>
                     {/* <h4>Interested?</h4> */}
                     <Button size="small" color="primary" target="_blank" onClick={() => onLike(place_id)}>Like</Button>

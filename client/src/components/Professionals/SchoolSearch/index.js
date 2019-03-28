@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import School from '../../Mui/School'
 import { observer } from 'mobx-react';
-import TextField from '@material-ui/core/TextField'
+// import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
-import { Column, Row } from 'simple-flexbox';
-import { withFlexColumn, withFlexRow } from '../../Flex';
+import { Column } from 'simple-flexbox';
+import { withFlexRow } from '../../Flex';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { Button, Typography, Icon } from '@material-ui/core';
@@ -139,7 +139,7 @@ class SchoolList extends Component {
         const { toggle } = this.props.store
         const { togglePanel } = this.props.store
         console.log(toJS(this.props.store))
-        console.log('photos', store.locations.map(l=>l.photos))
+        // console.log('photos', store.locations.map(l=>l.photos))
         return (
 
             // <Column flexGrow={1}>
@@ -215,53 +215,19 @@ function YourFinds({ locations, store }) {
     }
 
     return (
-        // <Column flexGrow={1} horizontal='center'>
 
-        //     <Row horizontal='center'>
-        //         <h1>Search Results</h1>
-        //     </Row>
-
-        //     <Row horizontal='center'>
-        //         <Grid container spacing={8} style={{ padding: 10 }}>
-
-        //             {/* TODO: Uncomment after presentations */}
-        //             {/* <TextField style={{padding:24}}
-        //     id="filterInput"
-        //     placeholder="Filter Schools"
-        //     margin="normal"
-        //     // onChange={this.onFilterChange}
-        //     >
-        //     </TextField> */}
-
-        //         </Grid>
-
-        //     </Row>
         <Column flexGrow={1} horizontal='center'>
-        <Typography variant="h4" color="primary" style={{ margin: 24 }}>Search Results</Typography>
-        <Grid container spacing={24} style={{ padding: 24 }}>
-            {locations.map(location => (
-                <School {...location}
-                    onDislike={onDislike}
-                    onLike={onLike}
-                    // image={'https://dummyimage.com/640x360/fff/aaa'}
-                    key={location.place_id} />
-            ))}
-        </Grid>
-    </Column>
-
-            // <Row vertical='center'>
-            //     <Grid container spacing={24} style={{ padding: 24 }}>
-            //         {locations.map(location => (
-            //             <School {...location}
-            //                 onDislike={onDislike}
-            //                 onLike={onLike}
-            //                 // image={'https://dummyimage.com/640x360/fff/aaa'}
-            //                 key={location.place_id} />
-            //         ))}
-            //     </Grid>
-            // </Row>
-        // </Column>
-
+            <Typography variant="h4" color="primary" style={{ margin: 24 }}>Search Results</Typography>
+            <Grid container spacing={24} style={{ padding: 24 }}>
+                {locations.map(location => (
+                    <School {...location}
+                        onDislike={onDislike}
+                        onLike={onLike}
+                        // image={'https://dummyimage.com/640x360/fff/aaa'}
+                        key={location.place_id} />
+                ))}
+            </Grid>
+        </Column>
     )
 }
 
