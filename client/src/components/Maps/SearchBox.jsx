@@ -462,6 +462,7 @@ const MapWithASearchBox = compose(
           const bounds = new google.maps.LatLngBounds();
 
           //   *** PLACES ***
+          this.props.store.switchToResults()
           //   console.log('maps found places: ', places);
           this.store.addSchools(places);
           places.forEach(place => {

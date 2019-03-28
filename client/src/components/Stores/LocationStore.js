@@ -6,6 +6,7 @@ export default class LocationStore {
     constructor() {
         this.locations = [];
         this.schools = [];
+        this.toggle = false;
 
         this.loadSavedSchools();
     }
@@ -14,6 +15,13 @@ export default class LocationStore {
         this.locations = [];
     }
 
+    togglePanel() {
+        this.toggle = !this.toggle
+    }
+
+    switchToResults() {
+        this.toggle = false
+    }
 
     addSchools (locations) {
         this.locations = [...locations];
@@ -65,6 +73,9 @@ export default class LocationStore {
 decorate(LocationStore, {
     locations: observable,
     schools: observable,
+    toggle: observable,
     clear: action,
     addSchools: action,
+    togglePanel: action.bound,
+    switchToResults: action.bound,
 })

@@ -11,41 +11,30 @@ const store = new LocationStore();
 
 const styles = theme => ({
     root: {
+        background: `linear-gradient(to bottom, ${'#ffe8bd'} 30% , ${theme.palette.primary.dark} 80%)`,
+        width: '100vw',
         display: 'flex',
-        minWidth: '100%',
-        maxWidth: '100%',
-        height: '100%',
         flexFlow: 'row nowrap',
-        justifyContent: 'flex-start',
-        alignItems: 'stretch',
-        color: 'red',
-        // border: '2px solid red',
+        justifyContent: 'center',
         overflow: 'hidden',
     },
-    sidebar: {
-        // margin: '40px 0px',
-        // borderRadius: '8px 0px 0px 8px',
-        display: 'flex',
-        background: theme.palette.primary.main,
-        width: 400,
-        color: 'red',
-        // border: '2px solid green',
-        overflow: 'scroll',
-    },
     content: {
-        flexShrink: 1,
-        width: 'calc(100% - 400px)',
-        color: 'red',
-        padding: '40px 40px 0px 40px',
-        // border: '2px solid blue',
-        overflow: 'scroll',
+        minWidth: 900,
+        maxWidth: 900,
+        // height: '100%',
+        // flexFlow: 'columb nowrap',
+        // justifyContent: 'flex-start',
+        // alignItems: 'center',
+        // color: 'red',
+        // border: '2px solid red',
+        overflow: 'visible',
     },
     maps: {
         borderRadius: 8,
         padding: 20,
         boxSizing: 'border-box',
-        boxShadow: '5px 5px 23px 0px rgba(0,0,0,0.25)',
-        margin: '0px 20px'
+        boxShadow: '1px 3px 9px 0px rgba(0,0,0,0.4)',
+        margin: '20px 10px'
     }
 })
 
@@ -53,12 +42,9 @@ const HomePage = ({ classes }) => (
     <div className={classes.root}>
         <div className={classes.content}>
             <Card className={classes.maps}>
-                <MapWithASearchBox store={store}  />
+                <MapWithASearchBox store={store} />
             </Card>
             <SchoolSearch store={store} />
-        </div>
-        <div className={classes.sidebar}>
-            <h1>Hello!</h1>
         </div>
     </div>
 );

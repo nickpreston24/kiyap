@@ -10,7 +10,7 @@ import PasswordForgetPage from '../PasswordForget';
 
 import { AuthUserContext } from '../Session';
 import * as ROUTES from '../../constants/routes';
-import { Button, Grid, Card } from '@material-ui/core';
+import { Button, Grid, Card, Typography } from '@material-ui/core';
 import classnames from 'classnames'
 import { Link, Route, Switch } from 'react-router-dom'
 
@@ -130,9 +130,9 @@ const CardContents = withStyles(styles)(({ classes, location }) => (
 
 const GettingStarted = ({history}) => (
     <Fragment>
-        <h2>Welcome! Find your local {title}! Are you a ...</h2>
-            <Button color="primary" variant="contained" onClick={() => history.push(ROUTES.SURVEY)}>New Student</Button>
-            <Button color="secondary" variant="contained" onClick={() => history.push(ROUTES.SIGN_IN)}>Professional</Button>
+        <Typography variant="h6" color="primary" style={{marginBottom: 20}}>Welcome! Find your local {title}! Are you a ...</Typography>
+        <Button color="primary" variant="contained" onClick={() => history.push(ROUTES.SURVEY)}>New Student</Button>
+        <Button color="secondary" variant="contained" onClick={() => history.push(ROUTES.SIGN_IN)}>Professional</Button>
     </Fragment>
 )
 

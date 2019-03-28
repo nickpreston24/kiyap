@@ -40,14 +40,21 @@ const SavedSchool = (props) => {
     return (
         <Grid
             item
-            xs={4}
+            xs={6}
             direction="row"
             alignContent="center"
             alignItems="center"
             wrap="wrap"
         >
             <Card style={{
-                // boxShadow: '0 3px 6px black, 0 3px 6px #e45656',
+                boxShadow: '1 1px 5px rgba(0,0,0,0.2)',
+                minHeight: 250,
+                maxHeight: 250,
+                padding: '0px 10px',
+                paddingTop: '20px',
+                display: 'flex',
+                flexFlow: 'column nowrap',
+                justifyContent: 'space-between',
                 // margin: '10px', padding: '3px'
             }}>
                 {image &&
@@ -56,22 +63,17 @@ const SavedSchool = (props) => {
                         title={name}
                     />
                 }
-                <CardContent>
-
-                    <Typography gutterBottom variant="headline" component="h2">
-                        {name}
-                    </Typography>
-
-                    {teaches &&
-                        <Typography component="strong">
-                            <p><strong>Teaches:</strong> {teaches.join(", ")}</p></Typography>
-                    }
-                    {address &&
-                        <Typography component="strong">
-                            <p><strong>Address:</strong> {address}</p></Typography>
-                    }
-
-                </CardContent>
+                <Typography gutterBottom variant="headline" component="h2">
+                    {name}
+                </Typography>
+                {teaches &&
+                    <Typography component="strong">
+                        <p><strong>Teaches:</strong> {teaches.join(", ")}</p></Typography>
+                }
+                {address &&
+                    <Typography component="strong">
+                        <p><strong>Address:</strong> {address}</p></Typography>
+                }
                 <CardActions>
                     <Button size="small" color="primary" href={website} target="_blank">
                         Go To School Website
@@ -104,20 +106,28 @@ const SchoolLocation = withStyles(styles)((props) => {
     return (
         <Grid
             item
-            xs={4}
+            xs={6}
+            direction="row"
+            alignContent="center"
+            alignItems="center"
+            wrap="wrap"
         >
-            <Card 
-                    className={classes.locationCard}
-            >
+            <Card style={{
+                boxShadow: '1 1px 5px rgba(0,0,0,0.2)',
+                minHeight: 250,
+                maxHeight: 250,
+                padding: '0px 10px',
+                paddingTop: '20px',
+                display: 'flex',
+                flexFlow: 'column nowrap',
+                justifyContent: 'space-between',
+                // margin: '10px', padding: '3px'
+            }}>
                 {image &&
                     <CardMedia
                     image={image}
                     title={name} />
                 }
-                <CardContent
-                
-                >
-
                 {name &&
                     <Typography gutterBottom variant="headline" component="h2">{name}</Typography>
                 }
@@ -125,8 +135,6 @@ const SchoolLocation = withStyles(styles)((props) => {
                 {address &&
                     <Typography component="p">{address}</Typography>
                 }
-
-                </CardContent>
                 <CardActions>
                     {/* <h4>Interested?</h4> */}
                     <Button size="small" color="primary" target="_blank" onClick={() => onLike(place_id)}>Like</Button>
