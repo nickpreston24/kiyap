@@ -57,7 +57,7 @@ const RoutedApp = ({ classes, location }) => (
         <Switch location={location}>
             <Route exact path={ROUTES.HOME} component={HomePage} />
             <Route exact path={ROUTES.SURVEY} component={SurveyPage} />
-            {/* <Route exact path={ROUTES.ADMIN} component={AdminPage}/> */}
+            <Route exact path={ROUTES.ADMIN} component={AdminPage}/>
             <Route path={ROUTES.LANDING} component={LandingPage} />
         </Switch>
 
