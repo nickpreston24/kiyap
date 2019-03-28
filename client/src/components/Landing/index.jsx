@@ -12,7 +12,7 @@ import { AuthUserContext } from '../Session';
 import * as ROUTES from '../../constants/routes';
 import { Button, Grid, Card, Typography } from '@material-ui/core';
 import classnames from 'classnames'
-import { Link, Route, Switch } from 'react-router-dom'
+import { Link, Route, Switch, Redirect } from 'react-router-dom'
 
 import ArrowIcon from '@material-ui/icons/ArrowForwardIosRounded';
 //TODO: Make the title rotate and flip like a reel
@@ -81,7 +81,9 @@ export default function Landing({ match }) {
     return (
         <div>
             <AuthUserContext.Consumer>
-                {authUser => authUser ? <LandingAuth /> : <LandingNonAuth {...{ match }} />}
+                {authUser => authUser 
+                    ? <LandingAuth {...{ match }}  /> 
+                    : <LandingNonAuth {...{ match }} />}
             </AuthUserContext.Consumer>
         </div>
     )
@@ -111,7 +113,7 @@ const LandingBase = withStyles(styles)(({ classes }) => (
         <Link to={ROUTES.GET_STARTED} style={{ textDecoration: 'none' }}>
             <Button color="inherit" variant="outlined" className={classes.gettingStarted}>
                 Get Started
-        <ArrowIcon className={classes.rightIcon} />
+                <ArrowIcon className={classes.rightIcon} />
             </Button>
         </Link>
     </Grid>
@@ -136,8 +138,4 @@ const GettingStarted = ({history}) => (
     </Fragment>
 )
 
-const LandingAuth = () => (
-    <div>
-        <h1>Welcome back!</h1>
-    </div>
-)
+const LandingAuth = ({match}) => window.location.pathname !== '/' ? <Redirect to={`/`}/> : null
