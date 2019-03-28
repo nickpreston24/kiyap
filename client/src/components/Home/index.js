@@ -1,40 +1,29 @@
-import React, {Component} from 'react'
-import { withAuthorization } from '../Session'
+import React from 'react'
+import { withAuthorization, AuthUserContext } from '../Session'
 import { MapWithASearchBox } from '../Maps';
 import { SchoolSearch } from '../Professionals';
 import { LocationStore } from '../Stores';
-import { withFlexColumn, withFlexRow } from '../Flex';
 
-const store = new LocationStore();
-class HomePage extends Component{
-
-    componentWillMount() {
-        {/* {console.log('props:', props)} */}
-
-        this.props.firebase.users().on('value', snapshot => {
-            console.log(!!snapshot);
-        })
-        console.log('will mount()')
-    }
-
-    render() {
-        return (
+const HomePage = () =>
+    <AuthUserContext.Consumer>
+        {authUser =>
             <div>
-                {/* {console.log('firebase: ', this.props.firebase.users())} */}
-                <MapWithASearchBox store={store}/>
-                <SchoolSearch store={store}/>
+                <HomeContents studentId={authUser.uid}></HomeContents>
             </div>
-        )
-    }
+        }
+    </AuthUserContext.Consumer>;
+
+const HomeContents = ({studentId}) => {
+
+    const store = new LocationStore({studentId});
+
+    return(
+        <>
+            <MapWithASearchBox store={store}/>
+            <SchoolSearch store={store}/>
+        </>
+    )
 }
-
-// const HomePage = () => (
-//     <div>
-//         <MapWithASearchBox store={store}/>
-//         <SchoolSearch store={store}/>
-//     </div>
-// );
-
 
 const condition = authUser => !!authUser;
 
