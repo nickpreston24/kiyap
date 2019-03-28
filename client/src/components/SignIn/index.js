@@ -89,7 +89,7 @@ class SignInFormBase extends Component {
           variant="outlined"
         />
         <TextField
-          className={classes.textFeld}
+          clasName={classes.textFeld}
           margin='normal'
           fullWidth
           varian="outlined"
