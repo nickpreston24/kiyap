@@ -10,7 +10,6 @@ export default {
 
     /* Get schools a specific student is interested in */
     getStudentSchools: function (studentId) {
-        console.log('student Id: ', studentId)
         return axios.get("/api/schools/student/" + studentId);
     },
 

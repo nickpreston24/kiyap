@@ -11,7 +11,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(express.json());
-// Serve up static assets (usually on heroku)
+
 let uri = "mongodb://localhost/kiyapp";
 
 if (process.env.NODE_ENV === "production") {

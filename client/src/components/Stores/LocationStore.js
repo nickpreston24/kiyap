@@ -29,6 +29,8 @@ export default class LocationStore {
 
     addSchools (locations) {
         // console.log('locations found:', locations)
+        // console.log('photos', locations.map(l=>l.photos))
+        // console.log('rating', locations.map(l=>l.rating))
         this.locations = [...locations];
     }
 

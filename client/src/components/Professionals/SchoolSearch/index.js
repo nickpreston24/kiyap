@@ -139,7 +139,7 @@ class SchoolList extends Component {
         const { toggle } = this.props.store
         const { togglePanel } = this.props.store
         console.log(toJS(this.props.store))
-
+        console.log('photos', store.locations.map(l=>l.photos))
         return (
 
             // <Column flexGrow={1}>
@@ -202,6 +202,9 @@ SchoolList = withStyles(styles)(observer(SchoolList))
 
 
 function YourFinds({ locations, store }) {
+
+    // const locs = locations.slice();
+    // console.log('sliced locations: ', locs.slice());
 
     function onLike(id) {
         store.saveSchool(id);

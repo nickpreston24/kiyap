@@ -95,6 +95,7 @@ const SchoolLocation = withStyles(styles)((props) => {
         name,
         image,
         photos,
+        // rating,
         place_id,
         classes,
     } = props;
@@ -102,6 +103,7 @@ const SchoolLocation = withStyles(styles)((props) => {
     let { onLike, onDislike } = props;
 
     // console.log('photos: ', photos)
+    // console.log('rating', rating)
 
     return (
         <Grid
@@ -135,6 +137,11 @@ const SchoolLocation = withStyles(styles)((props) => {
                 {address &&
                     <Typography component="p">{address}</Typography>
                 }
+
+                 {/* //TODO: Put a star group here*/}
+                {/* {rating &&
+                    <Typography component="p">{'Rating: ' + rating}</Typography>
+                } */}
                 <CardActions>
                     {/* <h4>Interested?</h4> */}
                     <Button size="small" color="primary" target="_blank" onClick={() => onLike(place_id)}>Like</Button>

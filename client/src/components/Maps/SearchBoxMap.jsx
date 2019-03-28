@@ -2,7 +2,7 @@
 
 // *** Search Box ***
 import React from 'react';
-import API from '../../utils/API';
+// import API from '../../utils/API';
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const _ = require("lodash");
@@ -435,11 +435,12 @@ const MapWithASearchBox = compose(
       const refs = {}
       this.store = this.props.store;
       //   this.getGeoLocation();
-      API.getDisciplines()
-        .then(result=>{
-            this.setState({disciplines: result.data.map(discipline => discipline.Name)})
-            console.log('disciplines: ', result.data.map(d => d.Name));
-        })
+      //FIXME: Uncomment & fix after Demo Day
+      //   API.getDisciplines()
+      //     .then(result=>{
+      //         this.setState({disciplines: result.data.map(discipline => discipline.Name)})
+      //         console.log('disciplines: ', result.data.map(d => d.Name));
+      //     })
 
       this.setState({
         bounds: null,
@@ -469,7 +470,7 @@ const MapWithASearchBox = compose(
 
           //   *** PLACES ***
           this.props.store.switchToResults()
-          //   console.log('maps found places: ', places);
+        //   console.log('maps found places: ', places);
           this.store.addSchools(places);
           places.forEach(place => {
             if (place.geometry.viewport) {
