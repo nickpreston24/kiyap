@@ -113,7 +113,8 @@ export default class SurveyPage extends Component {
         console.log(history)
         history.push(ROUTES.SIGN_UP)
         //Write survey results into database
-        console.log("Survey results: " + JSON.stringify(survey.data));
+        // console.log("Survey results: " + JSON.stringify(survey.data));
+        localStorage.setItem('surveyData', JSON.stringify(survey.data))
     }
     render() {
         var model = new Survey.Model(this.json);
