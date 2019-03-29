@@ -7,8 +7,26 @@ A full stack web application for finding your local sensei!  Looking to get into
 
 ## [Deployed here!](https://kiyapp.herokuapp.com/)
 
+## Sample Login:
 
-
+* Student:
+  * Username: 
+  * Email: kiyapp.demo@gmail.com
+  * Password: demoday
 
 ## Deployed to:
 https://kiyapp.herokuapp.com/
+
+## To Test locally:
+1. Clone Kiyapp with `git clone https://github.com/MikePreston17/kiyap.git`
+2. Run `npm install` in the project folder.
+3. Make sure you have MongoDB installed and `mongod` running.
+4. Run `npm run start` to start the application in develop mode.
+
+# Scripts
+| Command | Description|
+| --------|:----------:|
+| npm run start | Runs the application server and react scripts using [concurrently](https://www.npmjs.com/package/concurrently)|
+
+## Built using:
+* HTML5, CSS3 and Javascript/ES6.
