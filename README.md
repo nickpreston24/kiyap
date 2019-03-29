@@ -32,4 +32,33 @@ https://kiyapp.herokuapp.com/
 | `npm run rebuild` | Runs clean script (`npm run clean`) and then rebuilds the app into the `/build/` directory |
 
 ## Built using:
+* MERN stack (Mongo, Express, React, Node)
+* Firebase (for authentication)
 * HTML5, CSS3 and Javascript/ES6.
+* [Create React App](https://www.npmjs.com/package/create-react-app)
+
+## Dependencies:
+
+### State Management
+* [Mobx](https://www.npmjs.com/package/mobx)
+
+### User Interface
+* [survey-react](https://www.npmjs.com/package/survey-react)
+* [material-ui](https://www.npmjs.com/package/material-ui)
+
+### Database ORMs
+* [mongoose](https://www.npmjs.com/search?q=mongoose) 
+* mysql
+* sequelize
+
+### Full Stack glue
+* [axios](https://www.npmjs.com/package/axios)
+* [concurrently](https://www.npmjs.com/package/concurrently)
+* express.js
+
+### Other bits
+* dotenv
+* axios
+* yup
+* react-google-maps
+* [react-google-maps](https://www.npmjs.com/package/react-google-maps)
