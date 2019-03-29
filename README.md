@@ -10,7 +10,7 @@ A full stack web application for finding your local sensei!  Looking to get into
 ## Sample Login:
 
 * Student:
-  * Username: 
+  * Username: Demo Man
   * Email: kiyapp.demo@gmail.com
   * Password: demoday
 
@@ -26,7 +26,10 @@ https://kiyapp.herokuapp.com/
 # Scripts
 | Command | Description|
 | --------|:----------:|
-| npm run start | Runs the application server and react scripts using [concurrently](https://www.npmjs.com/package/concurrently)|
+| `npm run start` | Runs the application server and react scripts using [concurrently](https://www.npmjs.com/package/concurrently)|
+| `npm run clean` | Deletes any `build` & `node_modules` dirs and removes `package-lock.json`s |
+| `npm run reinstall` | Runs clean script (`npm run clean`) and then reinstalls all packages |
+| `npm run rebuild` | Runs clean script (`npm run clean`) and then rebuilds the app into the `/build/` directory |
 
 ## Built using:
 * HTML5, CSS3 and Javascript/ES6.
