@@ -16,19 +16,52 @@ class AdminPage extends Component {
     this.setState({ loading: true });
 
     this.props.firebase.users().on('value', snapshot => {
-      const usersObject = snapshot.val();
+        const usersObject = snapshot.val();
+        console.log('users obj:', usersObject);
 
-      const usersList = Object.keys(usersObject).map(key => ({
-        ...usersObject[key],
-        uid: key,
-      }));
+        const usersList = Object.keys(usersObject).map(key => ({
+          ...usersObject[key],
+          uid: key,
+        }));
 
-      this.setState({
-        users: usersList,
-        loading: false,
+        this.setState({
+          users: usersList,
+          loading: false,
+        });
       });
-    });
   }
+
+//   componentWillMount() {
+//       this.loadUsers();
+//   }
+
+//   loadUsers() {
+//     this.setState({ loading: true });
+//     // console.log('firebase: ', !!this.props.firebase.users());
+
+//     // this.props.firebase.listUsers(100)
+//     // .then(result=>{
+//     //     console.log(result)
+//     // })
+//     // this.props.firebase.users()
+
+
+//     this.props.firebase.users().on('value', snapshot => {
+//         console.log('i am called');
+//         const usersObject = snapshot.val();
+//         console.log('users obj:', usersObject);
+
+//         const usersList = Object.keys(usersObject).map(key => ({
+//           ...usersObject[key],
+//           uid: key,
+//         }));
+
+//         this.setState({
+//           users: usersList,
+//           loading: false,
+//         });
+//       });
+//   }
 
   componentWillUnmount() {
     this.props.firebase.users().off();
@@ -40,8 +73,9 @@ class AdminPage extends Component {
     return (
       <div>
         <h1>Admin</h1>
-
+        {console.log('loading: ', loading, 'users:', users)}
         {loading && <div>Loading ...</div>}
+        {/* {} */}
 
         <UserList users={users} />
       </div>

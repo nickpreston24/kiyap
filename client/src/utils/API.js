@@ -8,6 +8,11 @@ export default {
         return axios.get("/api/schools");
     },
 
+    /* Get schools a specific student is interested in */
+    getStudentSchools: function (studentId) {
+        return axios.get("/api/schools/student/" + studentId);
+    },
+
     getSchool: function (id) {
         return axios.get("/api/schools/" + id);
     },
@@ -54,6 +59,13 @@ export default {
 
     saveStudent: function (data) {
         return axios.post("/api/students", data);
+    },
+
+    /** Misc */
+
+    getDisciplines: function () {
+        console.log('get Disciplines()')
+        return axios.get("/api/disciplines");
     }
 
 };

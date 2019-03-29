@@ -10,3 +10,5 @@ A full stack web application for finding your local sensei!  Looking to get into
 
 
 
+## Deployed to:
+https://kiyapp.herokuapp.com/
