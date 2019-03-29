@@ -60,5 +60,4 @@ https://kiyapp.herokuapp.com/
 * dotenv
 * axios
 * yup
-* react-google-maps
 * [react-google-maps](https://www.npmjs.com/package/react-google-maps)
