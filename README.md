@@ -14,6 +14,17 @@ A full stack web application for finding your local sensei!  Looking to get into
   * Email: kiyapp.demo@gmail.com
   * Password: demoday
 
+## Signing Up:
+
+![SignUp](https://github.com/MikePreston17/kiyap/blob/master/screenies/Kiyap-Sign-Up.gif)
+
+## Search:
+
+* To search for new schools, type into the Search Bar within the Map near the top of the page:
+* Click 'Like' on Schools you want to look at later.
+
+![Search Schools](https://github.com/MikePreston17/kiyap/blob/master/screenies/Kiyap-Search-Schools.gif)
+
 ## Deployed to:
 https://kiyapp.herokuapp.com/
 
