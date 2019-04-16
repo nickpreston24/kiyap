@@ -173,7 +173,7 @@ class SchoolList extends Component {
 const ToggleFinds = withStyles(styles)(({ togglePanel, classes }) => (
     <div className={classes.toggleRight} onClick={togglePanel}>
         <Icon className={classNames(classes.icon, 'far fa-heart')} />
-        <Typography color="inherit" variant="h5">See your favorite locations and share locations with others</Typography>
+        <Typography color="inherit" variant="h5">See your favorite locations!</Typography>
         <Button
             variant="outlined"
             style={{ color: 'white', borderColor: 'white' }}
@@ -187,7 +187,7 @@ const ToggleFinds = withStyles(styles)(({ togglePanel, classes }) => (
 const ToggleSchools = withStyles(styles)(({ togglePanel, classes }) => (
     <div className={classes.toggleLeft} onClick={togglePanel}>
         <Icon className={classNames(classes.icon, 'far fa-map')} />
-        <Typography color="inherit" variant="h5">Find new and exciting locations local to your area</Typography>
+        <Typography color="inherit" variant="h5">Find new and exciting locations!</Typography>
         <Button
             variant="outlined"
             style={{ color: 'white', borderColor: 'white' }}
