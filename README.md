@@ -1,6 +1,6 @@
-# KIYAPP (Kee-yahp)
+# KIY'APP (Kee-yahp)
 
-A full stack web application for finding your local sensei!  Looking to get into martial arts, but don't know where to start?  Kiyapp is for you!  Kiyapp simplifies the process of finding by taking out the guesswork and trial and error in finding the right teacher!
+A full stack web application for finding your local sensei!  Looking to get into martial arts, but don't know where to start?  Kiy'app is for you!  Kiy'app simplifies the process of finding by taking out the guesswork and trial and error in finding the right teacher!
 
 ## Built by:
 * Michael Preston
@@ -14,11 +14,22 @@ A full stack web application for finding your local sensei!  Looking to get into
   * Email: kiyapp.demo@gmail.com
   * Password: demoday
 
+## Signing Up:
+
+![SignUp](https://github.com/MikePreston17/kiyap/blob/master/screenies/Kiyap-Sign-Up.gif)
+
+## Search:
+
+* To search for new schools, type into the Search Bar within the Map near the top of the page:
+* Click 'Like' on Schools you want to look at later.
+
+![Search Schools](https://github.com/MikePreston17/kiyap/blob/master/screenies/Kiyap-Search-Schools.gif)
+
 ## Deployed to:
 https://kiyapp.herokuapp.com/
 
 ## To Test locally:
-1. Clone Kiyapp with `git clone https://github.com/MikePreston17/kiyap.git`
+1. Clone Kiy'app with `git clone https://github.com/MikePreston17/kiyap.git`
 2. Run `npm install` in the project folder.
 3. Make sure you have MongoDB installed and `mongod` running.
 4. Run `npm run start` to start the application in develop mode.
