@@ -76,4 +76,5 @@ https://kiyapp.herokuapp.com/
 ## Contributors:
 
 > Michael Preston [**Portfolio**](http://mikepreston17.github.io/) | [**GitHub**](https://github.com/mikepreston17) | [**LinkedIn**](https://www.linkedin.com/in/michael-n-preston/)
+
 > Braden Preston [**GitHub**](https://github.com/Braden-Preston) | [**LinkedIn**](https://www.linkedin.com/in/braden-preston-94b05531/)
