@@ -24,7 +24,7 @@ module.exports = function (app) {
 
     */
 
-    function run(sql, res) {
+    function query(sql, res) {
         connection.query(sql, function (err, result, fields) {
             if (err) throw err;
             res.json(result)
@@ -33,12 +33,12 @@ module.exports = function (app) {
 
     app.get("/api/disciplines", function (req, res) {
         const sql = `select distinct * from disciplines order by name`;
-        run(sql, res);
+        query(sql, res);
     });
 
     app.get("/api/students", function (req, res) {
         const sql = `select * from students`;
-        run(sql, res);
+        query(sql, res);
     });
 
     app.get("/api/students/:id", function (req, res) {
@@ -51,12 +51,12 @@ module.exports = function (app) {
             where id = ${req.params.id}
             limit 1;`;
 
-        run(sql, res);
+        query(sql, res);
     });
 
     app.get("/api/teachers", function (req, res) {
         const sql = `select * from Professionals`;
-        run(sql, res);
+        query(sql, res);
     });
 
     app.get("/api/certifications", function (req, res) {
@@ -72,7 +72,7 @@ module.exports = function (app) {
                 on Cert.ProfessionalId = P.Id and D.Id = Cert.DisciplineId;
 
         `;
-        run(sql, res);
+        query(sql, res);
     });
 
     app.get("/api/students/:id/learning", function (req, res) {
@@ -91,7 +91,7 @@ module.exports = function (app) {
                 on S.Id = T.StudentId
                 where S.Id = ${req.params.id}
         `;
-        run(sql, res);
+        query(sql, res);
     });
 
     app.get("/api/teachers/:id/training", function (req, res) {
@@ -107,7 +107,7 @@ module.exports = function (app) {
                 on S.Id = T.StudentId and P.Id = T.ProfessionalId
             limit 10;
         `;
-        run(sql, res);
+        query(sql, res);
     });
 
     /**
