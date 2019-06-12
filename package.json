@@ -5,24 +5,24 @@
     "description": "Martial arts app",
     "devDependencies": {
         "concurrently": "^4.1.0",
-        "nodemon": "^1.18.10"
+        "nodemon": "^1.19.1"
     },
     "dependencies": {
         "axios": "^0.19.0",
         "dotenv": "^8.0.0",
-        "express": "^4.16.4",
+        "express": "^4.17.1",
         "firebase": "^6.1.1",
         "if-env": "^1.0.4",
-        "mobx": "^5.9.0",
+        "mobx": "^5.10.1",
         "mobx-react": "^6.0.3",
         "mobx-react-devtools": "^6.1.1",
-        "mongoose": "^5.4.18",
-        "mysql": "^2.16.0",
+        "mongoose": "^5.5.14",
+        "mysql": "^2.17.1",
         "mysql2": "^1.6.5",
         "recompose": "^0.30.0",
         "rimraf": "^2.6.3",
-        "sequelize": "^5.1.0",
-        "survey-react": "^1.0.75"
+        "sequelize": "^5.8.9",
+        "survey-react": "^1.0.92"
     },
     "main": "server.js",
     "scripts": {
@@ -32,10 +32,11 @@
         "client": "cd client && yarn start",
         "seed": "cd db/scripts/mongo/ && node professionals.js && node students.js && node schools.js && cd ../../../",
         "install": "cd client && yarn install",
-        "build": "cd client && yarn build",
-        "heroku-postbuild": "yarn build",
-        "clean": "rimraf */build && rm -rf node_modules package-lock.json && rm -rf **/package-lock.json **/node_modules",
         "reinstall": "yarn run clean && yarn install",
-        "rebuild": "yarn run clean && yarn install && yarn build"
+        "heroku-postbuild": "yarn build",
+        "clean": "rimraf */build && rm -rf node_modules yarn.lock && rm -rf **/yarn.lock **/node_modules",
+        "build": "cd client && yarn build",
+        "rebuild": "yarn run clean && yarn install && yarn build",
+        "upgrade": "yarn upgrade --latest && cd client && yarn upgrade --latest; cd ..;yarn install"
     }
 }
