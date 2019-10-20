@@ -14,9 +14,13 @@ const config = {
 class Firebase {
 
     constructor() {
-        app.initializeApp(config);
-        this.auth = app.auth();
-        this.db = app.database();
+
+        if(!!config.apiKey)
+        {
+            app.initializeApp(config);
+            this.auth = app.auth();
+            this.db = app.database();
+        }
     }
 
     // *** Authentication API ***

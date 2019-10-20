@@ -1,38 +1,85 @@
 require('dotenv').config()
 const express = require("express");
 const path = require("path");
+
+//NOTE: mongo-specific imports: 
 const mongoose = require('mongoose');
-const routes = require('./routes');
 
-const app = express();
-const PORT = process.env.PORT || 3001;
-
-// Define middleware here
-app.use(express.urlencoded({
-    extended: true
-}));
-app.use(express.json());
-
-let uri = "mongodb://localhost/kiyapp";
-
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-    uri = process.env.MONGODB_URI
+const defaultConfig = {
+    databaseType: null,
+    environment: 'development',
+    port: 3001
 }
 
-mongoose.connect(uri, {
-    useNewUrlParser: true
-});
+class Server {
 
-// TODO: refactor this api-routes.js to an export bundle for app.use();
-require('./routes/api/sql/api-routes.js')(app);
-// FIXME: A bit hacky - I changed an inner require path to /api/mongo
-app.use(routes);
+    constructor() {
+        this.initExpress();
 
-// Send every other request to the React app
-// Define any API routes before this runs
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+        this.configure();
+        this.chooseMiddleWare();
+    }
 
-app.listen(PORT, () => console.log(`🌎  ==> API server now on port ${PORT}!\n db uri: ${uri}`));
+    initExpress = () => {
+        this.app = express();
+        this.app.use(express.urlencoded({
+            extended: true
+        }));
+        this.app.use(express.json());
+
+        if (this.environment === "production")
+            app.use(express.static("client/build"));
+
+        this.routes = require('./routes');
+    }
+
+    configure = () => {
+        this.environment = process.env.NODE_ENV || defaultConfig.environment;
+        this.dbType = process.env.SERVER_TYPE || defaultConfig.databaseType;
+        this.PORT = process.env.PORT || defaultConfig.port;
+        this.setUri();
+    }
+
+    setUri = () => {
+        switch (this.dbType) {
+            case 'sql':
+            //TODO: set the sql uri here            
+            case 'mongo':
+                this.uri = process.env.MONGODB_URI || "mongodb://localhost/kiyapp";
+            default:
+                this.uri = "(none)";
+        }
+    }
+
+    // Choose middleware here
+    chooseMiddleWare = () => {
+        console.log(this.dbType)
+        switch (this.dbType) {            
+            case 'mongo':
+                mongoose.connect(this.uri, {
+                    useNewUrlParser: true
+                });
+            default:
+                break;
+        }
+
+        this.app.use(this.routes);
+    }
+
+    toString() {
+        return `🌎  ==> API server now on port ${this.PORT}!`;
+        // + !server.uri  ? server.uri : `\n database uri: ${server.uri}`;
+    }
+
+    start() {
+        this.app.get("*", (req, res) => {
+            res.sendFile(path.join(__dirname, "./client/build/index.html"));
+        });
+
+        this.app.listen(this.PORT, () => console.log(this.toString()));
+    }
+
+}
+
+server = new Server();
+server.start();
