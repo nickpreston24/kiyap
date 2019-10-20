@@ -37,7 +37,7 @@ const styles = theme => ({
     },
     rightIcon: {
         animationName: '$fade',
-        marginLeft: theme.spacing.unit,
+        marginLeft: theme.spacing(1),
     },
     gettingStarted: {
         borderRadius: 24,

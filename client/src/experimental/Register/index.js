@@ -7,12 +7,11 @@ import * as Yup from "yup";
 
 const styles = theme => ({
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 5}px ${theme
-      .spacing.unit * 5}px`
+    padding: `${theme.spacing(5)}px ${theme.spacing(5)}px ${theme.spacing(5)}px`
   },
   container: {
     maxWidth: "200px"
@@ -21,7 +20,7 @@ const styles = theme => ({
 
 const validationSchema = Yup.object({
   name: Yup.string("Enter a name")
-  .required("Name is required"),
+    .required("Name is required"),
   email: Yup.string("Enter your email")
     .email("Enter a valid email")
     .required("Email is required"),

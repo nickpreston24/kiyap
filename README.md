@@ -2,8 +2,11 @@
 
 A full stack web application for finding your local sensei!  Looking to get into martial arts, but don't know where to start?  Kiy'app is for you!  Kiy'app simplifies the process of finding by taking out the guesswork and trial and error in finding the right teacher!
 
-## Built by:
+## Backend and Frontend Built by:
 * Michael Preston
+
+## Color coding and animations by:
+* [Braden Preston](https://github.com/braden-preston)
 
 ## [Deployed here!](https://kiyapp.herokuapp.com/)
 
