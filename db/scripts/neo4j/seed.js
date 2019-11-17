@@ -5,9 +5,9 @@ const Promise = require('bluebird');
 require('dotenv').config();
 
 var config = {
-    uri: process.env.GRAPHENE_URL || "bolt://localhost",
-    user: process.env.DB_USER || "neo4j",
-    password: process.env.GRAPHENE_PWD || 'root',
+    uri: process.env.GRAPHENE_BOLT_URL || "bolt://localhost",
+    user: process.env.GRAPHENE_BOLT_USER || "neo4j",
+    password: process.env.GRAPHENE_BOLT_PASSWORD || 'root',
 }
 
 var Seeder = class {
