@@ -5,3 +5,5 @@
 - [ ] Test that you can still sign in, register, etc before merging into `develop` branch.
 - [ ] Convert minor components to TSX.
 - [ ] * Optional * upload ea. TSX component to your Bit.dev account.
+- [ ] Add next js support and test run + build.
+- [ ] Add netlify support and test deploy.
