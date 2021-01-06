@@ -1,15 +1,18 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-node_modules
+/node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
+/test
 
 # production
-**/build
+/build
+/_legacy
+
 # misc
 .DS_Store
 .env.local
@@ -33,4 +36,8 @@ scripts/seeds/lucidchart-import.csv
 **/*.idea
 
 # Vscode 
+<<<<<<< HEAD
 **/*.vscode
+=======
+**/*.vscode
+>>>>>>> hotfix/next
