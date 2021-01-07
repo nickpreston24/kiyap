@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "deploy": "yarn build; netlify deploy"
     },
     "dependencies": {
         "@chakra-ui/react": "^1.1.2",
@@ -29,7 +30,7 @@
         "mobx-react-lite": "^3.1.6",
         "mobx-state-tree": "^4.0.2",
         "neo4j-driver": "^4.2.1",
-        "next": "^10.0.4",
+        "next": "^10.0.5",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-icons": "^4.1.0",

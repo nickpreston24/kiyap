@@ -14,7 +14,7 @@
 /_legacy
 /test
 .next
-
+.netlify
 
 # misc
 .DS_Store
@@ -39,8 +39,4 @@ scripts/seeds/lucidchart-import.csv
 **/*.idea
 
 # Vscode 
-<<<<<<< HEAD
 **/*.vscode
-=======
-**/*.vscode
->>>>>>> hotfix/next
