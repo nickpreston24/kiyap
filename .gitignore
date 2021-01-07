@@ -12,6 +12,9 @@
 # production
 /build
 /_legacy
+/test
+.next
+
 
 # misc
 .DS_Store

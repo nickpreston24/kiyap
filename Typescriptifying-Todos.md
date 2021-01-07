@@ -7,3 +7,4 @@
 - [ ] * Optional * upload ea. TSX component to your Bit.dev account.
 - [ ] Add next js support and test run + build.
 - [ ] Add netlify support and test deploy.
+- [x] Move webpack support for dotenv (.env files) into next.config.js so React can use .env files with Nextjs.
