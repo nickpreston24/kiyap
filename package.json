@@ -4,10 +4,14 @@
     "private": true,
     "description": "Martial arts app",
     "scripts": {
+        "deploy": "yarn build && yarn export && netlify deploy",
         "dev": "next dev",
         "build": "next build",
-        "start": "next start",
-        "deploy": "yarn build; netlify deploy"
+        "export": "next export",
+        "start": "serve out",
+        "rebuild": "yarn clean && yarn",
+        "clean": "rm -rf node_modules && rm -f yarn.lock package-lock.json yarn-error.log",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
         "@chakra-ui/react": "^1.1.2",
