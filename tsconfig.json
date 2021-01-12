@@ -38,6 +38,6 @@
     ],
     "include": [
       "next-env.d.ts",
-      "**/*.ts",
+      "**/*.ts", "hooks/useLocalStorage.js",
     ]
   }
