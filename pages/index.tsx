@@ -1,6 +1,5 @@
-import { Button, Flex, Heading, Stack, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react"
+import { Flex, Heading, Stack, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react"
 import React from "react"
-import Link from 'next/link'
 import { Profile } from "../models/Setting";
 import { ProfilePage } from "./profile";
 import { SchoolsPage } from './school'
@@ -81,7 +80,7 @@ export const Home = asPage()(() => {
             </TabPanel>
 
             <TabPanel>
-              <SchoolsPage />
+              <SchoolsPage profile={profile} />
             </TabPanel>
 
             <TabPanel>

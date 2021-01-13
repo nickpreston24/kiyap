@@ -2,12 +2,17 @@ import { destroy, types } from "mobx-state-tree";
 import { Instructor } from "./Instructor";
 import Student from "./Student";
 
+export const Discipline = types.model({
+    name: types.string,
+})
+
 export const School = types.model({
     id: types.string,
     address: types.string,
+    isLiked: false,
+    students: types.map(Student),
+    disciplines: types.map(Discipline),
     // instructors: types.array(Instructor),
-    // students: types.array(Student),
-    students: types.map(Student)
 })
     .actions(self => ({
         register(student) {
@@ -15,6 +20,11 @@ export const School = types.model({
         },
         expell(student) {
             destroy(student)
+        },
+        like() {
+            self.isLiked = !self.isLiked
+            console.log('self.isLiked', self.isLiked)
+            // console.log('value', value)
         }
     }))
     .views(self => ({
@@ -27,5 +37,7 @@ export const School = types.model({
         //     return -1;
         // }
     }))
+
+
 
 export default School

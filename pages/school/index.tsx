@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
-import { Box, Button, Flex, FormControl, FormLabel, Heading, List, Switch } from "@chakra-ui/react"
+import React, { FC, useState } from 'react'
+import { Box, Button, Flex, FormControl, FormLabel, List, Stack, Switch } from "@chakra-ui/react"
 import School from '../../models/School'
 import Student from '../../models/Student'
 import { asPage } from '../../components/templates/Page'
 import { observer } from 'mobx-react-lite'
+import Dropdown from '../../components/atoms/Dropdown'
+import { Profile } from '../../models/Setting'
+import { BiDislike } from 'react-icons/bi'
+import { SchoolsGridView } from './SchoolsGridView'
 
 let initialState = {
-    id: "01",
-    address: "123 Spooner Street",
+
 
     // instructors: [
     //     {
@@ -35,59 +38,84 @@ let initialState = {
     //         gender: "m"
     //     }
     // }
+
+    schools: [
+        {
+            id: "61321",
+            address: "123 Spooner Street",
+            disciplines: {
+                "bjj": { name: 'Brazilian Jiu Jutsu' },
+                "tkd": { name: 'Tae Kwon Do' }
+            },
+            descriptions: "We are an MMA school focusing on competition"
+        },
+    ]
 }
 
-const school = School.create(initialState)
+// const school = School.create(initialState)
+const schools = initialState.schools.map(s => School.create(s as any))
 
-export const SchoolsPage = observer(({ }) => {
+type Props = {
+    profile: typeof Profile | any
+}
 
-    const [state, setState] = useState({ selectedStudent: null })
-    const selectedStudent = school.students.get(state.selectedStudent)
-    const onStudentSeleted = e => setState({ ...state, selectedStudent: e.target.value })
+export const SchoolsPage: FC<Props> = observer(({ profile }) => {
+
+    // const [state, setState] = useState({ selectedStudent: null })
+    // console.log('profile.isDev', profile?.isDev)
 
     return (
-        <Box
-            maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden"
+        <Stack
+            maxW="sm"
+            borderWidth="3px"
+            borderRadius="lg"
+            overflow="hidden"
             bg='#214'
+            color='#fff'
         >
-            <FormControl display="flex" alignItems="center">
-                <FormLabel htmlFor="show-maps" mb="0">
-                    Show maps?
-                </FormLabel>
-                <Switch id="show-maps" />
+            <FormControl
+                padding={2}
+                mb={2}
+                display="flex"
+                alignItems="center"
+            >
+                {/* Dev only! */}
+                {!!profile.isDev &&
+                    <>
+                        <FormLabel htmlFor="show-maps" mb="0">
+                            Show maps?
+                        </FormLabel>
+                        <Switch id="show-maps" />
+                    </>
+                }
+                {/* ------------------------------- */}
+                {/* Production ready! */}
+                {!profile.isDev &&
+                    <>
+                        <FormLabel htmlFor="show-like-btn" mb="0">
+                            Show Likes?
+                        </FormLabel>
+                        <Switch id="show-like-btn" />
+                    </>
+                }
+
             </FormControl>
 
-            <Flex justify='center' direction='column'>
-                <select onChange={onStudentSeleted}>
-                    <option>- Select user -</option>
-                    {[...school.students.values()].map(student =>
-                        <option key={student.id} value={student.id}>
-                            {student.name}
-                        </option>
-                    )}
-                </select>
+            {!!profile.isDev &&
+                <Flex
+                    justify='center'
+                    direction='column'>
+                    <Dropdown options={['blue', 'green']} />
+                </Flex>
+            }
 
-                {/* {selectedStudent && <SchoolView School={selectedStudent.School} />}
-                {selectedStudent && <button onClick={selectedStudent.getSuggestions}>Suggestions</button>} */}
-                {/* <SchoolView School={School} /> */}
-            </Flex>
-        </Box>
+            <SchoolsGridView schools={schools} />
+
+        </Stack >
     )
 });
 
 export default SchoolsPage
-
-// const SchoolsView = () => {
-
-//     // <Box>
-//     //     <Heading>School</Heading>
-//     //     <List>
-//     //         {School.students.map((item, key) => <StudentView key={key} item={item} />)}
-//     //     </List>
-//     // Total: ${School.totalPrice}
-//     //     <SchoolItemEntry School={School} />
-//     // </Box>
-// }
 
 const StudentEntry = ({ school }) => {
 
@@ -165,3 +193,28 @@ const StudentEdit = ({ student }) => {
         )
     }
 }
+
+
+// const selectedStudent = school.students.get(state.selectedStudent)
+// const onStudentSeleted = e => setState({ ...state, selectedStudent: e.target.value })
+
+{/* <select onChange={onStudentSeleted}>
+<option>- Select user -</option>
+{[...school.students.values()].map(student =>
+    <option key={student.id} value={student.id}>
+    {student.name}
+    </option>
+    )}
+</select> */}
+
+{/* {selectedStudent && <SchoolView School={selectedStudent.School} />}
+{selectedStudent && <button onClick={selectedStudent.getSuggestions}>Suggestions</button>} */}
+{/* <SchoolView School={School} /> */ }
+
+
+{/* <Heading>School</Heading>
+<List>
+{School.students.map((item, key) => <StudentView key={key} item={item} />)}
+</List>
+Total: ${School.totalPrice}
+<SchoolItemEntry School={School} /> */}

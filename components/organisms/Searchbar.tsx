@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDebounce } from '../../hooks'
 
-export default function Search({ take = 10 }) {
+export default function SearchBar({ take = 10 }) {
 
     const [form, updateForm] = useState({ term: '' })
     const [papers, setPapers] = useState([]); // Papers from Wordpress
