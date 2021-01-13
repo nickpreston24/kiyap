@@ -4,8 +4,16 @@ import { useState } from "react"
 import WishListItemEdit from "./WishListItemEdit"
 import { GoTrashcan } from 'react-icons/go'
 import { Heading, ListItem, Button, Text } from '@chakra-ui/react'
-import { iconStyle } from './styles'
 import { AiOutlineEdit } from 'react-icons/ai'
+
+const iconStyle = {
+    size: '1.25rem',
+    style: {
+        background: 'transparent',
+        color: 'rgb(12, 124, 251)',
+        border: 'transparent'
+    }
+}
 
 export const WishListItemView = ({ item }) => {
 
@@ -31,7 +39,7 @@ export const WishListItemView = ({ item }) => {
             <button onClick={cancelEdit}>x</button>
         </li>)
     }
-    
+
     else return (
         <ListItem
             color="green"

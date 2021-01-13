@@ -20,3 +20,5 @@ type Props = {
     fill?: string;
     strokeWidth?: number;
 };
+
+export default Line;

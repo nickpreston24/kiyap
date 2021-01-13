@@ -3,9 +3,11 @@ import React from "react"
 import Link from 'next/link'
 import { Profile } from "../models/Setting";
 import { ProfilePage } from "./profile";
+import { SchoolsPage } from './school'
 import { asPage } from "../components/templates/Page";
 import { onSnapshot, castToSnapshot } from "mobx-state-tree";
 import { useLocalStorage } from "../hooks";
+import WishListPage from "./wishlist";
 
 const initialState = {
   name: "Mike Preston",
@@ -40,12 +42,13 @@ const initialState = {
   }
 }
 
-// const profile = Profile.create(initialState)
-
 export const Home = asPage()(() => {
 
   const [storedProfile, setProfile] = useLocalStorage('profile', undefined); // Must be undefined, or TS complains.
-  let profile = Profile.create(castToSnapshot(storedProfile))
+
+  let profile = !!storedProfile
+    ? Profile.create(castToSnapshot(storedProfile))
+    : Profile.create(initialState)
 
   onSnapshot(profile, profileSnapshot => {
     setProfile(profileSnapshot)
@@ -74,15 +77,11 @@ export const Home = asPage()(() => {
           <TabPanels>
 
             <TabPanel>
-              <Link href="/wishlist">
-                <Button colorScheme="blue">Wishlist</Button>
-              </Link>
+              <WishListPage />
             </TabPanel>
 
             <TabPanel>
-              <Link href="/school">
-                <Button colorScheme="blue">Schools</Button>
-              </Link>
+              <SchoolsPage />
             </TabPanel>
 
             <TabPanel>
@@ -100,3 +99,10 @@ export default Home
 
 
 
+{/* <Link href="/wishlist">
+    <Button colorScheme="blue">Wishlist</Button>
+  </Link> */}
+
+{/* <Link href="/school">
+    <Button colorScheme="blue">Schools</Button>
+  </Link> */}

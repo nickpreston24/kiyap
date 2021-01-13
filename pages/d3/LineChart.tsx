@@ -6,7 +6,7 @@ import { Series } from './Series';
 export const LineChart: FC<Props> = ({
     width = 600,
     height = 300,
-    data,
+    data = { xValues: [], yMin: 0, yMax: 30, points: [], },
 }) => {
     let xScale = d3.scalePoint()
         .domain(data.xValues)
@@ -32,3 +32,5 @@ type Props = {
     height: 300;
     data: { xValues: []; yMin; yMax; points; };
 };
+
+export default LineChart

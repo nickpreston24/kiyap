@@ -22,39 +22,31 @@ const WishListItemEdit = ({ item }) => {
     }
 
     return (
-        <div className='item-edit'>
-            Name: <input
-                value={item.name}
-                onChange={updateField}
-                name='name'
-            />
-            <br />
+        !!item ?
+            <div className='item-edit'>
+                Name: <input
+                    value={item.name}
+                    onChange={updateField}
+                    name='name'
+                />
+                <br />
 
             Price: <input
-                value={item.price}
-                onChange={updateField}
-                name='price'
-            />
-            <br />
+                    value={item.price}
+                    onChange={updateField}
+                    name='price'
+                />
+                <br />
 
             Image: <input
-                value={item.image}
-                onChange={updateField}
-                name='image'
-            />
-            <br />
-        </div>
+                    value={item.image}
+                    onChange={updateField}
+                    name='image'
+                />
+                <br />
+            </div>
+            : <span>No item provided.</span>
     )
-}
-
-
-const iconStyle = {
-    iconSize: '1.25rem',
-    style: {
-        background: 'transparent',
-        color: 'rgb(12, 124, 251)',
-        border: 'transparent'
-    }
 }
 
 export default observer(WishListItemEdit);

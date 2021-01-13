@@ -80,3 +80,5 @@ export const BarChart = ({ data = [] }) => {
         </svg>
     );
 };
+
+export default BarChart

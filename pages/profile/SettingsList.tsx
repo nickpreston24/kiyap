@@ -8,9 +8,9 @@ export const SettingsList: FC<any> = observer(({ section }) => {
   // console.log('settings', section)
   return (
     <Stack>
-      <Heading>{section.name}</Heading>
+      {section && <Heading>{section?.name}</Heading>}
 
-      {values(section.settings).map((setting, i) => (
+      {section && values(section.settings).map((setting, i) => (
         <ToggleButton
           key={i}
           setting={setting} />
@@ -18,3 +18,5 @@ export const SettingsList: FC<any> = observer(({ section }) => {
     </Stack>
   )
 });
+
+export default SettingsList

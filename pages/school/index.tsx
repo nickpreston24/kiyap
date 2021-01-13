@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Box, Button, Flex, Heading, List } from "@chakra-ui/react"
+import { Box, Button, Flex, FormControl, FormLabel, Heading, List, Switch } from "@chakra-ui/react"
 import School from '../../models/School'
 import Student from '../../models/Student'
 import { asPage } from '../../components/templates/Page'
+import { observer } from 'mobx-react-lite'
 
 let initialState = {
     id: "01",
@@ -38,8 +39,8 @@ let initialState = {
 
 const school = School.create(initialState)
 
-export const Schools = asPage()((props) => {
-    console.log('props', props)
+export const SchoolsPage = observer(({ }) => {
+
     const [state, setState] = useState({ selectedStudent: null })
     const selectedStudent = school.students.get(state.selectedStudent)
     const onStudentSeleted = e => setState({ ...state, selectedStudent: e.target.value })
@@ -49,6 +50,12 @@ export const Schools = asPage()((props) => {
             maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden"
             bg='#214'
         >
+            <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="show-maps" mb="0">
+                    Show maps?
+                </FormLabel>
+                <Switch id="show-maps" />
+            </FormControl>
 
             <Flex justify='center' direction='column'>
                 <select onChange={onStudentSeleted}>
@@ -68,19 +75,19 @@ export const Schools = asPage()((props) => {
     )
 });
 
-export default Schools
+export default SchoolsPage
 
-const SchoolsView = () => {
+// const SchoolsView = () => {
 
-    // <Box>
-    //     <Heading>School</Heading>
-    //     <List>
-    //         {School.students.map((item, key) => <StudentView key={key} item={item} />)}
-    //     </List>
-    // Total: ${School.totalPrice}
-    //     <SchoolItemEntry School={School} />
-    // </Box>
-}
+//     // <Box>
+//     //     <Heading>School</Heading>
+//     //     <List>
+//     //         {School.students.map((item, key) => <StudentView key={key} item={item} />)}
+//     //     </List>
+//     // Total: ${School.totalPrice}
+//     //     <SchoolItemEntry School={School} />
+//     // </Box>
+// }
 
 const StudentEntry = ({ school }) => {
 

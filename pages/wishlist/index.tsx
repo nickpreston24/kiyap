@@ -1,5 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { values } from 'mobx';
+import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react'
 import { asPage } from '../../components/templates/Page';
 import Group from '../../models/Group';
@@ -39,10 +40,10 @@ let initialState = {
 
 const group = Group.create(initialState)
 
-const WishListPage = () => {
+export const WishListPage = observer(() => {
 
     const [state, setState] = useState({ selectedUser: null })
-    const selectedUser = group.users.get(state.selectedUser); 
+    const selectedUser = group.users.get(state.selectedUser);
 
     const onUserSelect = event => setState({ ...state, selectedUser: event.target.value })
 
@@ -69,6 +70,6 @@ const WishListPage = () => {
             </Box>
         </Flex>
     )
-}
+})
 
-export default asPage()(WishListPage)
+export default WishListPage

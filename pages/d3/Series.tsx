@@ -37,3 +37,5 @@ export const Series: FC<Props> = ({
         <g>{lines}</g>
     </g>);
 };
+
+export default Series
