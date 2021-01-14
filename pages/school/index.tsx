@@ -8,6 +8,8 @@ import Dropdown from '../../components/atoms/Dropdown'
 import { Profile } from '../../models/Setting'
 import { BiDislike } from 'react-icons/bi'
 import { SchoolsGridView } from './SchoolsGridView'
+import { useLocalStorage } from '../../hooks'
+import { castToSnapshot, onSnapshot } from 'mobx-state-tree'
 
 let initialState = {
 
@@ -42,11 +44,26 @@ let initialState = {
     schools: [
         {
             id: "61321",
+            name: "Steel Guard MMA",
             address: "123 Spooner Street",
             disciplines: {
                 "bjj": { name: 'Brazilian Jiu Jutsu' },
                 "tkd": { name: 'Tae Kwon Do' }
             },
+            image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.n4tw74yPUhj35EVyxpci-wHaGH%26pid%3DApi&f=1',
+            descriptions: "We are an MMA school focusing on competition"
+        },
+
+        {
+            id: "90415",
+            name: "Steel Guard MMA",
+            address: "123 Spooner Street",
+            disciplines: {
+                "bjj": { name: 'Brazilian Jiu Jutsu' },
+                "tkd": { name: 'Boxing' },
+                "kmg": { name: 'Krav Maga' }
+            },
+            image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.RSlPPhfzNbMdSi-P2c8frAHaFO%26pid%3DApi&f=1',
             descriptions: "We are an MMA school focusing on competition"
         },
     ]
@@ -61,8 +78,17 @@ type Props = {
 
 export const SchoolsPage: FC<Props> = observer(({ profile }) => {
 
-    // const [state, setState] = useState({ selectedStudent: null })
-    // console.log('profile.isDev', profile?.isDev)
+    // TODO: Start a DB instead.
+
+    // const [storedSchools, setSchools] = useLocalStorage('schools', undefined); // Must be undefined, or TS complains.
+
+    // let schools = !!storedSchools
+    //     ? School.create(castToSnapshot(storedSchools))
+    //     : initialState.schools.map(s => School.create(s as any))
+
+    // onSnapshot(schools, snap => {
+    //     setSchools(snap)
+    // })
 
     return (
         <Stack

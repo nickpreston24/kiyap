@@ -8,6 +8,8 @@ export const Discipline = types.model({
 
 export const School = types.model({
     id: types.string,
+    name: types.maybe(types.string),
+    image: types.maybe(types.string),
     address: types.string,
     isLiked: false,
     students: types.map(Student),
