@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "disciplines",
+  "info": {
+    "name": "discipline",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "schools": {
+      "collection": "school",
+      "via": "disciplines",
+      "dominant": true
+    },
+    "description": {
+      "type": "richtext"
+    }
+  }
+}

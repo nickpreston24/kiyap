@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/disciplines",
+      "handler": "discipline.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/disciplines/count",
+      "handler": "discipline.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/disciplines/:id",
+      "handler": "discipline.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/disciplines",
+      "handler": "discipline.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/disciplines/:id",
+      "handler": "discipline.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/disciplines/:id",
+      "handler": "discipline.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
