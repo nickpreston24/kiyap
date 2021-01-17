@@ -1,28 +1,21 @@
 {
   "kind": "collectionType",
-  "collectionName": "schools",
+  "collectionName": "bugs",
   "info": {
-    "name": "school",
+    "name": "Bug",
     "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
-    "name": {
-      "type": "string"
-    },
-    "description": {
+    "message": {
       "type": "richtext"
     },
-    "disciplines": {
-      "via": "schools",
-      "collection": "discipline"
-    },
-    "image": {
-      "model": "file",
+    "screenshot": {
+      "collection": "file",
       "via": "related",
       "allowedTypes": [
         "images",
@@ -31,6 +24,10 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "resolved": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

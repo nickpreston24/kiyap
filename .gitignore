@@ -17,6 +17,7 @@
 .netlify
 
 # misc
+/_experimental
 .DS_Store
 .env.local
 .env.development.local

@@ -1,4 +1,4 @@
-import { Flex, Heading, Stack, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react"
+import { Flex, Heading, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Tooltip } from "@chakra-ui/react"
 import React from "react"
 import { Profile } from "../models/Setting";
 import { ProfilePage } from "./profile";
@@ -7,6 +7,12 @@ import { asPage } from "../components/templates/Page";
 import { onSnapshot, castToSnapshot } from "mobx-state-tree";
 import { useLocalStorage } from "../hooks";
 import WishListPage from "./wishlist";
+import Link from 'next/link'
+
+import { RiAdminLine } from 'react-icons/ri'
+import { IoSettingsOutline, IoSchoolOutline } from 'react-icons/io5'
+import { FiGift } from 'react-icons/fi'
+import AdminPage from "./admin";
 
 const initialState = {
   name: "Mike Preston",
@@ -54,7 +60,12 @@ export const Home = asPage()(() => {
   })
 
   return (
-    <Flex justify="center">
+    <Flex
+      justify="center"
+      maxWidth='900px'
+      minWidth='400px'
+      border='1px dodgerblue solid'
+    >
       <Stack>
         <Heading
           bg='teal.100'
@@ -65,13 +76,56 @@ export const Home = asPage()(() => {
 
         <Tabs
           variant="soft-rounded"
-          colorScheme="green"
+          // colorScheme="green"
           isLazy
+          defaultIndex={3}
         >
           <TabList>
-            <Tab>Wishlist</Tab>
-            <Tab>Schools</Tab>
-            <Tab>Settings</Tab>
+            <Tab
+              _selected={{ color: "white", bg: "blue.300" }}
+            ><Tooltip
+              shouldWrapChildren
+              placement='auto-start'
+              label="Wishlist"
+            >
+                <FiGift />
+              </Tooltip>
+            </Tab>
+            <Tab
+              _selected={{ color: "white", bg: "orange.300" }}
+            >
+              <Tooltip
+                shouldWrapChildren
+                placement='auto-start'
+                label="Schools"
+              >
+                <IoSchoolOutline />
+              </Tooltip>
+            </Tab>
+            <Tab
+              _selected={{ color: "white", bg: "green.300" }}
+            >
+              <Tooltip
+                shouldWrapChildren
+                placement='auto-start'
+                label="Settings"
+              >
+                <IoSettingsOutline />
+              </Tooltip>
+            </Tab>
+            <Tab
+              _selected={{ color: "white", bg: "red.300" }}
+            >
+              <Tooltip
+                shouldWrapChildren
+                placement='auto-start'
+                label="Admin"
+              >
+                <RiAdminLine>
+                  <Link href='/admin' />
+                </RiAdminLine>
+              </Tooltip>
+            </Tab>
           </TabList>
           <TabPanels>
 
@@ -87,8 +141,13 @@ export const Home = asPage()(() => {
               <ProfilePage profile={profile} />
             </TabPanel>
 
+            <TabPanel>
+              <AdminPage />
+            </TabPanel>
+
           </TabPanels>
         </Tabs>
+
       </Stack>
     </Flex >
   )

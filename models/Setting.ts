@@ -23,6 +23,7 @@ export const Section = types.model({
 
 export const Profile = types.model({
     // user: types.optional(User, {}), 
+    // user: types.maybe(User),
     sections: types.map(Section),
 })
     .views(self => ({

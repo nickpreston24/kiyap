@@ -7,8 +7,9 @@ import { observer } from 'mobx-react-lite';
 
 export const SchoolCard: FC<any> = observer(({ school }) => {
 
-    let disciplines = values(school?.disciplines) || []
-
+    let disciplines = values(school?.disciplines) || null
+    // console.log('disciplines for this school :>> ', disciplines)
+    console.log('school.image', school.image)
     return (
         <Card>{{
             content:
@@ -42,7 +43,7 @@ export const SchoolCard: FC<any> = observer(({ school }) => {
                         >
                             {school?.description || ""}
                         </Flex>
-
+                        <span>{school.averageAge}</span>
                     </Stack>
 
                 </Flex>,
@@ -69,9 +70,12 @@ export const SchoolCard: FC<any> = observer(({ school }) => {
 
             </Stack>,
             media: <div>
-                <img width='130' height='60'
-                    src={school.image}
-                />
+                {/* FIXME: Unfortunately, this is pinging localhost:3000 when it should be 1337 */}
+                {/* {school?.image?.url &&
+                    <img width='130' height='60'
+                        src={school.image.url}
+                    />
+                } */}
             </div>
         }}
         </Card>

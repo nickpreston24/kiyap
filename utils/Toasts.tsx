@@ -4,7 +4,6 @@ import { toast } from 'react-toastify'
 // (Experimental)
 // src: https://fkhadra.github.io/react-toastify/render-what-you-want/#awesome-example-
 const Message: ReactNode = () => {
-
     return (
         { closeToast, message = '...' }: {
             closeToast: any, message: string
@@ -21,6 +20,7 @@ const Message: ReactNode = () => {
 export const displayMessage = () => toast(Message);
 
 export const notify = (message: string = '...', mode = '') => {
+    alert(message)
     let toaster = !!mode ? toast[mode] : toast
     toaster(message, {
         position: 'bottom-left',
