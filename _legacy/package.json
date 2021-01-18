@@ -1,0 +1,53 @@
+{
+    "name": "kiyapp",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Martial arts app",
+    "scripts": {
+        "start": "if-env NODE_ENV=production && yarn run start:prod || yarn run start:dev",
+        "start:prod": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
+        "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
+        "client": "cd client && yarn start",
+        "seed": "cd db/scripts/mongo/ && node professionals.js && node students.js && node schools.js && cd ../../../",
+        "install": "cd client && yarn",
+        "reinstall": "yarn run clean && yarn",
+        "heroku-postbuild": "yarn build",
+        "clean": "rimraf */build && rm -rf node_modules yarn.lock && rm -rf **/yarn.lock **/node_modules",
+        "build": "cd client && yarn build",
+        "rebuild": "yarn run clean && yarn install && yarn build",
+        "upgrade": "yarn upgrade --latest && cd client && yarn upgrade --latest; cd ..; yarn"
+    },
+    "dependencies": {
+        "axios": "^0.19.0",
+        "bit-bin": "^14.7.6",
+        "bluebird": "^3.7.1",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "faker": "^4.1.0",
+        "firebase": "^6.1.1",
+        "global": "^4.4.0",
+        "if-env": "^1.0.4",
+        "lodash": "^4.17.15",
+        "mobx": "^5.10.1",
+        "mobx-react": "^6.0.3",
+        "mobx-react-devtools": "^6.1.1",
+        "mongoose": "^5.5.14",
+        "mysql": "^2.17.1",
+        "mysql2": "^1.6.5",
+        "neo4j-driver": "^1.7.6",
+        "recompose": "^0.30.0",
+        "rimraf": "^2.6.3",
+        "sequelize": "^5.8.9",
+        "survey-react": "^1.0.92"
+    },
+    "devDependencies": {
+        "concurrently": "^4.1.0",
+        "nodemon": "^1.19.1"
+    },
+    "main": "server.js",
+    "bit": {
+        "env": {},
+        "componentsDefaultDirectory": "components/{name}",
+        "packageManager": "npm"
+    }
+}
