@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Badge, Button, Flex, Heading, Stack } from "@chakra-ui/react";
+import { Badge, Flex, Heading, Stack } from "@chakra-ui/react";
 import { Card } from '../../components/molecules/Card';
 import { BiLike, BiDislike } from 'react-icons/bi';
 import { values } from 'mobx';
@@ -7,9 +7,9 @@ import { observer } from 'mobx-react-lite';
 
 export const SchoolCard: FC<any> = observer(({ school }) => {
 
-    let disciplines = values(school?.disciplines) || null
+    let disciplines = values(school?.disciplines) || []
     // console.log('disciplines for this school :>> ', disciplines)
-    console.log('school.image', school.image)
+    // console.log('school.image', school.image)
     return (
         <Card>{{
             content:
@@ -50,22 +50,16 @@ export const SchoolCard: FC<any> = observer(({ school }) => {
             actions: <Stack direction='row'>
                 {
                     school.isLiked
-                        ? <Button
-                            size='md'
+                        ? <BiLike
+                            size={20}
                             color='dodgerblue'
-                            bg='transparent'
                             onClick={() => school.like()}
-                        >
-                            <BiLike />
-                        </Button>
-                        : <Button
-                            size='md'
+                        />
+                        : <BiDislike
+                            size={20}
                             color='#815'
-                            bg='transparent'
                             onClick={() => school.like()}
-                        >
-                            <BiDislike />
-                        </Button>
+                        />
                 }
 
             </Stack>,
@@ -81,3 +75,5 @@ export const SchoolCard: FC<any> = observer(({ school }) => {
         </Card>
     );
 });
+
+export default SchoolCard;

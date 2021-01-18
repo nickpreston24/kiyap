@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button } from "@chakra-ui/react";
 import Student from '../../models/Student';
 
-const StudentEntry = ({ school }) => {
+export const StudentEntry = ({ school }) => {
 
     const [state, setState] = useState({
         student: Student.create({
@@ -32,6 +32,8 @@ const StudentEntry = ({ school }) => {
     );
 
 };
+
+export default StudentEntry;
 
 // const selectedStudent = school.students.get(state.selectedStudent)
 // const onStudentSeleted = e => setState({ ...state, selectedStudent: e.target.value })

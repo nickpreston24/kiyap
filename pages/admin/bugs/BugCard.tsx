@@ -41,12 +41,12 @@ export const BugCard: FC<any> = observer(({ bug }) => {
                         ? <BiHappyBeaming
                             size={iconSize}
                             color='dodgerblue'
-                            onClick={bug.toggleResolved}
+                            onClick={() => bug.toggleResolved()}
                         />
                         : <FaRegSadCry
                             size={iconSize}
                             color='#817'
-                            onClick={bug.toggleResolved}
+                            onClick={() => bug.toggleResolved()}
                         />
                     }
 

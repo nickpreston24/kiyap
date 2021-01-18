@@ -13,6 +13,8 @@ import { RiAdminLine } from 'react-icons/ri'
 import { IoSettingsOutline, IoSchoolOutline } from 'react-icons/io5'
 import { FiGift } from 'react-icons/fi'
 import AdminPage from "./admin";
+import TodoListSample from "./todos";
+import { TodoStore } from './todos'
 
 const initialState = {
   name: "Mike Preston",
@@ -47,6 +49,20 @@ const initialState = {
   }
 }
 
+
+// const todoStore = TodoStore.create({
+//   todos: [
+//     {
+//       id: 1,
+//       title: "Get biscuit",
+//       finished: true
+//     },
+//     {
+//       title: 'Get Coffee',
+//     }
+//   ]
+// })
+
 export const Home = asPage()(() => {
 
   const [storedProfile, setProfile] = useLocalStorage('profile', undefined); // Must be undefined, or TS complains.
@@ -64,12 +80,14 @@ export const Home = asPage()(() => {
       justify="center"
       maxWidth='900px'
       minWidth='400px'
-      border='1px dodgerblue solid'
+      bg='#214'
+      color='#fff'
     >
       <Stack>
         <Heading
-          bg='teal.100'
-          color='pink.300'
+          justify='center'
+          bg='#214'
+          color='red.700'
         >
           Kiyapp
         </Heading>
@@ -78,7 +96,7 @@ export const Home = asPage()(() => {
           variant="soft-rounded"
           // colorScheme="green"
           isLazy
-          defaultIndex={3}
+          defaultIndex={1}
         >
           <TabList>
             <Tab
@@ -148,6 +166,10 @@ export const Home = asPage()(() => {
           </TabPanels>
         </Tabs>
 
+
+        {/* <div>
+          <TodoListSample todoStore={todoStore} />
+        </div> */}
       </Stack>
     </Flex >
   )

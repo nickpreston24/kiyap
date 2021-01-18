@@ -14,7 +14,7 @@ export const Bug = types.model("Bug", {
 
             console.log('self.resolved (before)', self.resolved)
             const config = {
-                method: "POST",
+                method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 url: `${ENDPOINT}/${self.id}`,
             } as any;

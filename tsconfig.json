@@ -38,6 +38,6 @@
     ],
     "include": [
       "next-env.d.ts",
-      "**/*.ts", "hooks/useLocalStorage.js",
+      "**/*.ts", "hooks/useLocalStorage.js", "utils/array.js",
     ]
   }

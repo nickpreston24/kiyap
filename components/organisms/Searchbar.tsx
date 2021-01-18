@@ -1,3 +1,4 @@
+import { Stack, Box, Heading, FormControl, FormLabel, InputGroup, InputLeftElement, Icon, Input, Button } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDebounce } from '../../hooks'
@@ -128,31 +129,6 @@ export default function SearchBar({ take = 10 }) {
                         </Button>
                 </form>
             </Stack>
-
-
-            <Stack direction='row'>
-
-                <PostList
-                    style={tpotStyle}
-                    heading="Results"
-                    loading={loading}
-                    papers={papers}
-                />
-
-                {/* <PostList
-                    heading="Results"
-                    loading={loading}
-                    papers={sessions}
-                /> */}
-
-                {/* <SessionDoc uid={'my-paper'} /> */}
-                <SessionsList />
-            </Stack>
-
-            <DeadLinks
-                loading={loading}
-                papers={papers}
-            />
 
         </Stack>
     );

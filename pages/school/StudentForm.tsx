@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StudentEdit = ({ student }) => {
+export const StudentForm = ({ student }) => {
     const updateField = (event) => {
 
         const name = event.target.name;
@@ -9,10 +9,10 @@ const StudentEdit = ({ student }) => {
             case 'name':
                 student.changeName(value);
                 break;
-            case 'price':
-                const price = parseFloat(value);
-                if (!isNaN(price))
-                    student.changePrice(price);
+            case 'age':
+                const age = parseFloat(value);
+                if (!isNaN(age))
+                    student.changeAge(age);
                 break;
             case 'image':
                 student.changeImage(value);
@@ -27,10 +27,10 @@ const StudentEdit = ({ student }) => {
                     name='name' />
                 <br />
 
-                Price: <input
-                    value={student.price}
+                Age: <input
+                    value={student.age}
                     onChange={updateField}
-                    name='price' />
+                    name='age' />
                 <br />
 
                 Image: <input
@@ -42,3 +42,5 @@ const StudentEdit = ({ student }) => {
         );
     };
 };
+
+export default StudentForm;
