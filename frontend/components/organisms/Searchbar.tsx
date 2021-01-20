@@ -1,21 +1,28 @@
 import { Stack, Box, Heading, FormControl, FormLabel, InputGroup, InputLeftElement, Icon, Input, Button } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import { useDebounce } from '../../hooks'
+import { MdSearch } from 'react-icons/md'
 
-export default function SearchBar({ take = 10 }) {
+type Props = {
+    queryGeneratorFn: (endpoint: string, term: string) => string
+}
+
+export const SearchBar: FC<Props> = (
+    {
+        queryGeneratorFn = (
+            endpoint = 'http://localhost:3000/',
+            term,
+        ) => {
+            return `${endpoint}/s?=${term}`
+        }
+    }
+) => {
 
     const [form, updateForm] = useState({ term: '' })
-    const [papers, setPapers] = useState([]); // Papers from Wordpress
-    const [sessions, setSessions] = useState([{
-        title: 'test',
-        excerpt: 'test',
-        slug: 'test-session',
-        href: 'http://www.thepathoftruth.com',
-
-    }]); // Sessions from Firestore
     const [loading, setLoading] = useState(false);
     const [url, setUrl] = useState('');
+    const [result, setResult] = useState({})
 
     // Debounce search term so that it only gives us latest value 
     // so that we aren't hitting our API rapidly.
@@ -23,21 +30,23 @@ export default function SearchBar({ take = 10 }) {
 
     // Effect for API call
     useEffect(() => {
-        // console.log('loading? :>> ', loading);
+
         setLoading(true);
 
         if (debouncedSearchTerm) {
             setLoading(true);
-            let query = `pages?per_page=${take}&search="${debouncedSearchTerm}"`
-            let url = `https://www.thepathoftruth.com/wp-json/wp/v2/${query}`
+            // let query = `pages?per_page=${take}&search="${debouncedSearchTerm}"`
+            // let url = `${endpoint}/${query}`
+
+            let url = queryGeneratorFn(_, debouncedSearchTerm)
 
             setUrl(url)
 
             axios
                 .get(url)
                 .then((response) => {
-                    // console.log('response :>> ', response.data);
-                    setPapers(response.data)
+                    console.log('Search response :>> ', response.data);
+                    // setPapers(response.data)
                     setLoading(false);
                 })
                 .catch(console.error);
@@ -71,8 +80,7 @@ export default function SearchBar({ take = 10 }) {
         axios
             .get(url)
             .then((response) => {
-                // console.log('response :>> ', response.data);
-                setPapers(response.data)
+                setResult(response.data)
                 setLoading(false);
             })
             .catch(console.error);
@@ -114,7 +122,6 @@ export default function SearchBar({ take = 10 }) {
                                 isRequired
                                 placeholder="faith"
                             />
-                            {/* <InputRightElement children={<MdSearch color="green.500" /> */}
                         </InputGroup>
                     </FormControl>
                     <Button
@@ -132,4 +139,6 @@ export default function SearchBar({ take = 10 }) {
 
         </Stack>
     );
-}
+};
+
+export default SearchBar;

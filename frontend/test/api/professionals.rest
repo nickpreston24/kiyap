@@ -67,3 +67,10 @@ content-type: application/json
     "LastName" : "Jordan"
 }
 ###
+
+
+###
+## STRAPI ENDPOINTS
+###
+
+DELETE http://localhost:1337/schools/18

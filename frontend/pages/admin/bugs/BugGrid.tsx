@@ -2,16 +2,23 @@ import React, { FC } from 'react';
 import { GridItem, SimpleGrid } from '@chakra-ui/react';
 import BugCard from './BugCard';
 import { observer } from 'mobx-react-lite';
-import { distinctBy } from '../../../utils/array'
 
 export const BugGrid: FC<any> = observer(({ bugStore }) => {
 
-    console.log('distinct bugs :>> ', distinctBy(bugStore.bugs, b => b.message))
+    if (!bugStore?.bugs)
+        return null;
+
+    // console.log('distinct bugs :>> ', distinctBy(bugStore.bugs, b => b.message))   
+
+    // const [take, setTake] = useState(10)
+    // TODO: Make a picker for how many to show / take.
+    // TODO: Make a toggler for showing distinct
 
     return <SimpleGrid columns={1} spacing="1rem">
         {
-            distinctBy(bugStore.bugs, b => b.message)
-                // .filter((item, index) => bugStore.bugs.indexOf(item) === index)
+            bugStore.bugs
+                // distinctBy(bugStore.bugs, b => b.message)
+                .slice(0, 10)
                 .map((bug, i) => {
                     return (
                         <GridItem key={i}>
@@ -21,5 +28,21 @@ export const BugGrid: FC<any> = observer(({ bugStore }) => {
                 })}
     </SimpleGrid>
 })
+
+// class Enumerable extends Array {
+//     constructor(items: []) {
+//         super();
+//         this.push(items)
+//     }
+
+//     isEmpty() {
+//         return this.length === 0;
+//     }
+
+//     take(num){
+
+//     }
+
+// }
 
 export default BugGrid

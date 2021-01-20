@@ -10,6 +10,7 @@ export const WishList = types
             self.items.push(item)
         },
         remove(item) {
+            console.log('item', item)
             destroy(item)
         }
     }))

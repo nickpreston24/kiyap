@@ -29,7 +29,7 @@ export const Bug = types.model("Bug", {
     .views(self => ({
         get isResolved() {
             return self.resolved
-        }
+        },
     }))
 
 export const BugStore = types.model("BugStore", {
@@ -42,6 +42,9 @@ export const BugStore = types.model("BugStore", {
             get completedBugs() {
                 return self.bugs.filter(t => t.resolved)
             },
+            get percentDone() {
+                return Math.round(100.00 * self.bugs.filter(b => b.resolved).length / self.bugs.length)
+            }
             // findBugsByUser(user) {
             // TODO: Later...
             //     // return self.bugs.filter(t => t.assignee === user)

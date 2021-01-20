@@ -25,10 +25,6 @@ export const SchoolForm: FC<any> = observer(({ schoolStore }) => {
         updateForm({ [name]: value });
     };
 
-    useEffect(() => {
-        console.log('form', form);
-    }, [form]);
-
     return (
         <div>
             <FormControl id="name" spacing={40}>

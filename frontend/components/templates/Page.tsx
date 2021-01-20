@@ -1,7 +1,7 @@
-import { Button, Flex, Link, Stack } from "@chakra-ui/react"
+import { Box, Button, Flex, Link, Stack } from "@chakra-ui/react"
 import { observer } from "mobx-react-lite"
 import React from "react"
-import { HiOutlineHome } from 'react-icons/hi'
+import { HiOutlineHome } from "react-icons/hi"
 
 const Page = observer((props) => {
     return (
@@ -10,13 +10,13 @@ const Page = observer((props) => {
         >
             <Stack>
                 {props.children}
-                <footer>
+                {/* <footer>
                     <Link href='/'>
                         <Button>
                             <HiOutlineHome />
                         </Button>
                     </Link>
-                </footer>
+                </footer> */}
                 {/* {JSON.stringify(props.children.props)} */}
                 {/* {isDev
                     && <footer>

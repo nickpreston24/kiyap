@@ -22,7 +22,7 @@ export const BugCard: FC<any> = observer(({ bug }) => {
             <Card>{{
                 content:
                     <Stack>
-                        {/* <Heading size='sm'>{bug.id}</Heading> */}
+                        <Heading color='rebeccapurple' size='sm'>{bug.id}</Heading>
                         <Flex
                             align="center"
                             color="gray.500"

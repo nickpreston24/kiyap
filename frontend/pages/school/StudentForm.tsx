@@ -1,6 +1,9 @@
 import React from 'react';
 
 export const StudentForm = ({ student }) => {
+
+    if(!student) return null;
+    
     const updateField = (event) => {
 
         const name = event.target.name;

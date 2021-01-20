@@ -86,7 +86,6 @@ export const Home = asPage()(() => {
       <Stack>
         <Heading
           justify='center'
-          bg='#214'
           color='red.700'
         >
           Kiyapp
@@ -145,8 +144,12 @@ export const Home = asPage()(() => {
               </Tooltip>
             </Tab>
           </TabList>
-          <TabPanels>
-
+          <TabPanels
+            borderWidth="3px"
+            borderRadius="lg"
+            bg='#214'
+            color='#fff'
+          >
             <TabPanel>
               <WishListPage />
             </TabPanel>

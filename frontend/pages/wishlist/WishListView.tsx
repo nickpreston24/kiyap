@@ -9,9 +9,8 @@ type Props = {
     wishList: any
 }
 export const WishListView: FC<Props> = (({ wishList }) => {
-    console.log('wishList', wishList)
 
-    if (!wishList)
+    if (!wishList?.items)
         return null;
 
     return (

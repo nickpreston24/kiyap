@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { CircularProgress, Stack } from "@chakra-ui/react"
+import { Button, CircularProgress, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Stack, useDisclosure } from "@chakra-ui/react"
 import { SchoolStore } from '../../models/School'
 import { SchoolGrid } from './SchoolGrid'
 import { useQuery } from "@apollo/react-hooks";
@@ -24,6 +24,7 @@ const QUERY = gql`
 
 export const SchoolsPage: FC<any> = () => {
 
+    const { isOpen, onOpen, onClose } = useDisclosure()
     /** 
      *  GRAPH QL'ing a Strapi API:
      */
@@ -40,13 +41,43 @@ export const SchoolsPage: FC<any> = () => {
 
         return (
             <Stack
-                maxW="sm"
-                borderWidth="3px"
-                borderRadius="lg"
                 overflow="hidden"
             >
                 <SchoolGrid schoolStore={schoolStore} />
+
+                {/* <Button onClick={onOpen}>Open</Button>
+                <Drawer isOpen={isOpen} onClose={onClose}>
+                    <DrawerOverlay />
+                    <DrawerContent>
+                        <DrawerCloseButton />
+                        <DrawerHeader>Create your account</DrawerHeader>
+                        <DrawerBody>
+                            <form
+                                id="my-form"
+                                onSubmit={(e) => {
+                                    e.preventDefault()
+                                    console.log("submitted")
+                                }}
+                            >
+                                <Input name="nickname" placeholder="Type here..." />
+                            </form>
+                        </DrawerBody>
+                        <DrawerFooter>
+                            <Button type="submit" form="my-form">
+                                Save
+                            </Button>
+                        </DrawerFooter>
+                    </DrawerContent>
+                </Drawer> */}
+
+                {/* TODO: Find a nice animated way to add new schools in a form */}
                 <SchoolForm schoolStore={schoolStore} />
+
+                {/* TODO: X button on each card for deletion */}
+
+                {/* TODO: 
+                    Edit Button on each card for edits
+                */}
 
             </Stack >
         )
