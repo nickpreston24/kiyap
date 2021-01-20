@@ -1,21 +1,29 @@
-import { Stack, Box, Heading, FormControl, FormLabel, InputGroup, InputLeftElement, Icon, Input, Button } from "@chakra-ui/react";
+import { Stack, Box, Heading, FormControl, FormLabel, InputGroup, InputLeftElement, Icon, Input, Button, Spinner } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState, useEffect, FC } from "react";
 import { useDebounce } from '../../hooks'
 import { MdSearch } from 'react-icons/md'
 
 type Props = {
-    queryGeneratorFn: (endpoint: string, term: string) => string
+    queryGeneratorFn: (endpoint: string) => string
+    placeholder?: string,
+    showEndpoint: boolean,
+    debounceTime?: number,
+    devMode?: boolean,
+    label?: string
+}
+
+function partialApply(fn, ...args) {
+    return fn.bind(null, ...args);
 }
 
 export const SearchBar: FC<Props> = (
     {
-        queryGeneratorFn = (
-            endpoint = 'http://localhost:3000/',
-            term,
-        ) => {
-            return `${endpoint}/s?=${term}`
-        }
+        queryGeneratorFn,
+        debounceTime = 500,
+        placeholder = '',
+        devMode = false,
+        label = null,
     }
 ) => {
 
@@ -26,7 +34,7 @@ export const SearchBar: FC<Props> = (
 
     // Debounce search term so that it only gives us latest value 
     // so that we aren't hitting our API rapidly.
-    const debouncedSearchTerm = useDebounce(form.term, 500).trim();
+    const debouncedSearchTerm = useDebounce(form.term, debounceTime).trim();
 
     // Effect for API call
     useEffect(() => {
@@ -35,24 +43,22 @@ export const SearchBar: FC<Props> = (
 
         if (debouncedSearchTerm) {
             setLoading(true);
-            // let query = `pages?per_page=${take}&search="${debouncedSearchTerm}"`
-            // let url = `${endpoint}/${query}`
 
-            let url = queryGeneratorFn(_, debouncedSearchTerm)
+            let queryFn = partialApply(queryGeneratorFn, debouncedSearchTerm)
+            let url = queryFn(debouncedSearchTerm)
 
             setUrl(url)
 
             axios
                 .get(url)
                 .then((response) => {
-                    console.log('Search response :>> ', response.data);
-                    // setPapers(response.data)
+                    console.log('Search response :>> ', response);
+                    setResult(response.data)
                     setLoading(false);
                 })
                 .catch(console.error);
 
         } else {
-            // setPapers([]);
             setLoading(false)
         }
     },
@@ -101,9 +107,9 @@ export const SearchBar: FC<Props> = (
                 direction='column'
             >
                 <form onSubmit={onSubmit}>
-                    <a href={url}>{url}</a>
+                    {!!devMode && <a href={url}>{url}</a>}
                     <FormControl>
-                        <FormLabel>Search by Contents</FormLabel>
+                        {!!label && <FormLabel>{label}</FormLabel>}
 
                         <InputGroup>
 
@@ -120,21 +126,25 @@ export const SearchBar: FC<Props> = (
                                 onChange={updateField}
                                 type="text"
                                 isRequired
-                                placeholder="faith"
+                                placeholder={placeholder}
                             />
                         </InputGroup>
                     </FormControl>
+                    {/* {loading
+                        ? <Spinner />
+                        :  */}
                     <Button
-                        variantColor="teal"
+                        color='teal'
                         variant="outline"
                         type="submit"
                         width="full"
                         mt={4}
-                        isDisabled={loading}
                     >
                         Search
-                        </Button>
+                    </Button>
+                    {/* } */}
                 </form>
+                {/* {!!devMode && <span>{JSON.stringify(result)}</span>} */}
             </Stack>
 
         </Stack>

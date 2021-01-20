@@ -36,7 +36,7 @@ yarn-error.log*
 **/tpot-fb-repo
 **/scraps
 *.env
-scripts/seeds/lucidchart-import.csv
+**/scripts/seeds/
 
 # Jetbrains
 **/*.idea

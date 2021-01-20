@@ -5,6 +5,8 @@ import { SchoolGrid } from './SchoolGrid'
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { SchoolForm } from './SchoolForm'
+import { SearchBar } from '../../components/organisms/Searchbar'
+import ENDPOINTS from '../../constants/endpoints'
 
 const QUERY = gql`
 {
@@ -29,7 +31,11 @@ export const SchoolsPage: FC<any> = () => {
      *  GRAPH QL'ing a Strapi API:
      */
     const { loading, error, data } = useQuery(QUERY)
-    data && console.log('data', data)
+    data && console.log('schools page data :>> ', data)
+
+    // let queryGeneratorFn = (endppoint: string, term: string) => {
+    //     return ENDPOINTS.SCHOOLS
+    // }
 
     if (error) return <div>"Error loading schools"</div>;
     //if schools are returned from the GraphQL query, run the filter query
@@ -43,6 +49,17 @@ export const SchoolsPage: FC<any> = () => {
             <Stack
                 overflow="hidden"
             >
+                <SearchBar
+                    placeholder='Search Schools'
+                    showEndpoint={false}
+                    devMode={true}
+                    // debounceTime={1000}
+                    // queryGeneratorFn={() => queryGeneratorFn(ENDPOINTS.BUGS)}
+                    queryGeneratorFn={(id) => {
+                        return `${ENDPOINTS.SCHOOLS}/${id}`
+                    }}
+                />
+
                 <SchoolGrid schoolStore={schoolStore} />
 
                 {/* <Button onClick={onOpen}>Open</Button>

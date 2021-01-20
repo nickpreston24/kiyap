@@ -18,7 +18,7 @@ export const BugGrid: FC<any> = observer(({ bugStore }) => {
         {
             bugStore.bugs
                 // distinctBy(bugStore.bugs, b => b.message)
-                .slice(0, 10)
+                // .slice(0, 10)
                 .map((bug, i) => {
                     return (
                         <GridItem key={i}>

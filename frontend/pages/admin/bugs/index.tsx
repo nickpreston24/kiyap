@@ -28,9 +28,9 @@ export const BugsPage: FC<any> = () => {
 
         return (
             <Box
-                
-                
-                // overflow="hidden"
+
+
+            // overflow="hidden"
             >
                 <CircularProgress value={bugStore.percentDone} color="green.400" thickness=".75rem">
                     <CircularProgressLabel>{`${bugStore.percentDone}%`}</CircularProgressLabel>
@@ -39,9 +39,9 @@ export const BugsPage: FC<any> = () => {
             </Box>
         )
     }
-    // else {
-    //     return <div>Nothing to see here, folks</div>
-    // }
+    else {
+        return <div>Nothing to see here, folks</div>
+    }
 };
 
 export default BugsPage
