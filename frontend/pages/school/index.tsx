@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Button, CircularProgress, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Stack, useDisclosure } from "@chakra-ui/react"
+import { Box, CircularProgress, Stack } from "@chakra-ui/react"
 import { SchoolStore } from '../../models/School'
 import { SchoolGrid } from './SchoolGrid'
 import { useQuery } from "@apollo/react-hooks";
@@ -26,16 +26,11 @@ const QUERY = gql`
 
 export const SchoolsPage: FC<any> = () => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
     /** 
      *  GRAPH QL'ing a Strapi API:
      */
     const { loading, error, data } = useQuery(QUERY)
     data && console.log('schools page data :>> ', data)
-
-    // let queryGeneratorFn = (endppoint: string, term: string) => {
-    //     return ENDPOINTS.SCHOOLS
-    // }
 
     if (error) return <div>"Error loading schools"</div>;
     //if schools are returned from the GraphQL query, run the filter query
@@ -51,18 +46,36 @@ export const SchoolsPage: FC<any> = () => {
             >
                 <SearchBar
                     placeholder='Search Schools'
-                    showEndpoint={false}
                     devMode={true}
-                    // debounceTime={1000}
-                    // queryGeneratorFn={() => queryGeneratorFn(ENDPOINTS.BUGS)}
-                    queryGeneratorFn={(id) => {
-                        return `${ENDPOINTS.SCHOOLS}/${id}`
-                    }}
+                    queryGeneratorFn={(id) => `${ENDPOINTS.SCHOOLS}/${id}`}
                 />
 
-                <SchoolGrid schoolStore={schoolStore} />
 
-                {/* <Button onClick={onOpen}>Open</Button>
+                <Box
+                    style={{ border: '1px orange' }}
+                    border='2px orange'
+                >
+                    <SchoolGrid schoolStore={schoolStore} />
+                </Box>
+
+                {/* TODO: Find a nice animated way to add new schools in a form */}
+                <SchoolForm schoolStore={schoolStore} />
+
+            </Stack >
+        )
+    }
+    else {
+        return <div>Nothing to see here, folks</div>
+    }
+
+};
+
+export default SchoolsPage
+
+
+/** SCRAPS */
+
+{/* <Button onClick={onOpen}>Open</Button>
                 <Drawer isOpen={isOpen} onClose={onClose}>
                     <DrawerOverlay />
                     <DrawerContent>
@@ -86,25 +99,6 @@ export const SchoolsPage: FC<any> = () => {
                         </DrawerFooter>
                     </DrawerContent>
                 </Drawer> */}
-
-                {/* TODO: Find a nice animated way to add new schools in a form */}
-                <SchoolForm schoolStore={schoolStore} />
-
-                {/* TODO: X button on each card for deletion */}
-
-                {/* TODO: 
-                    Edit Button on each card for edits
-                */}
-
-            </Stack >
-        )
-    }
-};
-
-export default SchoolsPage
-
-
-/** SCRAPS */
 
 {/* <FormControl
                     padding={2}

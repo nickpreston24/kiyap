@@ -5,9 +5,8 @@ import { useDebounce } from '../../hooks'
 import { MdSearch } from 'react-icons/md'
 
 type Props = {
-    queryGeneratorFn: (endpoint: string) => string
+    queryGeneratorFn: (endpoint: string) => string // The function that makes a query string.
     placeholder?: string,
-    showEndpoint: boolean,
     debounceTime?: number,
     devMode?: boolean,
     label?: string

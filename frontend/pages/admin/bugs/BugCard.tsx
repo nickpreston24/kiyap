@@ -4,6 +4,13 @@ import { Card } from '../../../components/molecules/Card';
 import { BiHappyBeaming } from 'react-icons/bi';
 import { FaRegSadCry } from 'react-icons/fa';
 import { observer } from 'mobx-react-lite';
+import { GoTrashcan } from 'react-icons/go'
+import { RiDeleteBinLine } from 'react-icons/ri';
+
+const iconStyle = {
+    size: "15px",
+    color: 'aliceblue',
+}
 
 export const BugCard: FC<any> = observer(({ bug }) => {
     if (!bug)
@@ -49,6 +56,7 @@ export const BugCard: FC<any> = observer(({ bug }) => {
                             onClick={() => bug.toggleResolved()}
                         />
                     }
+                    <RiDeleteBinLine onClick={() => bug.delete()} {...iconStyle} />
 
                 </Stack>,
                 // media: <div>

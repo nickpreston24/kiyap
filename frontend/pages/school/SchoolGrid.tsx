@@ -10,9 +10,9 @@ export const SchoolGrid: FC<any> = observer(({ schoolStore }) => {
 
     return (
         <SimpleGrid columns={1} spacing="1rem">
-            {schoolStore.schools.map((school, i) => {
+            {schoolStore.schools.map((school, index) => {
                 return (
-                    <GridItem key={i}>
+                    <GridItem key={index}>
                         <SchoolCard school={school} />
                     </GridItem>
                 );
