@@ -1,6 +1,6 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks';
-import { Box, CircularProgress, CircularProgressLabel, Spinner, Stack, Tooltip } from '@chakra-ui/react';
+import { Box, Button, CircularProgress, CircularProgressLabel, Input, Slide, Spinner, Stack, Tooltip, useDisclosure } from '@chakra-ui/react';
 import { gql } from 'apollo-boost'
 import { BugStore } from '../../../models/Bug'
 import { BugGrid } from './BugGrid';
@@ -17,6 +17,13 @@ const BUGS_QUERY = gql`
     }
 `
 
+/**
+ * 
+ * TODOS:
+ * 1. Create the bug store empty every time.
+ * 2. Load the store data using its own LoadBugs() call that takes n bugs from db using the useQuery or a normal API call (probable)
+ * 3. Consider moving it up a level.
+ */
 export const BugsPage: FC<any> = () => {
 
     const { loading, error, data, refetch } = useQuery(BUGS_QUERY);
@@ -31,19 +38,11 @@ export const BugsPage: FC<any> = () => {
 
         return (
             <Box>
-                <BugProgress bugStore={bugStore} />
+                <Stack>
+                    <BugEditor bugStore={bugStore} />
+                    <BugProgress bugStore={bugStore} />
+                </Stack>
                 <BugGrid bugStore={bugStore} />
-                <Tooltip
-                    shouldWrapChildren
-                    placement='auto-start'
-                    label="Add School"
-                >
-                    <HiPlus
-                        size={36}
-                        onClick={() => bugStore
-                            .postBug("You done messed up!", "Yo...")
-                        } />
-                </Tooltip>
             </Box>
         )
     }
@@ -54,9 +53,107 @@ export const BugsPage: FC<any> = () => {
 
 export default BugsPage
 
+const BugEditor: FC<any> = observer(({ bugStore }) => {
+
+    const { isOpen, onToggle } = useDisclosure();
+
+    const [form, setForm] = useState({
+        friendly: '',
+        error: ''
+    })
+    const updateForm = (kvps) => {
+        console.log('kvps', kvps)
+        setForm({ ...form, ...kvps })
+    }
+    /**
+     * Updates the appropriate state prop by its field name from the 
+     * form where 'name' is a prop on the target component
+     */
+    const updateField = (event) => {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        updateForm({ [name]: value });
+    };
+
+    return (
+        <Box
+            style={{
+                border: '2px white solid'
+            }}
+        >
+            <Tooltip
+                shouldWrapChildren
+                placement='auto-start'
+                label="Add Random Bug"
+            >
+                <HiPlus
+                    size={36}
+                    onClick={onToggle}
+                />
+            </Tooltip>
+
+            <Slide
+                // direction={{
+                //     // motion: 'bottom',
+                //     x: '300'
+                // }}
+                direction='top'
+                in={isOpen} style={{ zIndex: 10 }}
+            >
+                <Box
+                    p="40px"
+                    color="white"
+                    mt="4"
+                    bg="teal.500"
+                    rounded="md"
+                    shadow="md"
+                >
+                    <Input
+                        border='transparent'
+                        mb={2}
+                        type='text'
+                        style={{ color: '#dfa' }}
+                        placeholder='Say my name...'
+                        name='friendly'
+                        onChange={updateField}
+                    />
+
+                    <Input
+                        border='transparent'
+                        mb={2}
+                        type='text'
+                        style={{ color: '#dfa' }}
+                        placeholder='So, what happened...?'
+                        name='error'
+                        onChange={updateField}
+                    />
+
+                    <Button
+                        bg='#2a3'
+                        color='#fff'
+                        onClick={() => {
+                            bugStore.postBug(form.error, form.friendly)
+                            onToggle()
+                        }}
+                    >
+                        Submit
+                    </Button>
+                </Box>
+
+            </Slide>
+        </Box>
+    )
+})
+/** Sample bugs */
+// bugStore.postBug("You done messed up!", "Yo...")
 const BugProgress: FC<any> = observer(({ bugStore }) => {
-    return <CircularProgress value={bugStore.percentDone} color="green.400" thickness=".75rem">
-        <CircularProgressLabel>{`${bugStore.percentDone}%`}</CircularProgressLabel>
-    </CircularProgress>;
+    return (
+        <Box>
+            <CircularProgress value={bugStore.percentDone} color="green.400" thickness=".75rem">
+                <CircularProgressLabel>{`${bugStore.percentDone}%`}</CircularProgressLabel>
+            </CircularProgress>
+        </Box>
+    )
 })
 

@@ -17,8 +17,8 @@
       "unique": true
     },
     "schools": {
-      "collection": "school",
       "via": "disciplines",
+      "collection": "school",
       "dominant": true
     },
     "description": {

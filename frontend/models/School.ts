@@ -1,5 +1,4 @@
 import axios from "axios";
-import { remove } from "lodash";
 import { destroy, flow, getParent, IAnyStateTreeNode, types } from "mobx-state-tree";
 import { Logger } from "utils/Logger";
 import { Instructor } from "./Instructor";
@@ -16,7 +15,7 @@ export const Image = types.model({
 })
 
 export const School = types.model({
-    id: types.string,
+    id: types.identifier,
     name: types.maybe(types.string),
     description: types.optional(types.string, ''),
     image: types.maybeNull(Image),
@@ -29,8 +28,7 @@ export const School = types.model({
 })
     .actions(self => ({
         register(student) {
-            // self.students.put(student)
-            self.students.push(student)
+            self.students.push({ ...student, id: student.id.toString() })
         },
         expell(student) {
             destroy(student)
@@ -39,7 +37,7 @@ export const School = types.model({
             //TODO: Like by the id of a User
         },
         getLikes() {
-            // TODO: Get all Users who like it and 
+            // TODO: Get all Users who like it
         },
         delete() {
             (getParent(self, 2) as IAnyStateTreeNode).remove(self)
@@ -65,60 +63,67 @@ export const School = types.model({
 export const SchoolStore = types.model("SchoolStore", {
     loaded: types.maybeNull(types.boolean),
     schools: types.array(School),
+    searchResults: types.array(School),
     endpoint: ENDPOINT,
 })
-    .actions(self => {
-        return {
-            addSchool: flow(function* (school) {
-                console.log('adding school :>> ', school)
-                const config = {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    url: self.endpoint,
-                } as any;
+    .actions(self => ({
+        // setSchoolSearchResults(results) {
+        //     self.searchResults = results;
+        // },
+        addSchool: flow(function* (school) {
+            console.log('adding school :>> ', school)
+            const config = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                url: self.endpoint,
+            } as any;
 
-                if (!school) return;
+            if (!school) return;
 
-                const response = yield axios.post(
-                    self.endpoint,
-                    school,
-                    config
-                )
+            const response = yield axios.post(
+                self.endpoint,
+                school,
+                config
+            )
 
-                console.log('response.data', response.data)
+            console.log('response.data', response.data)
 
-                if (response.error)
-                    Logger.Log(response.error, "Saving a new school")
+            if (response.error)
+                Logger.Log(response.error, "Saving a new school")
 
-                school.id = response.data.id.toString();
-                self.schools.push(school)
+            // school.id = response.data.id.toString();
+            let newSchool = {
+                ...response.data,
+                id: response.data.id.toString()
+            }
+            self.schools.push(newSchool)
 
-                console.log('self.schools', self.schools.length)
-            }),
+            console.log('self.schools', self.schools.length)
+        }),
 
-            remove: flow(function* (data) {
-                let school = data?.toJSON() || {};
-                // console.log('removing db school :>> ', school)
+        remove: flow(function* (data) {
+            let school = data?.toJSON() || {};
+            // console.log('removing db school :>> ', school)
 
-                const config = {
-                    method: "DELETE",
-                    // headers: { "Content-Type": "application/json" },
-                    url: self.endpoint + '/' + school.id,
-                } as any;
+            const config = {
+                method: "DELETE",
+                // headers: { "Content-Type": "application/json" },
+                url: `${self.endpoint}/${school.id}`,
+            } as any;
 
-                console.log('config', config)
+            console.log('config', config)
 
-                const response = yield axios.delete(
-                    config.url,
-                    config
-                )
+            const response = yield axios.delete(
+                config.url,
+                config
+            )
 
-                if (response.error)
-                    Logger.Log(response.error, "Deleting a school")
+            if (response.error)
+                Logger.Log(response.error, "Deleting a school")
 
-                destroy(data)
-            })
-        }
-    })
+            destroy(data)
+        })
+        // }
+    }))
 
 export default School

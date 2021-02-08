@@ -9,7 +9,8 @@ type Props = {
     placeholder?: string,
     debounceTime?: number,
     devMode?: boolean,
-    label?: string
+    label?: string,
+    onResultChanged?: (result: any) => void
 }
 
 function partialApply(fn, ...args) {
@@ -19,10 +20,11 @@ function partialApply(fn, ...args) {
 export const SearchBar: FC<Props> = (
     {
         queryGeneratorFn,
-        debounceTime = 500,
+        debounceTime = 250,
         placeholder = '',
         devMode = false,
         label = null,
+        onResultChanged = null,
     }
 ) => {
 
@@ -51,9 +53,12 @@ export const SearchBar: FC<Props> = (
             axios
                 .get(url)
                 .then((response) => {
-                    console.log('Search response :>> ', response);
                     setResult(response.data)
                     setLoading(false);
+                    let results = response.data;
+                    let updatedResults = results?.length ? [...results] : [results]
+                    console.log('updatedResults', updatedResults)
+                    onResultChanged && onResultChanged(updatedResults)
                 })
                 .catch(console.error);
 

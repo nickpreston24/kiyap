@@ -14,9 +14,9 @@ const QUERY = gql`
     id
     name
     description
-    image {
-        url
-    }
+    # image {
+    #     url
+    # }
     disciplines {
         name
     }
@@ -45,11 +45,15 @@ export const SchoolsPage: FC<any> = () => {
                 overflow="hidden"
             >
                 <SearchBar
+                    onResultChanged={(results) => {
+                        let displayResults = { schools: results };
+                        console.log('displayResults', displayResults)
+                        // schoolStore = SchoolStore.create(displayResults) // TODO: fix yet another identifier bug...
+                    }}
                     placeholder='Search Schools'
                     devMode={true}
                     queryGeneratorFn={(id) => `${ENDPOINTS.SCHOOLS}/${id}`}
                 />
-
 
                 <Box
                     style={{ border: '1px orange' }}

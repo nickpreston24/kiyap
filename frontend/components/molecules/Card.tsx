@@ -1,7 +1,8 @@
-import React, { FC, ReactNode, ReactChild } from 'react';
+import React, { FC, ReactNode, ReactChild, CSSProperties } from 'react';
 
 type Props = {
-    children: ReactChild | CardSlots
+    children: ReactChild | CardSlots,
+    style?: CSSProperties
 }
 
 type CardSlots = {

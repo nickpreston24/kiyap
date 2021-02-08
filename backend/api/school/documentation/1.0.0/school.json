@@ -630,6 +630,9 @@
               }
             }
           },
+          "address": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -649,6 +652,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "address": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

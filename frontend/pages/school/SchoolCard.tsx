@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Badge, Flex, Heading, Stack } from "@chakra-ui/react";
 import { Card } from '../../components/molecules/Card';
 import { BiLike, BiDislike } from 'react-icons/bi';
-import { values } from 'mobx';
+import { toJS, values } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBinLine } from 'react-icons/ri'
@@ -15,14 +15,20 @@ const iconStyle = {
 export const SchoolCard: FC<any> = observer(({ school }) => {
 
     // console.log('disciplines for this school :>> ', disciplines)
-    // console.log('school.image', school.image)
+    // console.log('school.image', toJS(school.image))
+    console.log('school', toJS(school))
     if (!school)
         return null;
 
     let disciplines = values(school?.disciplines) || []
 
     return (
-        <Card>{{
+        <Card
+            style={{
+                // backgroundColor: '#122345aa'
+                backgroundColor: '#e4e4e422'
+            }}
+        >{{
             content:
                 <Flex
                     align="center"
@@ -34,7 +40,10 @@ export const SchoolCard: FC<any> = observer(({ school }) => {
                 >
                     <Stack>
 
-                        <Heading color='#fff' size='sm'>{school.name}</Heading>
+                        <Heading color='#fff' size='md'>{school.name}</Heading>
+
+                        <div>{school.address}</div>
+
                         <Flex align="flex-end"
                             padding={2}
                             spacing={2}
@@ -85,19 +94,21 @@ export const SchoolCard: FC<any> = observer(({ school }) => {
                 {
                     <RiDeleteBinLine onClick={() => school.delete()} {...iconStyle} />
                 }
-
             </Stack>,
-            media: <div>
-                {/* FIXME: Unfortunately, this is pinging localhost:3000 when it should be 1337 */}
-                {/* {school?.image?.url &&
-                    <img width='130' height='60'
-                        src={school.image.url}
-                    />
-                } */}
-            </div>
+            media: !school?.image
+                ? <></>
+                : <div>
+                    {school?.image &&
+                        <img width='130' height='60'
+                            src={school.image}
+                        />
+                    }
+                </div>
+
         }}
         </Card>
     );
 });
 
+//https://cdn.shopify.com/s/files/1/0050/3349/2553/articles/Alpacas_in_field_22_N21_2000x.jpg?v=1589368550
 export default SchoolCard;

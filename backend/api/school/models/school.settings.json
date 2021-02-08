@@ -18,8 +18,8 @@
       "type": "richtext"
     },
     "disciplines": {
-      "via": "schools",
-      "collection": "discipline"
+      "collection": "discipline",
+      "via": "schools"
     },
     "image": {
       "model": "file",
@@ -31,6 +31,9 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "address": {
+      "type": "string"
     }
   }
 }

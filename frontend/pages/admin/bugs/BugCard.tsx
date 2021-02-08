@@ -8,8 +8,8 @@ import { GoTrashcan } from 'react-icons/go'
 import { RiDeleteBinLine } from 'react-icons/ri';
 
 const iconStyle = {
-    size: "15px",
-    color: 'aliceblue',
+    size: "28",
+    color: 'dodgerblue',
 }
 
 export const BugCard: FC<any> = observer(({ bug }) => {
@@ -20,11 +20,13 @@ export const BugCard: FC<any> = observer(({ bug }) => {
 
     return (
         <Flex
-            style={{ background: "linear-gradient(to left, #2bc0e4, #eaecc6)" }}
             p={2}
-            borderRadius="25px"
-            verticalAlign="center"
             margin={2}
+            style={{
+                background: "linear-gradient(to left, #2bc0e4, #eaecc6)",
+                borderRadius: "25px",
+                verticalAlign: "center"
+            }}
         >
             <Card>{{
                 content:
@@ -46,21 +48,20 @@ export const BugCard: FC<any> = observer(({ bug }) => {
                 actions: <Stack direction='row' paddingLeft={15}>
                     {!!bug.isResolved
                         ? <BiHappyBeaming
-                            size={iconSize}
-                            color='dodgerblue'
+                            {...iconStyle}
                             onClick={() => bug.toggleResolved()}
                         />
                         : <FaRegSadCry
-                            size={iconSize}
-                            color='#817'
+                            {...{
+                                ...iconStyle,
+                                color: '#817'
+                            }}
                             onClick={() => bug.toggleResolved()}
                         />
                     }
                     <RiDeleteBinLine onClick={() => bug.delete()} {...iconStyle} />
 
                 </Stack>,
-                // media: <div>
-                // </div>
             }}
             </Card>
         </Flex>
