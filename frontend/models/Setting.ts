@@ -1,6 +1,5 @@
 import { values } from 'mobx'
 import { types } from 'mobx-state-tree'
-import { User } from './Group'
 
 export const Setting = types.model({
     name: types.string,
@@ -22,21 +21,17 @@ export const Section = types.model({
 })
 
 export const Profile = types.model({
-    // user: types.optional(User, {}), 
-    // user: types.maybe(User),
     sections: types.map(Section),
 })
     .views(self => ({
         get isDev() {
 
-            let first = values(self.sections)
+            let devMode = values(self.sections)
                 .map(section => values((section as any).settings))
                 .reduce((a, v) => a.concat(v), [])
                 .find(x => x.name === 'Dev Mode')
 
-            // console.log('first', first)
-
-            return first.enabled;
+            return devMode.enabled;
         }
     }))
 

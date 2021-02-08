@@ -61,9 +61,8 @@ const BugEditor: FC<any> = observer(({ bugStore }) => {
         friendly: '',
         error: ''
     })
-    const updateForm = (kvps) => {
-        console.log('kvps', kvps)
-        setForm({ ...form, ...kvps })
+    const updateForm = (keyValuePairs) => {
+        setForm({ ...form, ...keyValuePairs })
     }
     /**
      * Updates the appropriate state prop by its field name from the 
@@ -73,6 +72,14 @@ const BugEditor: FC<any> = observer(({ bugStore }) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
+        if (!name) {
+            console.warn(`No name set for form input of type '${target.type}'.  Review your form inputs and set the name attribute to the name of a prop in your form state.`)
+            return;
+        }
+        if (!Object.keys(form).find(key => key === name)) {
+            console.error(`There is no input with the attribute [name='${name}'].  Review your form inputs for mispelling or mismatches.`)
+            return;
+        }
         updateForm({ [name]: value });
     };
 
@@ -130,14 +137,25 @@ const BugEditor: FC<any> = observer(({ bugStore }) => {
                     />
 
                     <Button
-                        bg='#2a3'
+                        bg='#41f'
                         color='#fff'
+                        _hover={{ bg: '#aff', color: 'dodgerblue' }}
+                        mr={2}
                         onClick={() => {
                             bugStore.postBug(form.error, form.friendly)
                             onToggle()
                         }}
                     >
                         Submit
+                    </Button>
+
+                    <Button
+                        bg='#f12'
+                        color='#fff'
+                        _hover={{ bg: '#aff', color: 'dodgerblue' }}
+                        onClick={onToggle}
+                    >
+                        Dismiss
                     </Button>
                 </Box>
 

@@ -26,17 +26,19 @@ export const SchoolCard: FC<any> = observer(({ school }) => {
         <Card
             style={{
                 // backgroundColor: '#122345aa'
-                backgroundColor: '#e4e4e422'
+                backgroundColor: '#e4e4e422',
+                padding: 8,
+                // border: '2px solid red'
             }}
         >{{
             content:
                 <Flex
                     align="center"
-                    mt={4}
-                    mb={4}
-                    padding={2}
-                    spacing={2}
-                    margin={2}
+                // mt={4}
+                // mb={4}
+                // padding={2}
+                // spacing={2}
+                // margin={2}
                 >
                     <Stack>
 
@@ -45,9 +47,9 @@ export const SchoolCard: FC<any> = observer(({ school }) => {
                         <div>{school.address}</div>
 
                         <Flex align="flex-end"
-                            padding={2}
-                            spacing={2}
-                            margin={2}
+                        // padding={2}
+                        // spacing={2}
+                        // margin={2}
                         >
                             {disciplines
                                 .map((discipline, key) => <Badge
@@ -74,7 +76,9 @@ export const SchoolCard: FC<any> = observer(({ school }) => {
                     </Stack>
 
                 </Flex>,
-            actions: <Stack direction='row' padding={2} spacing={2} margin={2}>
+            actions: <Stack direction='row'
+            // padding={2} spacing={2} margin={2}
+            >
                 {
                     school.isLiked
                         ? <BiLike

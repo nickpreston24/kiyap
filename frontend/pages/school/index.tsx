@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Box, CircularProgress, Stack } from "@chakra-ui/react"
+import { Box, CircularProgress, Collapse, Stack, Tooltip, useDisclosure } from "@chakra-ui/react"
 import { SchoolStore } from '../../models/School'
 import { SchoolGrid } from './SchoolGrid'
 import { useQuery } from "@apollo/react-hooks";
@@ -7,6 +7,7 @@ import { gql } from "apollo-boost";
 import { SchoolForm } from './SchoolForm'
 import { SearchBar } from '../../components/organisms/Searchbar'
 import ENDPOINTS from '../../constants/endpoints'
+import { HiPlus, HiOutlineMinusCircle } from 'react-icons/hi';
 
 const QUERY = gql`
 {
@@ -30,6 +31,8 @@ export const SchoolsPage: FC<any> = () => {
      *  GRAPH QL'ing a Strapi API:
      */
     const { loading, error, data } = useQuery(QUERY)
+    const { isOpen, onToggle } = useDisclosure()
+
     data && console.log('schools page data :>> ', data)
 
     if (error) return <div>"Error loading schools"</div>;
@@ -55,15 +58,37 @@ export const SchoolsPage: FC<any> = () => {
                     queryGeneratorFn={(id) => `${ENDPOINTS.SCHOOLS}/${id}`}
                 />
 
-                <Box
-                    style={{ border: '1px orange' }}
-                    border='2px orange'
-                >
-                    <SchoolGrid schoolStore={schoolStore} />
-                </Box>
+                {
+                    !isOpen ? <Tooltip
+                        shouldWrapChildren
+                        placement='auto-start'
+                        label="Add School"
+                    >
+                        <HiPlus
+                            size={36}
+                            onClick={onToggle}
+                        />
+                    </Tooltip> :
+                        <Tooltip
+                            shouldWrapChildren
+                            placement='auto-start'
+                            label="Add School"
+                        >
+                            <HiOutlineMinusCircle
+                                size={36}
+                                onClick={onToggle}
+                            />
+                        </Tooltip>
+                }
 
-                {/* TODO: Find a nice animated way to add new schools in a form */}
-                <SchoolForm schoolStore={schoolStore} />
+                <Collapse in={isOpen} animateOpacity>
+                    <SchoolForm
+                        schoolStore={schoolStore}
+                        onSubmit={(school) => schoolStore.addSchool(school)}
+                    />
+                </Collapse>
+
+                <SchoolGrid schoolStore={schoolStore} />
 
             </Stack >
         )

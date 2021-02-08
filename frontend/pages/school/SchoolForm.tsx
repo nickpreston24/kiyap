@@ -1,9 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
-import { FormControl, FormHelperText, FormLabel, Input, Tooltip } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormHelperText, FormLabel, Input, Tooltip } from "@chakra-ui/react";
 import { observer } from 'mobx-react-lite';
-import { HiPlus } from 'react-icons/hi';
 
-export const SchoolForm: FC<any> = observer(({ schoolStore }) => {
+export const SchoolForm: FC<any> = observer(({ schoolStore, onSubmit }) => {
 
     const [form, setForm] = useState({
         name: "",
@@ -26,7 +25,14 @@ export const SchoolForm: FC<any> = observer(({ schoolStore }) => {
     };
 
     return (
-        <div>
+        <Box
+            p="8px"
+            color="#aff"
+            bg='transparent'
+            rounded='md'
+            shadow='md'
+            mt='2'
+        >
             <FormControl id="name" spacing={40}>
                 <FormLabel>School Name</FormLabel>
                 <Input
@@ -56,22 +62,19 @@ export const SchoolForm: FC<any> = observer(({ schoolStore }) => {
                     onChange={updateField} />
                 <FormHelperText>Have a pic?  Share it here!</FormHelperText>
 
+                <Button
+                    background='transparent'
+                    _hover={{ bg: '#aff', color: 'dodgerblue' }}
+                    // _focus={{ boxShadow: 'none' }}
+                    onClick={() => {
+                        onSubmit({ ...form })
+                    }}
+                >Submit</Button>
+
             </FormControl>
 
-            <Tooltip
-                shouldWrapChildren
-                placement='auto-start'
-                label="Add School"
-            >
-                <HiPlus
-                    size={36}
-                    onClick={() => schoolStore.addSchool({
-                        ...form
-                        // name: "Fake School",
-                        // description: "...lorem ipsum..."
-                    })} />
-            </Tooltip>
-        </div>
+
+        </Box>
     );
 });
 
