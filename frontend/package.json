@@ -41,7 +41,7 @@
         "mobx-react-lite": "^3.2.0",
         "mobx-state-tree": "^5.0.1",
         "neo4j-driver": "^4.2.2",
-        "next": "^10.0.6",
+        "next": "^12.1.0",
         "next-apollo": "^5.0.4",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
