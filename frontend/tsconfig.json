@@ -1,43 +1,46 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "lib": [
-        "dom",
-        "dom.iterable",
-        "esnext"
-      ],
-      "allowJs": true,
-      "skipLibCheck": true,
-      "strict": false,
-      "forceConsistentCasingInFileNames": true,
-      "noEmit": true,
-      "esModuleInterop": true,
-      "module": "esnext",
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "jsx": "preserve",
-      "baseUrl": "./",
-      "paths": {
-        "atoms": [
-          "components/atoms"
-        ],
-        "molecules": [
-          "components/molecules"
-        ],
-        "template": [
-          "components/templates"
-        ],
-        "organisms": [
-          "components/organisms"
-        ]
-      }
-    },
-    "exclude": [
-      "node_modules",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "include": [
-      "next-env.d.ts",
-      "**/*.ts", "hooks/useLocalStorage.js", "utils/array.js",
-    ]
-  }
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "atoms": [
+        "components/atoms"
+      ],
+      "molecules": [
+        "components/molecules"
+      ],
+      "template": [
+        "components/templates"
+      ],
+      "organisms": [
+        "components/organisms"
+      ]
+    },
+    "incremental": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "hooks/useLocalStorage.js",
+    "utils/array.js"
+  ]
+}
