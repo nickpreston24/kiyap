@@ -20,7 +20,7 @@
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "apollo-boost": "^0.4.9",
-        "axios": "^1.6.0",
+        "axios": "^1.12.0",
         "bit-bin": "^14.8.8",
         "d3": "^7.8.5",
         "d3-scale": "^4.0.2",
